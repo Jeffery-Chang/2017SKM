@@ -1,0 +1,113 @@
+// div width & height
+@mixin box($w, $h, $bg) {
+    width: $w;
+    height: $h;
+    background-color: $bg;
+    margin: 0 auto;
+    @include box-sizing;
+}
+
+// image scale with box
+@mixin img-scale {
+    >img {
+        @include box(100%, auto, null);
+        display: block;
+    }
+}
+
+// circle
+@mixin circle($unit) {
+    width: $unit;
+    height: $unit;
+    border-radius: 100%;
+}
+
+// viaticle middle
+@mixin vm {
+    &:before {
+        content: '';
+        width: 0;
+        height: 100%;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+    }
+}
+
+// clear float
+%clear {
+    *zoom: 1;
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// mid
+@mixin allcenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include translate(-50%, -50%);
+}
+
+// word writing_vertical-rl
+@mixin text-pretty {
+    // ie only
+    writing-mode: tb-rl;
+    // other browser
+    -moz-writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+    text-align: left;
+}
+
+//absl
+@mixin absl($top, $right, $bottom, $left) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+//blur
+@mixin blur($unit) {
+    -webkit-filter: blur($unit);
+    -moz-filter: blur($unit);
+    -ms-filter: blur($unit);
+    filter: blur($unit);
+}
+
+//btn
+%btnStyle {
+    display: block;
+    @include box(189px, 35px, null);
+    position: relative;
+    margin-top: 25px;
+    svg {
+        @include scale(1.4);
+    }
+    .shape {
+        stroke-dasharray: 0 500;
+        stroke-dashoffset: 20;
+        stroke-width: 3px;
+        fill: transparent;
+        stroke: white;
+        transition: stroke-width 2.7s, stroke-dashoffset 2.7s, stroke-dasharray 1.3s;
+        transition-delay: 0s;
+    }
+    .shape_border {
+        stroke-width: 3px;
+        stroke-dasharray: 150 8;
+        stroke-dashoffset: 20;
+    }
+    span {
+        @include font-style($size, $weight, $lineheight, $fontcolor, $letterspace);
+        @include allcenter;
+    }
+}

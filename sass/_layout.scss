@@ -1,0 +1,209 @@
+// for whole width & height
+* {
+    -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
+    @include box-sizing(border-box);
+    @include transition(.5s ease-out);
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+.pc_only {
+    display: block;
+    // media
+    @media screen and (max-width: 600px) {
+        display: none;
+    }
+}
+
+.m_only {
+    display: none;
+    // media
+    @media screen and (max-width: 600px) {
+        display: block;
+    }
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    @include body-font($size, $lineheight);
+    font-weight: $weight;
+    background: url(../img/star.gif);
+}
+
+header {
+    @include box(100%, 50px, $red);
+    padding: 10px;
+    position: relative;
+    z-index: 100;
+    p,
+    nav {
+        float: left;
+    }
+    .menu {
+        display: none;
+        @include absl(0px, 10px, null, null);
+        @include box(40px, 50px, null);
+        a {
+            display: inline-block;
+            @include box(40px, 5px, white);
+            @include absl(15px, 0px, null, null);
+            @include transition(0.3s ease-out);
+            border-radius: 2.5px;
+            &:after {
+                @include box(30px, 5px, white);
+                @include transition(0.3s ease-out);
+                @include absl(0px, 10px, null, null);
+                content: '';
+                display: table;
+                margin-top: 12px;
+                border-radius: 2.5px;
+            }
+        }
+        &:hover {
+            a {
+                @include rotate(135deg);
+                @include absl(22px, 10px, null, null);
+                &:after {
+                    @include rotate(-270deg);
+                    @include box(40px, 5px, white);
+                    @include absl(-12px, 0px, null, null);
+                }
+            }
+        }
+        // media
+        @media screen and (max-width: 600px) {
+            display: block;
+        }
+    }
+    nav {
+        float: right;
+        ul {
+            li {
+                @include font-style($size, $weight, $lineheight, $fontcolor, $letterspace);
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 20px;
+                a {
+                    color: white;
+                }
+            }
+            li.social {
+                @include circle(30px);
+                background-color: white;
+                position: relative;
+                margin-left: 3px;
+                a {
+                    color: $red;
+                }
+                span {
+                    @include allcenter;
+                }
+            }
+            li:nth-of-type(5) {
+                margin-left: 15px;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            @include box(100%, 100%, $red);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            ul {
+                @include allcenter;
+                text-align: center;
+                li {
+                    @include font-style(18px, $weight, $lineheight, $fontcolor, $letterspace);
+                    display: block;
+                    margin: 20px 0;
+                }
+                li.social {
+                    @include circle(40px);
+                    @include font-style(22px, $weight, $lineheight, $fontcolor, $letterspace);
+                    margin: 0px 5px;
+                    margin-top: 10px;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+
+.wrap {
+    @include box(100%, calc(100% - 50px), null);
+    background: url(../img/light.png) no-repeat center center;
+    background-size: cover;
+}
+
+.main {
+    @include box(100%, 100%, null);
+    min-height: 100%;
+    position: relative;
+    .meteor,
+    .sha {
+        @include box(100%, 100%, null);
+        @include absl(0px, 0px, null, null);
+    }
+    .meteor {
+        z-index: 1;
+        span,
+        span:after {
+            @include box(200px, 2px, null);
+            @include rotate(-30deg);
+            display: block;
+            background-image: linear-gradient(left, $blue 0%, transparent 100%);
+        }
+        span:after {
+            content: '';
+            display: block;
+            margin: 13px 0 0 100px;
+            @include rotate(0deg);
+        }
+        span:nth-of-type(1) {
+            @include absl(40%, null, null, 12%);
+        }
+        span:nth-of-type(2) {
+            @include absl(3%, 30%, null, null);
+        }
+        span:nth-of-type(3) {
+            @include absl(60%, 0%, null, null);
+        }
+        span:nth-of-type(4) {
+            @include absl(75%, null, null, 5%);
+        }
+        //media
+        @media screen and (max-width: 600px) {
+            display: none;
+        }
+    }
+    .sha {
+        background: url(../img/sha.png) no-repeat center center;
+        background-size: cover;
+        z-index: 2;
+    }
+}
+
+section {
+    @include box(100%, 100%, null);
+    position: relative;
+    z-index: 1;
+    max-width: 1024px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+}
+//btn
+a.btn{
+    @extend %btnStyle;
+}
+
+

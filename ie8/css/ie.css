@@ -1,0 +1,61 @@
+body{
+	background: #1c1d24 url(../images/ie_bg.jpg) no-repeat fixed center top;
+	font-family: Arial,sans-serif;
+}
+.wrapper{
+	width: 910px;
+	height: 420px;
+	position:absolute; 
+	top:50%; 
+	left: 50%;
+	margin-top:-210px; 
+	margin-left:-455px; 
+	text-align: center;
+}
+
+.wrapper h2{
+	font-size: 18px;
+	line-height: 30px;
+	letter-spacing: 1px;
+	margin-top: 45px;
+	color: #ffffff;
+}
+
+.ie-icons{
+	width: 525px;
+	height: 125px;
+	margin: 0 auto;
+	margin-top: 68px;
+}
+
+.ie-icons li{
+	float: left;
+	width: 105px;
+	font-size: 12px;
+	text-align: center;
+	color: #ffffff;
+	display: block;
+}
+
+.ie-icons li img{
+	width: 77px;
+	height: 77px;
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom: 32px;
+}
+
+
+.ie-icons li:hover{
+	filter: alpha(opacity=70);
+	color: #999999;
+}
+
+
+
+
+
+
+
+
+

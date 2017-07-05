@@ -1,0 +1,31 @@
+// font style
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+@function pxrem($px, $content: 16px) {
+    @return ($px / $content) * 1rem;
+}
+
+$size:15px;
+$weight:500;
+$fontcolor: white;
+$text-align: center;
+$letterspace: 1px;
+$lineheight: 1.5;
+
+
+@mixin font-style($size, $weight, $lineheight, $fontcolor, $letterspace) {
+    font-size: $size;
+    font-size: pxrem($size);
+    font-weight: $weight;
+    line-height: $lineheight;
+    color: $fontcolor;
+    letter-spacing: $letterspace;
+}
+
+@mixin body-font($size, $lineheight) {
+    font-size: $size;
+    font-size: pxrem($size);
+    letter-spacing: 1px;
+    font-family: 'Noto Sans TC', Helvetica, sans-serif, '微軟正黑體';
+    line-height: $lineheight;
+}
+

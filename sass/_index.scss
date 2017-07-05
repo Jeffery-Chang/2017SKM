@@ -1,0 +1,179 @@
+.index {
+    overflow: hidden;
+    .earth {
+        @include absl(null, null, -10%, 50%);
+        @include box(995px, null, null);
+        @include translateX(-50%);
+        z-index: 3;
+        // media
+        @media only screen and (max-width: 1366px) {
+            @include absl(null, null, -28%, 50%);
+        }
+        @media only screen and (max-width: 1024px) {
+            @include absl(null, null, -22%, 50%);
+        }
+        // iphone6+
+        @media screen and (min-width: 414px) and (max-width: 959px) {
+            @include absl(null, null, -2%, 50%);
+            @include box(130%, null, null);
+        }
+        // iphone6
+        @media screen and (min-width: 375px) and (max-width: 413px) {
+            @include absl(null, null, -7%, 50%);
+            @include box(130%, null, null);
+        }
+        // iphone5
+        @media screen and (max-width: 374px) {
+            @include absl(null, null, -15%, 50%);
+            @include box(130%, null, null);
+        }
+    }
+    .house_layer_1,
+    .house_layer_2,
+    .house_layer_3 {
+        @include absl(-230px, 0px, null, null);
+        @include img-scale;
+        width: 100%;
+        max-width: 995px;
+        // iphone6+
+        @media screen and (min-width: 414px) and (max-width: 959px) {
+            @include absl(-125px, 0px, null, null);
+        }
+        // iphone6
+        @media screen and (min-width: 375px) and (max-width: 413px) {
+            @include absl(-110px, 0px, null, null);
+        }
+        // iphone5
+        @media screen and (max-width: 374px) {
+            @include absl(-95px, 0px, null, null);
+        }
+    }
+    .house_layer_1,
+    .house_layer_2 {
+        z-index: 1;
+    }
+    .house_layer_3 {
+        z-index: 3;
+    }
+    .land {
+        @include img-scale;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.index section {
+    @include absl(17%, null, null, 50%);
+    @include translateX(-50%);
+    z-index: 10;
+    text-align: center;
+    h1 {
+        @include box(55%, null, null);
+        @include img-scale;
+        margin-bottom: 10px;
+    }
+    h2 {
+        @include font-style(16px, 600, 2, $red, $letterspace);
+    }
+    p {
+        @include font-style(14px, $weight, $lineheight, $fontcolor, $letterspace);
+    }
+    a.btn{
+            display: none;
+        }
+    // media
+    @media only screen and (max-width: 1366px) {
+        @include absl(13%, null, null, 50%);
+        h1 {
+            @include box(42%, null, null);
+        }
+    }
+    @media only screen and (max-width: 1280px) {
+        @include absl(14%, null, null, 50%);
+        h1 {
+            @include box(42%, null, null);
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        .scroll-btn{
+            display: none;
+        }
+        a.btn{
+            display: block;
+        }
+    }
+    //ipad
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+        .scroll-btn{
+            display: none;
+        }
+        a.btn{
+            display: block;
+        }
+    }
+    // iphone6+
+    @media screen and (min-width: 414px) and (max-width: 959px) {
+        @include absl(10%, null, null, 50%);
+        h1 {
+            @include box(75%, null, null);
+        }
+    }
+    // iphone6
+    @media screen and (min-width: 375px) and (max-width: 413px) {
+        @include absl(10%, null, null, 50%);
+        h1 {
+            @include box(75%, null, null);
+        }
+    }
+    // iphone5
+    @media screen and (max-width: 374px) {
+        @include absl(8%, null, null, 50%);
+        h1 {
+            @include box(75%, null, null);
+        }
+    }
+
+}
+
+//星球群
+.planet {
+    @include box(32px, 32px, null);
+    z-index: 2;
+    svg {
+        @include box(32px, 32px, null);
+    }
+    // media
+    @media screen and (max-width: 600px) {
+        display: none;
+    }
+}
+
+.p_1 {
+    @include absl(0%, null, null, -7%);
+    @include scale(30);
+    @include blur(0.1px);
+    // media
+    @media only screen and (max-width: 1280px) {
+        @include scale(18);
+    }
+}
+
+.p_2 {
+    @include absl(30%, 12%, null, null);
+    @include scale(8);
+    @include opacity(0.7);
+    // media
+    @media only screen and (max-width: 1280px) {
+        @include scale(5);
+    }
+}
+
+.p_3 {
+    @include absl(13%, 25%, null, null);
+    @include scale(2);
+    @include opacity(0.4);
+    // media
+    @media only screen and (max-width: 1280px) {
+        @include scale(1);
+    }
+}

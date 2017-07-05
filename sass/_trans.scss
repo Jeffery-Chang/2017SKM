@@ -1,0 +1,167 @@
+// position absl
+@mixin absl($top, $right, $bottom, $left) {
+    position: absolute;
+    top: $top;
+    left: $left;
+    bottom: $bottom;
+    right: $right;
+}
+
+@mixin pos_mid {
+    @include absl(50%, null, null, 50%);
+    @include transform(translate(-50%, -50%));
+}
+
+@mixin trans_all {
+    position: relative;
+    @include font-style(15px, null, null, null, null);
+    width: 100%;
+    height: 100%;
+    background-color: $red;
+}
+
+.trans_bg {
+    width: 100%;
+    height: 100%;
+    background-color: $red;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 201;
+    display: none;
+}
+
+.trans_ipad,
+.trans_iphone,
+.trans_pc {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: $red;
+    position: fixed;
+}
+
+// only for ipad in portrait
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+    .trans_bg {
+        display: block;
+    }
+    .trans_ipad {
+        width: 100%;
+        height: 100%;
+        background-color: $red;
+        display: block;
+        .trans_center {
+            @include pos_mid;
+            text-align: center;
+            img {
+                width: 50%;
+                height: auto;
+            }
+            p {
+                @include font-style(20px, 500, $lineheight, white, $letterspace);
+                text-align: center;
+            }
+        }
+    }
+}
+
+// only for iphone4 in landscape
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) {
+    .trans_bg {
+        display: block;
+    }
+    .trans_iphone {
+        display: block;
+        @include trans_all;
+        position: absolute;
+        background-color: $red;
+        .trans_center {
+            @include pos_mid;
+            text-align: center;
+            img {
+                width: 30%;
+                height: auto;
+            }
+            p {
+                @include font-style(16px, 500, $lineheight, white, $letterspace);
+                text-align: center;
+            }
+        }
+    }
+}
+
+// only for iphone5 in landscape
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: landscape) {
+    .trans_bg {
+        display: block;
+    }
+    .trans_iphone {
+        display: block;
+        @include trans_all;
+        position: absolute;
+        background-color: $red;
+        .trans_center {
+            @include pos_mid;
+            text-align: center;
+            img {
+                width: 30%;
+                height: auto;
+            }
+            p {
+                @include font-style(16px, 500, $lineheight, white, $letterspace);
+                text-align: center;
+            }
+        }
+    }
+}
+
+// only for iphone6 in landscape
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) {
+    .trans_bg {
+        display: block;
+    }
+    .trans_iphone {
+        display: block;
+        @include trans_all;
+        position: absolute;
+        background-color: $red;
+        .trans_center {
+            @include pos_mid;
+            text-align: center;
+            img {
+                width: 30%;
+                height: auto;
+            }
+            p {
+                @include font-style(18px, 500, $lineheight, white, $letterspace);
+                text-align: center;
+            }
+        }
+    }
+}
+
+// only for iphone6+ in landscape
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: landscape) {
+    .trans_bg {
+        display: block;
+    }
+    .trans_iphone {
+        display: block;
+        @include trans_all;
+        position: absolute;
+        background-color: $red;
+        .trans_center {
+            @include pos_mid;
+            text-align: center;
+            img {
+                width: 40%;
+                height: auto;
+            }
+            p {
+                @include font-style(18px, 500, $lineheight, white, $letterspace);
+                text-align: center;
+            }
+        }
+    }
+}
