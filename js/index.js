@@ -5,8 +5,8 @@ var earth = $('.earth .land');
 var title = $('section h1');
 var redword = $('section h2');
 var content = $('section .pc_only, section .m_only');
-var startBtnPC = $('.scroll-btn');
-var startBtnM = $('.btn');
+var startBtnPC = $('section .scroll-btn');
+var startBtnM = $('section .btn');
 var planet1 = $('.planet.p_1');
 var planet2 = $('.planet.p_2');
 var planet3 = $('.planet.p_3');
@@ -17,12 +17,12 @@ var indexCtrl = {
         $this.winWheel();
         $this.resize();
 
-        $('.btn').click(function(e) {
+        startBtnM.click(function(e) {
             menuCtrl.preventAll(e);
             $this.outSide();
             $('.shape').toggleClass('shape_border');
         });
-        $('.scroll-btn a').on('click', function(e){
+        startBtnPC.on('click', function(e){
             menuCtrl.preventAll(e);
             $this.outSide();
         });

@@ -4,7 +4,8 @@ var menuCtrl = {
 
         $('.menu').on('click',function(e){
             $this.preventAll(e);
-            $('header nav').fadeIn('fast');
+            $(this).toggleClass('open');
+            $('header nav').fadeToggle('fast');
         });
 
         $('header nav li').on('click', function(e){

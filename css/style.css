@@ -542,12 +542,6 @@ a.btn span {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-/*
-  -moz-transition: ease-out 0.5s;
-  -o-transition: ease-out 0.5s;
-  -webkit-transition: ease-out 0.5s;
-  transition: ease-out 0.5s;
-*/
 }
 
 a {
@@ -587,6 +581,14 @@ body {
   line-height: 1.5;
   font-weight: 500;
   background: url(../img/star.gif);
+  min-width: 1024px;
+  min-height: 750px;
+}
+@media screen and (min-device-width: 320px) and (max-device-width: 959px) {
+  body {
+    min-width: 0;
+    min-height: 0;
+  }
 }
 
 header {
@@ -616,6 +618,7 @@ header .menu {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  z-index: 1;
 }
 header .menu a {
   display: inline-block;
@@ -655,7 +658,7 @@ header .menu a:after {
   margin-top: 12px;
   border-radius: 2.5px;
 }
-header .menu:hover a {
+header .menu.open a {
   -moz-transform: rotate(135deg);
   -ms-transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
@@ -664,7 +667,7 @@ header .menu:hover a {
   top: 22px;
   right: 10px;
 }
-header .menu:hover a:after {
+header .menu.open a:after {
   -moz-transform: rotate(-270deg);
   -ms-transform: rotate(-270deg);
   -webkit-transform: rotate(-270deg);
@@ -677,7 +680,7 @@ header .menu:hover a:after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   position: absolute;
-  top: -12px;
+  top: -1px;
   right: 0px;
 }
 @media screen and (max-width: 600px) {
@@ -913,7 +916,7 @@ section {
     bottom: -22%;
   }
 }
-@media screen and (min-width: 414px) and (max-width: 959px) {
+@media screen and (min-device-width: 414px) and (max-device-width: 959px) {
   .index .earth {
     position: absolute;
     left: 50%;
@@ -925,7 +928,7 @@ section {
     box-sizing: border-box;
   }
 }
-@media screen and (min-width: 375px) and (max-width: 413px) {
+@media screen and (min-device-width: 375px) and (max-device-width: 413px) {
   .index .earth {
     position: absolute;
     left: 50%;
@@ -937,7 +940,7 @@ section {
     box-sizing: border-box;
   }
 }
-@media screen and (max-width: 374px) {
+@media screen and (max-device-width: 374px) {
   .index .earth {
     position: absolute;
     left: 50%;
@@ -969,7 +972,7 @@ section {
   box-sizing: border-box;
   display: block;
 }
-@media screen and (min-width: 414px) and (max-width: 959px) {
+@media screen and (min-device-width: 414px) and (max-device-width: 959px) {
   .index .house_layer_1,
   .index .house_layer_2,
   .index .house_layer_3 {
@@ -978,7 +981,7 @@ section {
     right: 0px;
   }
 }
-@media screen and (min-width: 375px) and (max-width: 413px) {
+@media screen and (min-device-width: 375px) and (max-device-width: 413px) {
   .index .house_layer_1,
   .index .house_layer_2,
   .index .house_layer_3 {
@@ -987,7 +990,7 @@ section {
     right: 0px;
   }
 }
-@media screen and (max-width: 374px) {
+@media screen and (max-device-width: 374px) {
   .index .house_layer_1,
   .index .house_layer_2,
   .index .house_layer_3 {
@@ -1019,7 +1022,7 @@ section {
 
 .index section {
   position: absolute;
-  top: 17%;
+  top: 15%;
   left: 50%;
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
@@ -1108,7 +1111,7 @@ section {
     display: block;
   }
 }
-@media screen and (min-width: 414px) and (max-width: 959px) {
+@media screen and (min-device-width: 414px) and (max-device-width: 959px) {
   .index section {
     position: absolute;
     top: 10%;
@@ -1122,7 +1125,7 @@ section {
     box-sizing: border-box;
   }
 }
-@media screen and (min-width: 375px) and (max-width: 413px) {
+@media screen and (min-device-width: 375px) and (max-device-width: 413px) {
   .index section {
     position: absolute;
     top: 10%;
@@ -1136,7 +1139,7 @@ section {
     box-sizing: border-box;
   }
 }
-@media screen and (max-width: 374px) {
+@media screen and (max-device-width: 374px) {
   .index section {
     position: absolute;
     top: 8%;
@@ -1187,12 +1190,22 @@ section {
   -ms-filter: blur(0.1px);
   filter: blur(0.1px);
 }
+@media only screen and (max-width: 1366px) {
+  .p_1 {
+    position: absolute;
+    top: 0%;
+    left: -20%;
+  }
+}
 @media only screen and (max-width: 1280px) {
   .p_1 {
     -moz-transform: scale(18, 18);
     -ms-transform: scale(18, 18);
     -webkit-transform: scale(18, 18);
     transform: scale(18, 18);
+    position: absolute;
+    top: 0%;
+    left: -10%;
   }
 }
 
@@ -1204,8 +1217,11 @@ section {
   -ms-transform: scale(8, 8);
   -webkit-transform: scale(8, 8);
   transform: scale(8, 8);
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-  opacity: 0.7;
+  filter: brightness(70%);
+  -webkit-filter: brightness(70%);
+  -moz-filter: brightness(70%);
+  -ms-filter: brightness(70%);
+  -o-filter: brightness(70%);
 }
 @media only screen and (max-width: 1280px) {
   .p_2 {
@@ -1213,6 +1229,13 @@ section {
     -ms-transform: scale(5, 5);
     -webkit-transform: scale(5, 5);
     transform: scale(5, 5);
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .p_2 {
+    position: absolute;
+    top: 30%;
+    right: 5%;
   }
 }
 
@@ -1224,8 +1247,11 @@ section {
   -ms-transform: scale(2, 2);
   -webkit-transform: scale(2, 2);
   transform: scale(2, 2);
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
-  opacity: 0.4;
+  filter: brightness(40%);
+  -webkit-filter: brightness(40%);
+  -moz-filter: brightness(40%);
+  -ms-filter: brightness(40%);
+  -o-filter: brightness(40%);
 }
 @media only screen and (max-width: 1280px) {
   .p_3 {
@@ -1233,6 +1259,144 @@ section {
     -ms-transform: scale(1, 1);
     -webkit-transform: scale(1, 1);
     transform: scale(1, 1);
+  }
+}
+
+.flyman,
+.rocket,
+.satellite {
+  position: absolute;
+  z-index: 3;
+}
+@media only screen and (max-width: 600px) {
+  .flyman,
+  .rocket,
+  .satellite {
+    display: none;
+  }
+}
+
+.flyman {
+  position: absolute;
+  top: 32%;
+  right: 20%;
+  -moz-transform: scale(0.85, 0.85);
+  -ms-transform: scale(0.85, 0.85);
+  -webkit-transform: scale(0.85, 0.85);
+  transform: scale(0.85, 0.85);
+  filter: brightness(70%);
+  -webkit-filter: brightness(70%);
+  -moz-filter: brightness(70%);
+  -ms-filter: brightness(70%);
+  -o-filter: brightness(70%);
+}
+@media only screen and (max-width: 1366px) {
+  .flyman {
+    -moz-transform: scale(0.7, 0.7);
+    -ms-transform: scale(0.7, 0.7);
+    -webkit-transform: scale(0.7, 0.7);
+    transform: scale(0.7, 0.7);
+    position: absolute;
+    top: 32%;
+    right: 17%;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  .flyman {
+    -moz-transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -webkit-transform: scale(0.6, 0.6);
+    transform: scale(0.6, 0.6);
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .flyman {
+    position: absolute;
+    top: 28%;
+    right: 10%;
+  }
+}
+
+.rocket {
+  position: absolute;
+  top: 5%;
+  left: 24%;
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+@media only screen and (max-width: 1600px) {
+  .rocket {
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    -moz-transform: scale(0.8, 0.8);
+    -ms-transform: scale(0.8, 0.8);
+    -webkit-transform: scale(0.8, 0.8);
+    transform: scale(0.8, 0.8);
+  }
+}
+@media only screen and (max-width: 1366px) {
+  .rocket {
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    -moz-transform: scale(0.85, 0.85);
+    -ms-transform: scale(0.85, 0.85);
+    -webkit-transform: scale(0.85, 0.85);
+    transform: scale(0.85, 0.85);
+  }
+}
+@media only screen and (max-width: 1280px) {
+  .rocket {
+    -moz-transform: scale(0.7, 0.7);
+    -ms-transform: scale(0.7, 0.7);
+    -webkit-transform: scale(0.7, 0.7);
+    transform: scale(0.7, 0.7);
+  }
+}
+@media only screen and (max-width: 1050px) {
+  .rocket {
+    display: none;
+  }
+}
+
+.satellite {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  -moz-transform: scale(0.8, 0.8);
+  -ms-transform: scale(0.8, 0.8);
+  -webkit-transform: scale(0.8, 0.8);
+  transform: scale(0.8, 0.8);
+  filter: brightness(40%);
+  -webkit-filter: brightness(40%);
+  -moz-filter: brightness(40%);
+  -ms-filter: brightness(40%);
+  -o-filter: brightness(40%);
+}
+@media only screen and (max-width: 1366px) {
+  .satellite {
+    position: absolute;
+    top: 42%;
+    left: 20%;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  .satellite {
+    -moz-transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -webkit-transform: scale(0.6, 0.6);
+    transform: scale(0.6, 0.6);
+    position: absolute;
+    top: 45%;
+    left: 12%;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .satellite {
+    display: none;
   }
 }
 
