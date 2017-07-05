@@ -14,17 +14,19 @@ var indexCtrl = {
     init: function(){
         var $this = this;
 
-        $this.winWheel();
-        $this.resize();
+        if(!menuCtrl.chkDevice()){
+            $this.winWheel();
+            $this.activeObj();
+        }
 
+        startBtnPC.find('a').on('click', function(e){
+            menuCtrl.preventAll(e);
+            $this.outSide();
+        });
         startBtnM.click(function(e) {
             menuCtrl.preventAll(e);
             $this.outSide();
             $('.shape').toggleClass('shape_border');
-        });
-        startBtnPC.on('click', function(e){
-            menuCtrl.preventAll(e);
-            $this.outSide();
         });
     },
     resize: function(){
@@ -35,6 +37,27 @@ var indexCtrl = {
             }else{
                 startBtnPC.hide();
                 startBtnM.show();
+            }
+        });
+    },
+    activeObj: function(){
+        TweenMax.to($('.flyman'), 2, {
+            y           : "+=30",
+            ease        : Power1.easeIn,
+            yoyo        : true,
+            repeat      : -1,
+            repeatDelay : 0.05
+        });
+        var rocket = TweenMax.to($('.rocket'), 3, {
+            top: "5%", 
+            left: "20%", 
+            opacity: 1,
+            transform: "scale(.8) rotate(0)",
+            delay: 2,
+            ease: Power2.easeOut,
+            onComplete: function(){
+                $('.rocket').removeClass('start');
+                TweenMax.set($('.rocket'), {clearProps:"all"}); 
             }
         });
     },
@@ -81,7 +104,9 @@ var indexCtrl = {
         });
 
         // 星球
-        TweenMax.staggerTo([planet1, planet2, planet3], 0.5,{x: 0, ease:Back.easeIn}, 0.1);
+        TweenMax.staggerTo([planet1, planet2, planet3], 0.5,{x: 0, ease:Back.easeIn}, 0.1, function(){
+            TweenMax.set([planet1, planet2, planet3], {clearProps:"all"}); 
+        });
     },
     winWheel: function(){
         var $this = this;

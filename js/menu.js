@@ -40,7 +40,8 @@ var menuCtrl = {
         event.preventDefault();
     },
     shareFB: function(){
-        var fb_url = (isMobile.phone || isMobile.tablet) ? 'http://m.facebook.com/sharer.php?u=' : 'http://www.facebook.com/sharer/sharer.php?s=100&p[url]=';
+        var $this = this;
+        var fb_url = ($this.chkDevice()) ? 'http://m.facebook.com/sharer.php?u=' : 'http://www.facebook.com/sharer/sharer.php?s=100&p[url]=';
         var fbBack_url = '?fb_back=1';
         var share_u;
         share_u = location.href + fbBack_url;
@@ -52,6 +53,13 @@ var menuCtrl = {
         var share_u;
         share_u = location.href + gplusBack_url;
         window.open(gplus_url + encodeURIComponent(share_u), 'sharer', 'toolbar=0,status=0,width=656,height=436');
+    },
+    chkDevice: function(){
+        var chk_fg = false;
+        if(isMobile.phone || isMobile.tablet){
+            chk_fg = true;
+        }
+        return chk_fg;
     }
 }
 

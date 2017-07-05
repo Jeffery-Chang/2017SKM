@@ -609,6 +609,7 @@ header nav {
 }
 header .menu {
   display: none;
+  z-index: 2;
   position: absolute;
   top: 0px;
   right: 10px;
@@ -618,7 +619,6 @@ header .menu {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  z-index: 1;
 }
 header .menu a {
   display: inline-block;
@@ -658,7 +658,16 @@ header .menu a:after {
   margin-top: 12px;
   border-radius: 2.5px;
 }
-header .menu.open a {
+@media screen and (max-width: 600px) {
+  header .menu {
+    display: block;
+  }
+}
+header .open {
+  display: none;
+  z-index: 2;
+}
+header .open a {
   -moz-transform: rotate(135deg);
   -ms-transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
@@ -667,7 +676,7 @@ header .menu.open a {
   top: 22px;
   right: 10px;
 }
-header .menu.open a:after {
+header .open a:after {
   -moz-transform: rotate(-270deg);
   -ms-transform: rotate(-270deg);
   -webkit-transform: rotate(-270deg);
@@ -684,7 +693,7 @@ header .menu.open a:after {
   right: 0px;
 }
 @media screen and (max-width: 600px) {
-  header .menu {
+  header .open {
     display: block;
   }
 }
