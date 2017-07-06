@@ -1,7 +1,27 @@
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js		= d.createElement(s); 
+    js.id	= id;
+    js.src	= "//connect.facebook.net/zh_TW/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '142220039665931',
+            xfbml      : true,
+            version    : 'v2.9'
+        });
+    };
+}(document, 'script', 'facebook-jssdk'));
+
 var menuCtrl = {
     init: function(){
         var $this = this;
 
+        $this.menuSet();
+    },
+    menuSet: function(){
+        var $this = this;
         $('.menu').on('click',function(e){
             $this.preventAll(e);
             $(this).toggleClass('open');
@@ -32,12 +52,62 @@ var menuCtrl = {
                     gaclick('gplus_share');
                     $this.shareGplus();
                     break;
-            }
+                             }
         });
     },
     preventAll: function(event){
         event.stopPropagation();
         event.preventDefault();
+    },
+    fbLogin: function(){
+        var $this = this;
+
+        // 串接FB登入按鈕
+        FB.login(
+            function(response) {
+                if(response.status === 'connected'){
+                    FB.api(
+                        '/me',
+                        'GET', {
+                            "fields": "id,name,email"
+                        },
+                        function (response) {
+                            console.log(response);
+                        }
+                    );
+                }else{
+                    alert('請登入Facebook或Google+來進行投票，謝謝！ FB');
+                }
+            },{ scope: 'email' }
+        );
+    },
+    googleLogin: function(){
+        gapi.load("auth2", function(){
+            var auth2 = gapi.auth2.init({
+                clientId: "704654834388-ta2hrensur0tun55pajn8md8ht02rs2s.apps.googleusercontent.com",
+                cookie_policy: "single_host_origin"
+            });
+
+            auth2.isSignedIn.listen(function(status){
+                console.log('google login ' + status);
+            });
+
+            auth2.currentUser.listen(function(user){
+                var profile = user.getBasicProfile();
+                if(profile){
+                    console.log('gName:', profile.getName());
+                    console.log('gEmail:', profile.getEmail());
+                    console.log('gID:', profile.getId());
+                }else{
+                    alert('請登入Facebook或Google+來進行投票，謝謝！ G+');
+                }
+            });
+
+            // 串接G+登入按鈕
+            $('#gLogin').click(function(e){
+                auth2.signIn();
+            });
+        });
     },
     shareFB: function(){
         var $this = this;

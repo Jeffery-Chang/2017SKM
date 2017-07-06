@@ -584,6 +584,11 @@ body {
   min-width: 1024px;
   min-height: 750px;
 }
+@media only screen and (min-width: 1366px) and (max-width: 1980px) {
+  body {
+    min-height: 850px;
+  }
+}
 @media screen and (min-device-width: 320px) and (max-device-width: 959px) {
   body {
     min-width: 0;
@@ -893,6 +898,21 @@ section {
   color: white;
 }
 
+.bottom_sha {
+  width: 100%;
+  height: 150px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  background-image: linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0) 100%);
+  z-index: 11;
+}
+
 .index {
   overflow: hidden;
 }
@@ -1164,7 +1184,7 @@ section {
 }
 
 .planet {
-  width: 32px;
+  width: 33px;
   height: 32px;
   margin: 0 auto;
   -moz-box-sizing: border-box;
@@ -1194,10 +1214,6 @@ section {
   -ms-transform: scale(30, 30);
   -webkit-transform: scale(30, 30);
   transform: scale(30, 30);
-  -webkit-filter: blur(0.1px);
-  -moz-filter: blur(0.1px);
-  -ms-filter: blur(0.1px);
-  filter: blur(0.1px);
 }
 @media only screen and (max-width: 1366px) {
   .p_1 {
@@ -1407,6 +1423,675 @@ section {
   .satellite {
     display: none;
   }
+}
+
+.vote {
+  overflow: hidden;
+}
+.vote .storeBlock {
+  width: 1024px;
+  height: 300px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.vote .storeBlock .flag {
+  position: absolute;
+  top: -8%;
+  left: 18%;
+  width: 160px;
+  height: 155px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-transform: rotate(-23deg);
+  -ms-transform: rotate(-23deg);
+  -webkit-transform: rotate(-23deg);
+  transform: rotate(-23deg);
+  background: url(../asset/svg/flag.svg) no-repeat top center;
+  background-size: contain;
+  padding: 15px 0 0 30px;
+  z-index: 2;
+}
+.vote .storeBlock .flag p {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: white;
+  letter-spacing: 1px;
+}
+.vote .storeBlock .flag p b {
+  font-size: 17px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: white;
+  letter-spacing: 1px;
+  display: block;
+}
+.vote .storeBlock .current_planet {
+  position: absolute;
+  left: 50%;
+  bottom: -70%;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -moz-transform: scale(30, 30);
+  -ms-transform: scale(30, 30);
+  -webkit-transform: scale(30, 30);
+  transform: scale(30, 30);
+}
+.vote .storeBlock .current_planet svg {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 1024px) {
+  .vote .storeBlock {
+    position: absolute;
+    left: 50%;
+    bottom: -10%;
+  }
+}
+.vote .flyman {
+  position: absolute;
+  top: 50%;
+  right: 25%;
+  filter: brightness(100%);
+  -webkit-filter: brightness(100%);
+  -moz-filter: brightness(100%);
+  -ms-filter: brightness(100%);
+  -o-filter: brightness(100%);
+}
+@media only screen and (max-width: 850px) {
+  .vote .flyman {
+    display: none;
+  }
+}
+
+.vote section {
+  width: 700px;
+  height: 310px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0;
+  z-index: 10;
+}
+.vote section .vote_box {
+  width: 184px;
+  height: 279px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  margin: 0 20px;
+}
+.vote section .vote_box .con {
+  width: 184px;
+  height: 279px;
+  background-color: white;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 92px;
+  -webkit-border-radius: 92px;
+  border-radius: 92px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.vote section .vote_box .con .top {
+  width: 100%;
+  height: 100px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url(../asset/svg/wave.svg) repeat-x bottom #c81f25;
+  position: relative;
+}
+.vote section .vote_box .con .top span {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 3.5;
+  color: white;
+  letter-spacing: 1px;
+}
+.vote section .vote_box .con .top a.photo {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+.vote section .vote_box .con .top a.photo > img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+}
+.vote section .vote_box .con .top a.photo b {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #c81f25;
+  letter-spacing: 1px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -moz-transition: ease-out 0.5s;
+  -o-transition: ease-out 0.5s;
+  -webkit-transition: ease-out 0.5s;
+  transition: ease-out 0.5s;
+}
+.vote section .vote_box .con .top a.photo img {
+  -moz-transition: ease-out 0.5s;
+  -o-transition: ease-out 0.5s;
+  -webkit-transition: ease-out 0.5s;
+  transition: ease-out 0.5s;
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+.vote section .vote_box .con .top a.photo:hover b {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+.vote section .vote_box .con .top a.photo:hover img {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
+  opacity: 0.2;
+  -moz-transform: scale(1.1, 1.1);
+  -ms-transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
+.vote section .vote_box .con .bottom {
+  margin-top: 50px;
+}
+.vote section .vote_box .con .bottom h2 {
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: black;
+  letter-spacing: 1px;
+}
+.vote section .vote_box .con .bottom p {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: black;
+  letter-spacing: 1px;
+}
+.vote section .vote_box .con .bottom a.btnVote {
+  width: 120px;
+  height: 40px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #c81f25;
+  letter-spacing: 1px;
+}
+.vote section .vote_box .con .bottom a.btnVote .shape {
+  stroke-dasharray: 0 500;
+  stroke-dashoffset: 20;
+  stroke-width: 3px;
+  fill: transparent;
+  stroke: white;
+  transition: stroke-width 2.7s, stroke-dashoffset 2.7s, stroke-dasharray 1.3s;
+  transition-delay: 0s;
+}
+.vote section .vote_box .con .bottom a.btnVote .shape_border {
+  stroke-width: 3px;
+  stroke-dasharray: 100 8;
+  stroke-dashoffset: 20;
+}
+.vote section .vote_box .con .bottom a.btnVote span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.vote section .vote_box .con .bottom a.btnVote:hover svg .shape {
+  stroke-dasharray: 0 500;
+}
+.vote section .vote_box .con .bottom a.btnVote b {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #c81f25;
+  letter-spacing: 1px;
+  padding-right: 5px;
+}
+.vote section .vote_box .con .bottom a.btnVote svg .shape {
+  stroke: #c81f25;
+}
+.vote section .vote_box > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.vote section .vote_box > svg .line {
+  stroke-dasharray: 0 500;
+  stroke-dashoffset: 0;
+  stroke-width: 3px;
+  fill: transparent;
+  stroke: #c81f25;
+  transition: stroke-width 2.7s, stroke-dashoffset 2.7s, stroke-dasharray 1.3s;
+  transition-delay: 0s;
+}
+.vote section .vote_box > svg .line_change {
+  stroke-dasharray: 100 8 80 8;
+  stroke-dashoffset: 0;
+  stroke-width: 3px;
+}
+
+.progress {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 100%;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 15;
+  text-align: center;
+}
+.progress ul {
+  display: inline-block;
+}
+.progress ul li {
+  display: inline-block;
+  position: relative;
+  margin: 0 15px;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: white;
+  letter-spacing: 1px;
+}
+.progress ul li a {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  border: 5px solid #c81f25;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+.progress ul li a span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #c81f25;
+  letter-spacing: 1px;
+}
+.progress ul li a span b {
+  display: none;
+}
+.progress ul li a span.unfinish {
+  font-size: 0;
+}
+.progress ul li a span.unfinish b {
+  display: block;
+  text-align: center;
+  width: 45px;
+  height: 39px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #c81f25;
+  letter-spacing: 1px;
+}
+.progress ul li p {
+  text-shadow: 0px 0px 5px black;
+  text-align: center;
+  width: 150%;
+  height: auto;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  bottom: -43%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.progress ul li:after {
+  content: '';
+  display: block;
+  background: url(../asset/svg/curve.svg) no-repeat left top;
+  position: absolute;
+  top: 4px;
+  left: 45px;
+  width: 65px;
+  height: 52px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-size: contain;
+  z-index: 1;
+}
+.progress ul li:last-child:after {
+  display: none;
+}
+.progress a.finish {
+  width: 95px;
+  height: 95px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  display: inline-block;
+  position: relative;
+}
+.progress a.finish .shape {
+  stroke-dasharray: 0 500;
+  stroke-dashoffset: 20;
+  stroke-width: 3px;
+  fill: transparent;
+  stroke: white;
+  transition: stroke-width 2.7s, stroke-dashoffset 2.7s, stroke-dasharray 1.3s;
+  transition-delay: 0s;
+}
+.progress a.finish .shape_border {
+  stroke-width: 3px;
+  stroke-dasharray: 100 8;
+  stroke-dashoffset: 20;
+}
+.progress a.finish span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.progress a.finish:hover svg .shape {
+  stroke-dasharray: 0 500;
+}
+.progress a.finish span {
+  width: 80px;
+  height: 80px;
+  background-color: #c81f25;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  font-size: 17px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: white;
+  letter-spacing: 1px;
+  display: block;
+  text-align: center;
+  padding: 18px 20px 0;
+}
+.progress a.finish svg .shape {
+  stroke: #c81f25;
+}
+.progress a.no {
+  filter: grayscale(1);
+  -webkit-filter: grayscale(1);
+  -moz-filter: grayscale(1);
+  -ms-filter: grayscale(1);
+  -o-filter: grayscale(1);
+  cursor: default;
+}
+.progress a.no:hover svg .shape {
+  stroke-width: 3px;
+  stroke-dasharray: 100 8;
+  stroke-dashoffset: 20;
+}
+.progress ul,
+.progress a.finish {
+  vertical-align: middle;
+}
+@media screen and (max-width: 600px) {
+  .progress {
+    display: none;
+  }
+}
+
+aside {
+  width: 45px;
+  height: 613px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  top: 120px;
+  left: 2%;
+  background: url(../img/storelist.png) no-repeat center center;
+  position: absolute;
+  z-index: 15;
+}
+aside ul li {
+  width: 45px;
+  height: 40px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+}
+aside ul li a {
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+}
+aside ul li a span {
+  position: absolute;
+  top: -7px;
+  left: -10px;
+  width: 175px;
+  height: 28px;
+  background-color: white;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -moz-transition: ease-out 0.5s;
+  -o-transition: ease-out 0.5s;
+  -webkit-transition: ease-out 0.5s;
+  transition: ease-out 0.5s;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 28px;
+  color: #c81f25;
+  letter-spacing: 1px;
+  text-align: left;
+  padding-left: 35px;
+}
+aside ul li a:hover span {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+aside ul li .s_1 {
+  left: 10px;
+}
+aside ul li .s_2 {
+  left: 22px;
+}
+aside ul li .s_3 {
+  left: 7px;
+}
+aside ul li .s_4 {
+  left: 21px;
+}
+aside ul li .s_5 {
+  left: 1px;
+}
+aside ul li .s_6 {
+  left: 17px;
+}
+aside ul li .s_7 {
+  left: 10px;
+}
+aside ul li .s_8 {
+  left: 23px;
+}
+aside ul li .s_9 {
+  left: 5px;
+}
+aside ul li .s_10 {
+  left: 14px;
+}
+aside ul li .s_11 {
+  left: 29px;
+}
+aside ul li .s_12 {
+  left: 15px;
+}
+aside ul li .s_13 {
+  left: 2px;
+}
+aside ul li .s_14 {
+  left: 16px;
+}
+aside ul li .s_15 {
+  left: 28px;
+}
+aside ul li .s_16 {
+  left: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */
