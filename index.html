@@ -16,17 +16,44 @@
         <link rel="icon" href="img/favicon.ico">
 
         <!-- css style -->
+        <link rel="stylesheet" href="css/vendor/slick.min.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/star.css">
         <script src="js/vendor/jquery-2.2.0.min.js"></script>
+        <script src="js/vendor/jquery.cookie.min.js"></script>
+        <script src="js/vendor/jquery.roundabout.js"></script>
+        <script src="js/vendor/jquery.roundabout-shapes.js"></script>
+        <script src="js/vendor/slick.min.js"></script>
         <script src="js/vendor/isMobile.min.js"></script>
         <script src="js/vendor/TweenMax.min.js"></script>
         <script src="js/vendor/ga.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <!--[if gt IE 9]>
-            <script src="js/vendor/html5shiv.js"></script>
+        <script src="js/vendor/html5shiv.js"></script>
         <![endif]-->
+        <style>
+            .planetBox{
+                position: absolute;
+                width: 100%;
+                margin-top: 1%;
+            }
+            .roundabout-holder {
+                position: absolute;
+                list-style: none;
+                top: 50%;
+                left: 50%;
+                width: 350%;
+                height: 200vh;
+                margin-left: -175%;
+            }
+            .bottom_sha{
+                z-index: 400;
+            }
+            aside.part2, .part2.progress, .part2 .slick{
+                z-index: 500;
+            }
+        </style>
     </head>
     <body>
         <!-- only fot ipad-->
@@ -62,7 +89,7 @@
                 </ul>
             </nav>
         </header>
-        
+
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none;">
             <symbol id="icon-planet-01" viewBox="0 0 32 32">
                 <path fill="#e7db97" d="M24.751 4.003c-0.006-0.005-0.011-0.009-0.017-0.014-0.033-0.025-0.069-0.047-0.103-0.071-0.18-0.131-0.363-0.259-0.548-0.382-0.050-0.033-0.102-0.066-0.153-0.098-0.183-0.119-0.369-0.234-0.557-0.344-0.020-0.012-0.039-0.025-0.058-0.036-0.023-0.013-0.046-0.024-0.069-0.037-0.253-0.146-0.511-0.285-0.773-0.417-0.038-0.019-0.073-0.041-0.111-0.060-0.015-0.008-0.033-0.014-0.048-0.022-0.27-0.131-0.545-0.255-0.824-0.372-0.035-0.015-0.070-0.027-0.105-0.042-0.255-0.104-0.513-0.2-0.773-0.291-0.025-0.009-0.048-0.019-0.073-0.027-0.040-0.013-0.080-0.025-0.12-0.038-0.163-0.054-0.326-0.106-0.492-0.155-0.076-0.022-0.151-0.043-0.227-0.064-0.161-0.045-0.322-0.088-0.485-0.128-0.029-0.008-0.058-0.016-0.088-0.023-0.39-0.093-0.782-0.202-1.181-0.238-0.015-0.001-0.030-0.002-0.045-0.003-0.776-0.119-1.571-0.182-2.38-0.182-1.194 0-2.354 0.139-3.47 0.394-0.378 0.068-0.757 0.175-1.126 0.298-2.478 0.768-4.689 2.14-6.464 3.944 0.001-0.006 0.002-0.012 0.003-0.018-0.654 0.667-1.246 1.393-1.772 2.169-0.026 0.038-0.052 0.076-0.078 0.115-0.055 0.082-0.113 0.162-0.166 0.246v0c-0.001 0-0.003 0-0.004-0 0.001 0 0.003 0 0.004 0.001v0c0.002 0 0.005 0 0.007 0.001-1.551 2.416-2.454 5.287-2.454 8.372 0 8.572 6.949 15.52 15.521 15.52s15.52-6.949 15.52-15.52c0-5.114-2.474-9.649-6.29-12.477z"></path>
@@ -292,7 +319,7 @@
                 <path fill="#1d1d1b" opacity="0.1" d="M25.42 25.626c-2.801 0.699-5.612 0.598-8.198-0.153-5.213-1.513-9.505-5.678-10.914-11.324-0.192-0.772-0.325-1.545-0.399-2.313-0.328-3.378 0.456-6.676 2.094-9.471-0.001 0-0.001 0-0.002 0.001-0.437 0.255-0.853 0.536-1.259 0.829-0.165 0.119-0.326 0.244-0.486 0.369-0.129 0.101-0.261 0.197-0.387 0.302-0.21 0.175-0.408 0.36-0.608 0.545-0.097 0.090-0.2 0.174-0.294 0.266-0.285 0.277-0.559 0.565-0.821 0.863-0.091 0.104-0.175 0.216-0.264 0.322-0.168 0.201-0.337 0.402-0.495 0.611-0.103 0.137-0.197 0.279-0.295 0.419-0.133 0.188-0.266 0.374-0.39 0.567-0.098 0.152-0.188 0.309-0.28 0.465-0.112 0.188-0.225 0.377-0.33 0.57-0.088 0.163-0.169 0.329-0.251 0.495-0.096 0.193-0.191 0.387-0.279 0.584-0.076 0.17-0.146 0.344-0.216 0.517-0.081 0.2-0.159 0.4-0.232 0.602-0.063 0.176-0.121 0.355-0.178 0.533-0.065 0.206-0.128 0.413-0.184 0.622-0.049 0.181-0.096 0.363-0.139 0.546-0.049 0.212-0.094 0.427-0.135 0.641-0.035 0.184-0.069 0.367-0.097 0.551-0.034 0.22-0.061 0.442-0.085 0.664-0.021 0.184-0.042 0.367-0.055 0.553-0.018 0.229-0.024 0.459-0.031 0.69-0.006 0.18-0.014 0.361-0.013 0.543 0.001 0.242 0.014 0.486 0.027 0.73 0.009 0.172 0.012 0.344 0.027 0.517 0.023 0.269 0.009 0.391 0.046 0.661 0.016 0.122 0.059 0.427 0.079 0.55 0.004 0.026 0.006 0.052 0.010 0.078 0.065 0.396 0.14 0.759 0.237 1.154 0.006 0.023 0.009 0.046 0.015 0.069 0.076 0.304 0.169 0.619 0.261 0.915v0.001c2.072 6.626 8.211 11.042 14.932 11.091 1.3 0.009 2.639-0.137 3.959-0.466 0.266-0.067 0.532-0.146 0.791-0.225 0.055-0.016 0.107-0.037 0.161-0.053 0.204-0.064 0.407-0.135 0.608-0.208 0.063-0.023 0.124-0.049 0.186-0.072 0.189-0.071 0.38-0.134 0.564-0.212 0.059-0.025 0.116-0.053 0.173-0.078 0.186-0.081 0.366-0.161 0.547-0.249 0.052-0.025 0.101-0.052 0.153-0.078 0.186-0.092 0.398-0.206 0.58-0.305 0.041-0.022 0.080-0.046 0.12-0.069 0.189-0.106 0.368-0.21 0.553-0.324 0.031-0.019 0.061-0.040 0.092-0.059 0.192-0.12 0.364-0.227 0.55-0.355 0.023-0.015 0.045-0.032 0.067-0.047 0.192-0.134 0.364-0.258 0.55-0.4 0.012-0.010 0.025-0.021 0.039-0.030 0.194-0.149 0.43-0.329 0.617-0.486 0.006-0.006 0.012-0.010 0.017-0.015 1.377-1.163 2.261-2.198 3.561-4.297-1.262 0.738-2.809 1.482-4.301 1.855z"></path>
             </symbol>
         </svg>
-           
+
         <div class="wrap">
             <!-- content -->
             <div class="main index">
@@ -303,36 +330,36 @@
                     <span></span>
                 </div>
 
-                <div class="planet p_1">
+                <div class="planet p_1 part1">
                     <svg xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="#icon-planet-01"></use>
                     </svg>
                 </div>
-                <div class="planet p_2">
+                <div class="planet p_2 part1">
                     <svg xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="#icon-planet-02"></use>
                     </svg>
                 </div>
-                <div class="planet p_3">
+                <div class="planet p_3 part1">
                     <svg xmlns="http://www.w3.org/2000/svg">
                         <use xlink:href="#icon-planet-03"></use>
                     </svg>
                 </div>
-                
+
                 <!-- 其他物件 -->
-                <div class="flyman">
+                <div class="flyman part1">
                     <img src="asset/svg/astronaut.svg" alt="">
                 </div>
-                <div class="rocket">
+                <div class="rocket part1">
                     <img src="asset/svg/rocket.svg" alt="">
                 </div>
-                <div class="satellite">
+                <div class="satellite part1">
                     <img src="asset/svg/satellite.svg" alt="">
                 </div>
-                
+
                 <div class="sha"></div>
 
-                <section>
+                <section class="part1">
                     <h1><img src="asset/svg/maintitle.svg" alt=""></h1>
                     <h2>8/7-8/20票選微笑新星 抽iPad  mini4</h2>
                     <p class="pc_only">歡迎搭乘星際飛船！48位微笑天使來自新光三越星系中的16顆星球
@@ -351,16 +378,232 @@
                     </a>
                 </section>
 
-                <div class="earth">
+                <div class="earth part1">
                     <p class="house_layer_1"><img src="img/building_1.png" alt=""></p>
                     <p class="house_layer_2"><img src="img/building_2.png" alt=""></p>
                     <p class="house_layer_3"><img src="img/building_3.png" alt=""></p>
                     <p class="land"><img src="img/earth.png" alt=""></p>
                 </div>
+
+                <div class="main vote part2">
+                    <!-- 其他物件 -->
+                    <div class="flyman">
+                        <img src="asset/svg/astronaut.svg" alt="">
+                    </div>
+                    <!-- 主要內容 -->
+                    <section class="slick">
+                        <!--自營組-->
+                        <div class="vote_box">
+                            <div class="con">
+                                <div class="top">
+                                    <span>自營組</span>
+                                    <a href="#" class="photo"><img src="img/store/01_A_01.jpg" alt=""><b>看更多</b></a>
+                                </div>
+                                <div class="bottom">
+                                    <h2>陳彥仲</h2>
+                                    <p>目前票數 <span class="vote_cnt">0</span> 票</p>
+                                    <a href="" class="btnVote">
+                                        <span><b class="icon-love"></b>投票</span>
+                                        <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
+                                            <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
+                                <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
+                            </svg>
+                        </div>
+                        <!--專櫃組-->
+                        <div class="vote_box">
+                            <div class="con">
+                                <div class="top">
+                                    <span>專櫃組</span>
+                                    <a href="#" class="photo"><img src="img/store/01_B_01.jpg" alt=""><b>看更多</b></a>
+                                </div>
+                                <div class="bottom">
+                                    <h2>陳彥仲</h2>
+                                    <p>目前票數 <span class="vote_cnt">0</span> 票</p>
+                                    <a href="" class="btnVote">
+                                        <span><b class="icon-love"></b>投票</span>
+                                        <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
+                                            <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
+                                <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
+                            </svg>
+                        </div>
+                        <!--警衛清潔組-->
+                        <div class="vote_box">
+                            <div class="con">
+                                <div class="top">
+                                    <span>警衛清潔組</span>
+                                    <a href="#" class="photo"><img src="img/store/01_C_01.jpg" alt=""><b>看更多</b></a>
+                                </div>
+                                <div class="bottom">
+                                    <h2>陳彥仲</h2>
+                                    <p>目前票數 <span class="vote_cnt">0</span> 票</p>
+                                    <a href="" class="btnVote">
+                                        <span><b class="icon-love"></b>投票</span>
+                                        <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
+                                            <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
+                                <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
+                            </svg>
+                        </div>
+                    </section>
+
+                    <!--星球-->
+                    <div class="planetBox">
+                        <ul>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>台北</b>南西店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-01"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>台北</b>站前店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-02"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>台北</b>信義新天地A4</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-03"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>台北</b>信義新天地A8</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-04"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>台北</b>信義新天地A9</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-05"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>台北</b>信義新天地A11</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-06"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>台北</b>天母店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-07"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>桃園</b>大有店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-08"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>桃園</b>站前店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-09"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>新竹</b>中華店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-10"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>台中</b>中港店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-11"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>嘉義</b>垂楊店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-12"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>台南</b>中山店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-13"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>台南</b>新天地</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-14"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>高雄</b>三多店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-15"></use></svg></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="storeBlock">
+                                    <div class="flag"><p><b>高雄</b>左營店</p></div>
+                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#icon-planet-16"></use></svg></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--進度表-->
+                <div class="progress part2">
+                    <ul>
+                        <li><a href=""><span class="icon-checkmark unfinish"><b>尚未投票</b></span></a><p>自營組</p></li>
+                        <li><a href=""><span class="icon-checkmark unfinish"><b>尚未投票</b></span></a><p>專櫃組</p></li>
+                        <li><a href=""><span class="icon-checkmark unfinish"><b>尚未投票</b></span></a><p>警衛清潔組</p></li>
+                    </ul>
+                    <a href="" class="finish no">
+                        <span>我要抽獎</span>
+                        <svg width="95px" height="95px" viewBox="-2.5 -3.5 96 96" stroke-linejoin="round" stroke-linecap="round">
+                            <circle class="shape shape_border" fill="#5F5F5F" cx="45" cy="45" r="45"/>
+                        </svg>
+                    </a>
+                </div>
+                <!--分店列表清單-->
+                <aside class="part2">
+                    <ul>
+                        <li><a href="" class="s_1"><span>台北南西店</span></a></li>
+                        <li><a href="" class="s_2"><span>台北站前店</span></a></li>
+                        <li><a href="" class="s_3"><span>台北信義新天地A4</span></a></li>
+                        <li><a href="" class="s_4"><span>台北信義新天地A8</span></a></li>
+                        <li><a href="" class="s_5"><span>台北信義新天地A9</span></a></li>
+                        <li><a href="" class="s_6"><span>台北信義新天地A11</span></a></li>
+                        <li><a href="" class="s_7"><span>台北天母店</span></a></li>
+                        <li><a href="" class="s_8"><span>桃園大有店</span></a></li>
+                        <li><a href="" class="s_9"><span>桃園站前店</span></a></li>
+                        <li><a href="" class="s_10"><span>新竹中華店</span></a></li>
+                        <li><a href="" class="s_11"><span>台中中港店</span></a></li>
+                        <li><a href="" class="s_12"><span>嘉義垂楊店</span></a></li>
+                        <li><a href="" class="s_13"><span>台南中山店</span></a></li>
+                        <li><a href="" class="s_14"><span>台南新天地</span></a></li>
+                        <li><a href="" class="s_15"><span>高雄三多店</span></a></li>
+                        <li><a href="" class="s_16"><span>高雄左營店</span></a></li>
+                    </ul>
+                </aside>
             </div>
         </div>
         <!-- footer -->
         <footer></footer>
+        <div class="bottom_sha part2"></div>
+        <script src="js/data.js"></script>
         <script src="js/menu.js"></script>
         <script src="js/index.js"></script>
     </body>
