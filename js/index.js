@@ -28,6 +28,7 @@ var indexCtrl = {
     init: function(){
         var $this = this;
         
+        $this.refreshData();
         $this.inStage();
         $this.initRA();
         
@@ -43,9 +44,9 @@ var indexCtrl = {
             $('.part1 .btn .shape').toggleClass('shape_border');
         });
         
-        /*setTimeout(function(){
+        setTimeout(function(){
             startBtnPC.find('a').click();
-        }, 2500);*/
+        }, 2500);
     },
     activeObj: function(){
         var $this = this;
@@ -86,6 +87,13 @@ var indexCtrl = {
                 TweenMax.set([planet2, planet3], { clearProps:"all" }); 
             }}, .1);
         (!menuCtrl.chkDevice()) ? TweenMax.from(startBtnPC, .5, {opacity: 0, delay: delayTime + .5}) : TweenMax.from(startBtnM, .5, {opacity: 0, delay: delayTime + .5})
+    },
+    refreshData: function(){
+        $.get('api/angel_list', function(result){
+            $.each(result, function(key, obj){
+                profile[key].vote_cnt = obj.vote_cnt;
+            });
+        });
     },
     initSlick: function(){
         /*three.slick({
