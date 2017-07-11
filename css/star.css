@@ -34,3 +34,27 @@
         -moz-transform: scale(1) rotate(-30deg) translate3d(-250px, 5px, 0);
     }
 }
+
+.planetBox{
+    position: absolute;
+    width: 100%;
+    margin-top: 1%;
+}
+.roundabout-holder {
+    position: absolute;
+    list-style: none;
+    top: 50%;
+    left: 50%;
+    width: 350%;
+    height: 200vh;
+    margin-left: -175%;
+}
+.bottom_sha{
+    z-index: 400;
+}
+.none{
+    display: none;
+}
+.g-recaptcha div{
+    margin: 40px auto;
+}

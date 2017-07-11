@@ -72,39 +72,54 @@ var menuCtrl = {
                             "fields": "id,name,email"
                         },
                         function (response) {
-                            console.log(response);
+                            $.cookie('type', 'Facebook');
+                            $.cookie('name', response.name);
+                            $.cookie('email', response.email);
+                            $.cookie('id', response.id);
+                            $.cookie('fb_login', true);
+                            fb_login = true;
+                            $('.pop .close').click();
                         }
                     );
                 }else{
-                    alert('請登入Facebook或Google+來進行投票，謝謝！ FB');
+                    alert('請登入Facebook或Google來進行投票，謝謝！');
                 }
             },{ scope: 'email' }
         );
     },
-    googleLogin: function(){
+    googleLogin: function(obj){
+        var $this = this;
         gapi.load("auth2", function(){
             var auth2 = gapi.auth2.init({
-                clientId: "704654834388-ta2hrensur0tun55pajn8md8ht02rs2s.apps.googleusercontent.com",
-                cookie_policy: "single_host_origin"
+                clientId: "704654834388-ta2hrensur0tun55pajn8md8ht02rs2s.apps.googleusercontent.com"
             });
 
             auth2.isSignedIn.listen(function(status){
-                console.log('google login ' + status);
+                //console.log('google login ' + status);
             });
 
             auth2.currentUser.listen(function(user){
-                var profile = user.getBasicProfile();
-                if(profile){
-                    console.log('gName:', profile.getName());
-                    console.log('gEmail:', profile.getEmail());
-                    console.log('gID:', profile.getId());
+                var gProfile = user.getBasicProfile();
+                if(gProfile){
+                    console.log('gName:', gProfile.getName());
+                    console.log('gEmail:', gProfile.getEmail());
+                    console.log('gID:', gProfile.getId());
+
+                    $.cookie('type', 'Google');
+                    $.cookie('name', gProfile.getName());
+                    $.cookie('email', gProfile.getEmail());
+                    $.cookie('id', gProfile.getId());
+                    $.cookie('gplus_login', true);
+                    gplus_login = true;
+                    $('.pop .close').click();
                 }else{
-                    alert('請登入Facebook或Google+來進行投票，謝謝！ G+');
+                    //alert('請登入Facebook或Google+來進行投票，謝謝！ G+');
                 }
             });
 
             // 串接G+登入按鈕
-            $('#gLogin').click(function(e){
+            obj.on('click', function(e){
+                $this.preventAll(e);
                 auth2.signIn();
             });
         });

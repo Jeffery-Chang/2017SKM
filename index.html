@@ -32,31 +32,6 @@
         <!--[if gt IE 9]>
 <script src="js/vendor/html5shiv.js"></script>
 <![endif]-->
-        <style>
-            .planetBox{
-                position: absolute;
-                width: 100%;
-                margin-top: 1%;
-            }
-            .roundabout-holder {
-                position: absolute;
-                list-style: none;
-                top: 50%;
-                left: 50%;
-                width: 350%;
-                height: 200vh;
-                margin-left: -175%;
-            }
-            .bottom_sha{
-                z-index: 400;
-            }
-            aside.part2, .part2.progress, .part2 .slick{
-                z-index: 500;
-            }
-            .none{
-                display: none;
-            }
-        </style>
     </head>
     <body>
         <!-- only fot ipad-->
@@ -590,10 +565,11 @@
                         </svg>
                     </a>
                 </div>
+                
                 <!--分店列表清單 for PC-->
                 <aside class="part2">
                     <ul>
-                        <li><a href="" class="s_1"><span>台北南西店</span></a></li>
+                        <li><a href="" class="s_1 focus"><span>台北南西店</span></a></li>
                         <li><a href="" class="s_2"><span>台北站前店</span></a></li>
                         <li><a href="" class="s_3"><span>台北信義新天地A4</span></a></li>
                         <li><a href="" class="s_4"><span>台北信義新天地A8</span></a></li>
@@ -613,7 +589,7 @@
                 </aside>
 
                 <!--分店列表清單 for mobile-->
-                <div class="store_list">
+                <div class="store_list none">
                     <a href="" class="location"><span class="icon-location"></span></a>
                     <a href="" class="next">前往下一顆星球<span></span></a>
                     <!--open-->
@@ -649,22 +625,23 @@
                 </div>
 
                 <!--店員介紹-->
-                <div class="pop none">
+                <div class="pop personal none">
                     <a href="" class="close"><span></span></a>
                     <div class="red_bar"></div>
                     <div class="con">
                         <div class="photo_block"><img src="img/store/01_A_03.jpg" alt="">
                             <ul>
-                                <li><a href="" class="focus">1</a></li>
-                                <li><a href="">2</a></li>
+                                <li><a href="">1</a></li>
+                                <li><a href="" class="focus">2</a></li>
                                 <li><a href="">3</a></li>
+                                <li><a href="">4</a></li>
                             </ul>
                             <p class="tag">自營組</p>
                         </div>
                         <div class="des_block">
                             <h1>陳思齊<span>台北南西店 / 營業管理</span></h1>
                             <h2>微笑面對生活<br>微笑面對人生</h2>
-                            <p>目前票數 <span>5991</span> 票</p>
+                            <p>目前票數 <span class="vote_cnt">5991</span> 票</p>
                             <a href="" class="votebtn">
                                 <span><b class="icon-love"></b>投他一票</span>
                                 <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
@@ -673,7 +650,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="fb_comment">微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活微笑面對生活</div>     
+                    <div class="fb_comment"></div>     
                 </div>
 
                 <!--投票成功-->
@@ -681,13 +658,13 @@
                     <a href="" class="close"><span></span></a>
                     <div class="red_bar"></div>
                     <!--01-->
-                    <div class="con">
+                    <div class="con finalCheck">
                         <ul>
                             <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北南西</span></h1></li>
                             <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北信義新天地A11</span></h1></li>
                             <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北南西</span></h1></li>
                         </ul>
-                        <p class="machine"></p>
+                        <div class="g-recaptcha" data-sitekey="6Lce3iYUAAAAAMSujz1uyC9ylydjiTAawjxllxSC"></div>
                         <a href="" class="votebtn">
                             <span><b class="icon-love"></b>確認投票</span>
                             <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
@@ -696,10 +673,10 @@
                         </a>
                     </div>
                     <!--02-->
-                    <div class="con">
+                    <div class="con beenVote none">
                         <h2>您已完成投票!</h2>
                         <h3>每個FB/G+帳號，一天可投一票，天天投票，中獎機率越高<br>微笑新星們期待您的再訪支持！</h3>
-                        <a href="" class="votebtn">
+                        <a href="index.html" class="votebtn">
                             <span><b class="icon-home"></b>回首頁</span>
                             <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
                                 <path class="shape" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
