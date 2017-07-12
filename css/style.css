@@ -612,7 +612,6 @@ header {
   box-sizing: border-box;
   padding: 10px;
   position: relative;
-  z-index: 100;
 }
 header p,
 header nav {

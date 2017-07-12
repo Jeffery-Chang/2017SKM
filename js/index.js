@@ -18,10 +18,11 @@ var satellite = $('.satellite');
 
 var delayTime = 1.5;
 var outStage_fg = false;
-var wheelPos = "top";
+var wheelPos = (!menuCtrl.chkDevice()) ? "top" : "mobile";
 var fb_login = ($.cookie('fb_login')) ? true : false;
 var gplus_login = ($.cookie('gplus_login')) ? true : false;
-var personPop = false;
+var popupOpen = false;
+var resizeFG = false;
 
 var planetObj = $('.planetBox ul');
 var three = $('.part2 .slick');
@@ -33,9 +34,11 @@ var indexCtrl = {
 
         $this.refreshData();
         $this.inStage();
+        $this.initSlick();
         $this.initRA();
+        $this.winWheel();
 
-        (!menuCtrl.chkDevice()) ? $this.activeObj() : $this.initSlick()
+        if(!menuCtrl.chkDevice()) $this.activeObj();
 
         startBtnPC.find('a').on('click', function(e){
             menuCtrl.preventAll(e);
@@ -46,20 +49,21 @@ var indexCtrl = {
             $this.outStage();
             $('.part1 .btn .shape').toggleClass('shape_border');
         });
-
-        /*setTimeout(function(){
-            startBtnPC.find('a').click();
-        }, 2500);*/
     },
     activeObj: function(){
         var $this = this;
-        // TweenMax.to(flyman, 2, {y: "+=30", ease: Power1.easeIn, yoyo: true, repeat: -1, repeatDelay : .1, delay: delayTime});
-        TweenMax.from(rocket, 2, {top: "30%", left: "50%", opacity: 0, transform: "scale(.5) rotate(-90deg)", delay: delayTime, ease: Power2.easeOut,
-                                  onComplete: function(){
-                                      TweenMax.set(rocket, { clearProps:"all" });
-                                      $this.winWheel();
-                                  }
-                                 });
+        TweenMax.to(flyman, 2, {y: "+=30", ease: Power1.easeIn, yoyo: true, repeat: -1, repeatDelay : .1, delay: delayTime});
+        TweenMax.from(rocket, 2, {
+            top: "30%",
+            left: "50%",
+            opacity: 0,
+            transform: "scale(.5) rotate(-90deg)",
+            delay: delayTime,
+            ease: Power2.easeOut,
+            onComplete: function(){
+                TweenMax.set(rocket, { clearProps:"all" });
+            }
+        });
     },
     outStage: function(){
         var $this = this;
@@ -99,31 +103,22 @@ var indexCtrl = {
         });
     },
     initSlick: function(){
-        /*three.slick({
-            centerMode: true,
-            centerPadding: '40px',
+        three.slick({
+            centerMode: false,
+            centerPadding: '5px',
             slidesToShow: 3,
             responsive: [
                 {
-                    breakpoint: 768,
+                    breakpoint: 600,
                     settings: {
                         arrows: false,
                         centerMode: true,
                         centerPadding: '30%',
                         slidesToShow: 1
                     }
-                },
-                {
-                    breakpoint: 450,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '90px',
-                        slidesToShow: 1
-                    }
                 }
             ]
-        });*/
+        });
     },
     initRA: function(){
         var $this = this;
@@ -131,13 +126,14 @@ var indexCtrl = {
             duration: 400,
             startingChild: 0,
             responsive: true,
+            btnNext: '.store_list .next',
             minOpacity: 1,
             maxOpacity: 1,
             shape: 'rollerCoaster',
-            debug: false
+            clickToFocus: false
         }).bind('animationStart', function() {
             var focus = planetObj.roundabout("getChildInFocus");
-            if(wheelPos == "down") {
+            if(wheelPos == "down" || wheelPos == "mobile") {
                 var downFocus = focus + 1;
                 if(downFocus >= 16) downFocus = 0;
 
@@ -149,7 +145,7 @@ var indexCtrl = {
                 TweenMax.to($('.roundabout-moveable-item').eq(topFocus), .5, {scale: 1, filter: "brightness(100%)"});
                 TweenMax.to($('.roundabout-in-focus'), .5, {scale: .5, filter: "brightness(30%)"});
             }
-            three.fadeOut('fast');
+            TweenMax.to(three, .3, {opacity: 0});
         }).bind('animationEnd', function() {
             var focus = planetObj.roundabout("getChildInFocus");
 
@@ -163,7 +159,7 @@ var indexCtrl = {
 
         TweenMax.to($('.roundabout-moveable-item'), .5, {scale: .5, filter: "brightness(30%)"});
         TweenMax.to($('.roundabout-in-focus'), .3, {scale: 1, filter: "brightness(100%)", onComplete: function(){
-            $('.part2').hide();
+            TweenMax.to($('.part2'), .2, { opacity: 0 });
         }});
     },
     initPart2: function(){
@@ -187,14 +183,39 @@ var indexCtrl = {
             });
         });
 
-        $('.progress a').on('click', function(e){
+        $('.progress a, .store_list .next').on('click', function(e){
             menuCtrl.preventAll(e);
         });
 
-        // popup關閉 .store_list .close
-        $('.pop .close').on('click', function(e){
+        // 開店別 for mobile
+        $('.store_list .location').on('click', function(e){
             menuCtrl.preventAll(e);
-            personPop = false;
+            $('.store_list .name').fadeToggle('fast');
+        });
+
+        // 店別 for mobile
+        $('.store_list .name li').on('click', function(e){
+            menuCtrl.preventAll(e);
+            var index = $(this).index();
+            var thisClass = $(this).parent('ul').attr('class');
+
+            if(thisClass === 'center'){
+                index = $(this).index() + $('.north li').size();
+            }else if(thisClass === 'south'){
+                index = $(this).index() + $('.north li, .center li').size();
+            }
+
+            $('.store_list .name').fadeOut('fast', function(){
+                TweenMax.to($('.roundabout-moveable-item'), .5, {scale: .5, filter: "brightness(30%)", delay: .1});
+                TweenMax.to($('.roundabout-moveable-item').eq(index), .5, {scale: 1, filter: "brightness(100%)", delay: .1});
+                planetObj.roundabout("animateToChild", index);
+            });
+        });
+
+        // popup關閉 .store_list .close
+        $('.pop .close, .store_list .close').on('click', function(e){
+            menuCtrl.preventAll(e);
+            popupOpen = false;
             $(this).parent('div').fadeOut('fast');
             $('.black').fadeOut('fast');
         });
@@ -202,7 +223,7 @@ var indexCtrl = {
         // 看更多
         $('.photo').on('click', function(e){
             menuCtrl.preventAll(e);
-            personPop = true;
+            popupOpen = true;
 
             $this.setPersonal($(this).data('index'), $(this).data('type'));
         });
@@ -214,6 +235,7 @@ var indexCtrl = {
             var type = $(this).data('type');
 
             if(!fb_login && !gplus_login){
+                popupOpen = true;
                 $('.pop.login, .black').fadeIn('fast');
                 $this.openLogin();
                 return;
@@ -221,10 +243,11 @@ var indexCtrl = {
 
             $this.checkChoose(index, type);
         });
-        
+
         // 完成popup
         $('.progress .finish').on('click', function(e){
             menuCtrl.preventAll(e);
+            popupOpen = true;
             var finalObj = $('.finalCheck li');
             var finalArr = [$.cookie('choose1'), $.cookie('choose2'), $.cookie('choose3')];
 
@@ -235,20 +258,25 @@ var indexCtrl = {
                 if(key === (finalArr.length - 1)) $('.pop.final_check, .black').fadeIn('fast');
             });
         });
-        
+
         // 送出投票
         $('.finalCheck .votebtn').on('click', function(e){
             menuCtrl.preventAll(e);
             $this.sendData();
         });
 
-        $('.part2').fadeIn('slow');
+        TweenMax.to($('.part2'), .5, {
+            opacity: 1,
+            onComplete: function(){
+                TweenMax.set($('.part2'), { clearProps:"all" });
+            }
+        });
     },
     setProfile: function(key){
         var newKey = key * 3;
-        var left = $('.vote .vote_box:eq(0)');
-        var mid = $('.vote .vote_box:eq(1)');
-        var right = $('.vote .vote_box:eq(2)');
+        var left = $('.vote .vote_box.first');
+        var mid = $('.vote .vote_box.second');
+        var right = $('.vote .vote_box.third');
         var threeArr = [left, mid, right];
 
         $.each(threeArr, function(key, obj){
@@ -258,7 +286,7 @@ var indexCtrl = {
             obj.find('.photo').data('index', profile[newKey+key].index).data('type', profile[newKey+key].store_tp);
             obj.find('.btnVote').data('index', profile[newKey+key].index).data('type', profile[newKey+key].store_tp);
 
-            if(key === (threeArr.length - 1)) three.fadeIn('fast');
+            if(key === (threeArr.length - 1)) TweenMax.to(three, .3, {opacity: 1, delay: .2});
         });
     },
     setPersonal: function(key, tp){
@@ -268,12 +296,7 @@ var indexCtrl = {
         var name = profile[key].name;
         var url = 'http://' + location.hostname + location.pathname.split("?")[0] + '?name=' + name;
 
-        $.preload( 
-            profile[key].img1,
-            profile[key].img2,
-            profile[key].img3,
-            profile[key].img4
-        );
+        $.preload(profile[key].img1, profile[key].img2, profile[key].img3, profile[key].img4);
 
         if(tp === 'A'){
             group = '自營組';
@@ -283,9 +306,14 @@ var indexCtrl = {
             group = '警衛清潔組';
         };
 
-        (profile[key].img4 === '') ? $('.personal .photo_block li').eq(3).hide() : $('.personal .photo_block li').eq(3).show();
+        (profile[key].img4 === '') ? $('.personal .photo_block li:eq(3)').addClass('none').hide() : $('.personal .photo_block li:eq(3)').removeClass('none').show();
 
         $('.personal .photo_block img').attr('src', 'img/store/'+profile[key].store_no+'_'+profile[key].store_tp+'_02.jpg');
+        $('.personal .photo_block li').find('a').removeClass('focus').eq(0).addClass('focus');
+
+        $('.personal .photo_block li').off('click');
+        $('.personal .votebtn').off('click');
+
         setObj.find('h1').text(profile[key].name).append('<span>'+profile[key].store_nm+' / '+profile[key].career_nm+'</span>');
         setObj.find('h2').text(profile[key].service_words);
         setObj.find('.tag').text(group);
@@ -294,18 +322,27 @@ var indexCtrl = {
         setObj.find('.fb_comment').html('<fb:comments href="'+url+'" num_posts="5" width="100%"></fb:comments>')
         FB.XFBML.parse(setObj.find('.fb_comment')[0]);
 
+        // 看更多個人資料照片click+初始click
         $('.personal .photo_block li').on('click', function(e){
             menuCtrl.preventAll(e);
-            var index = $(this).index() + 1;
+            if($(this).find('a').hasClass('focus')) return;
+
+            var index = $(this).index() + 2; // 從第2張開始
+
             $('.personal .photo_block li').find('a').removeClass('focus');
             $(this).find('a').addClass('focus');
 
-            $('.personal .photo_block img').fadeOut('fast', function(){
-                $(this).attr('src', 'img/store/'+profile[key].store_no+'_'+profile[key].store_tp+'_0'+index+'.jpg');
-                $(this).fadeIn('fast');
+            if(index > $('.personal .photo_block li:not(.none)').size()) index = 1;
+            TweenMax.to($('.personal .photo_block img'), .3, {
+                opacity: 0,
+                onComplete: function(){
+                    $('.personal .photo_block img').attr('src', 'img/store/'+profile[key].store_no+'_'+profile[key].store_tp+'_0'+index+'.jpg');
+                    TweenMax.to($('.personal .photo_block img'), .3, {opacity: 1});
+                }
             });
-        }).eq(1).click();
+        });
 
+        // 看更多投他一票click
         $('.personal .votebtn').on('click', function(e){
             menuCtrl.preventAll(e);
             var index = $(this).data('index');
@@ -315,7 +352,7 @@ var indexCtrl = {
             $('.pop.personal, .black').delay(100).fadeOut('fast');
         });
 
-        $('.pop.personal, .black').delay(200).fadeIn('fast');
+        $('.pop.personal, .black').fadeIn('fast');
     },
     openLogin: function(){
         $('.login_fb').on('click', function(e){
@@ -407,12 +444,12 @@ var indexCtrl = {
         }
         function wheel (e) {
             if(timer) window.clearTimeout(timer);
-            if(personPop) return;
+            if(popupOpen || resizeFG) return;
             timer = window.setTimeout(function() {
                 e = e || window.event;
                 if(e.wheelDelta <= 0 || e.detail > 0){
                     wheelPos = "down";
-                    (!outStage_fg) ? $this.outStage() : planetObj.roundabout('animateToNextChild')
+                    (!outStage_fg) ? $this.outStage() : planetObj.roundabout('animateToNextChild');
                 }else{
                     wheelPos = "top";
                     //$this.inStage();

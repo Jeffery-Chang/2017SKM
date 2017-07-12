@@ -35,6 +35,23 @@
     }
 }
 
+header nav{
+    z-index: 700;
+    top: 49px;
+}
+@media screen and (max-width: 600px) {
+    header nav:before {
+        content: "";
+        background: #c81f25;
+        margin-top: -48px;
+        width: 110px;
+        height: 40px;
+        display: block;
+    }
+    header nav ul{
+        top: 38%;
+    }
+}
 .planetBox{
     position: absolute;
     width: 100%;
@@ -57,4 +74,14 @@
 }
 .g-recaptcha div{
     margin: 40px auto;
+}
+.vote section .vote_box {
+    box-sizing: content-box;
+    padding: 10px 0;
+}
+.store_list .name{
+    z-index: 699;
+}
+.pop{
+    position: fixed;
 }

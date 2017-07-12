@@ -19,6 +19,11 @@ var menuCtrl = {
         var $this = this;
 
         $this.menuSet();
+        $this.resize();
+        
+        $(window).on('resize', function(){
+            $this.resize();
+        });
     },
     menuSet: function(){
         var $this = this;
@@ -55,6 +60,16 @@ var menuCtrl = {
                              }
         });
     },
+    resize: function(){
+        if($(window).width() > 600){
+            $('header nav').show();
+            $('.menu').removeClass('open');
+            resizeFG = false;
+        }else{
+            if(!$('.menu').hasClass('open')) $('header nav').hide();
+            resizeFG = true;
+        }
+    },
     preventAll: function(event){
         event.stopPropagation();
         event.preventDefault();
@@ -82,7 +97,7 @@ var menuCtrl = {
                         }
                     );
                 }else{
-                    alert('請登入Facebook或Google來進行投票，謝謝！');
+                    alert('請登入FB/G+來進行投票，謝謝！');
                 }
             },{ scope: 'email' }
         );
@@ -141,7 +156,7 @@ var menuCtrl = {
     },
     chkDevice: function(){
         var chk_fg = false;
-        if(isMobile.phone || isMobile.tablet){
+        if(isMobile.phone || isMobile.tablet || $(window).width() <= 600){
             chk_fg = true;
         }
         return chk_fg;
