@@ -20,7 +20,7 @@ var menuCtrl = {
 
         $this.menuSet();
         $this.resize();
-        
+
         $(window).on('resize', function(){
             $this.resize();
         });
@@ -93,7 +93,7 @@ var menuCtrl = {
                             $.cookie('id', response.id);
                             $.cookie('fb_login', true);
                             fb_login = true;
-                            $('.pop .close').click();
+                            (innerFG) ? $('.pop.login .close').click() : $('.pop .close').click();
                         }
                     );
                 }else{
@@ -126,7 +126,7 @@ var menuCtrl = {
                     $.cookie('id', gProfile.getId());
                     $.cookie('gplus_login', true);
                     gplus_login = true;
-                    $('.pop .close').click();
+                    (innerFG) ? $('.pop.login .close').click() : $('.pop .close').click();
                 }else{
                     //alert('請登入Facebook或Google+來進行投票，謝謝！ G+');
                 }
@@ -154,12 +154,18 @@ var menuCtrl = {
         share_u = location.href + gplusBack_url;
         window.open(gplus_url + encodeURIComponent(share_u), 'sharer', 'toolbar=0,status=0,width=656,height=436');
     },
-    chkDevice: function(){
+    chkDevice: function(tp){
         var chk_fg = false;
-        if(isMobile.phone || isMobile.tablet || $(window).width() <= 600){
+        if(isMobile.phone || isMobile.tablet || ($(window).width() <= 600 && tp === 1)){
             chk_fg = true;
         }
         return chk_fg;
+    },
+    chkWebview: function(){
+        var userAgent = window.navigator.userAgent.toLowerCase();
+        var fbWebView = /fbid|fbios|fblc|fb_iab|fb4a|fbav/.test(userAgent);
+        var lineWebView = /line/i.test(userAgent);
+        return fbWebView || lineWebView;
     }
 }
 

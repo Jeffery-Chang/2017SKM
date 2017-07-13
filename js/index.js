@@ -23,6 +23,7 @@ var fb_login = ($.cookie('fb_login')) ? true : false;
 var gplus_login = ($.cookie('gplus_login')) ? true : false;
 var popupOpen = false;
 var resizeFG = false;
+var innerFG = false;
 
 var planetObj = $('.planetBox ul');
 var three = $('.part2 .slick');
@@ -32,6 +33,8 @@ var indexCtrl = {
     init: function(){
         var $this = this;
 
+        if(menuCtrl.chkWebview()) $('.warn').show();
+        $this.indexResize();
         $this.refreshData();
         $this.inStage();
         $this.initSlick();
@@ -49,10 +52,39 @@ var indexCtrl = {
             $this.outStage();
             $('.part1 .btn .shape').toggleClass('shape_border');
         });
+        // all popup關閉
+        $('.pop .close, .store_list .close, .warn .close').on('click', function(e){
+            menuCtrl.preventAll(e);
+            popupOpen = false;
+            $(this).parent('div').fadeOut('fast');
+
+            (innerFG) ? $('.moreVote').fadeOut('fast') : $('.black').fadeOut('fast');
+            innerFG = false;
+        });
+        $(window).on('resize', function(){
+            $this.indexResize();
+        });
+    },
+    indexResize: function(){
+        var starList = ['one', 'two', 'three', 'four'];
+        var obj = $('.main .meteor span');
+
+        if($(window).width() > 600){
+            flyman.addClass('move');
+            $.each($('.main .meteor span'), function(index, obj){
+                $(obj).addClass(starList[index]);
+            });
+        }else{
+            wheelPos = 'mobile';
+            flyman.removeClass('move');
+            $.each($('.main .meteor span'), function(index, obj){
+                $(obj).removeClass(starList[index]);
+            });
+        }
     },
     activeObj: function(){
         var $this = this;
-        TweenMax.to(flyman, 2, {y: "+=30", ease: Power1.easeIn, yoyo: true, repeat: -1, repeatDelay : .1, delay: delayTime});
+
         TweenMax.from(rocket, 2, {
             top: "30%",
             left: "50%",
@@ -72,7 +104,7 @@ var indexCtrl = {
         TweenMax.staggerTo([title, redword, content], .5,{opacity: 0, y: -100}, .2);
         TweenMax.to(planet1, .5, {x: -500, ease:Back.easeIn});
         TweenMax.staggerTo([planet2, planet3], .5, {x: 500, ease:Back.easeIn}, .1);
-        (!menuCtrl.chkDevice()) ? TweenMax.to(startBtnPC, .5, {opacity: 0}) : TweenMax.to(startBtnM, .5, {opacity: 0})
+        (!menuCtrl.chkDevice(1)) ? TweenMax.to(startBtnPC, .5, {opacity: 0}) : TweenMax.to(startBtnM, .5, {opacity: 0})
         TweenMax.to(rocket, 1, {top: "-20%", left: "5%", transform: "scale(.1)", ease: Back.easeIn});
         TweenMax.to(satellite, 1, {top: "-10%", left: "50%", transform: "scale(.1)", ease: Back.easeIn});
 
@@ -93,7 +125,7 @@ var indexCtrl = {
                                                       onComplete: function(){
                                                           TweenMax.set([planet2, planet3], { clearProps:"all" }); 
                                                       }}, .1);
-        (!menuCtrl.chkDevice()) ? TweenMax.from(startBtnPC, .5, {opacity: 0, delay: delayTime + .5}) : TweenMax.from(startBtnM, .5, {opacity: 0, delay: delayTime + .5})
+        (!menuCtrl.chkDevice(1)) ? TweenMax.from(startBtnPC, .5, {opacity: 0, delay: delayTime + .5}) : TweenMax.from(startBtnM, .5, {opacity: 0, delay: delayTime + .5})
     },
     refreshData: function(){
         $.get('api/angel_list', function(result){
@@ -136,7 +168,6 @@ var indexCtrl = {
             if(wheelPos == "down" || wheelPos == "mobile") {
                 var downFocus = focus + 1;
                 if(downFocus >= 16) downFocus = 0;
-
                 TweenMax.to($('.roundabout-moveable-item').eq(downFocus), .5, {scale: 1, filter: "brightness(100%)"});
                 TweenMax.to($('.roundabout-in-focus'), .5, {scale: .5, filter: "brightness(30%)"});
             }else if(wheelPos == "top"){
@@ -212,14 +243,6 @@ var indexCtrl = {
             });
         });
 
-        // popup關閉 .store_list .close
-        $('.pop .close, .store_list .close').on('click', function(e){
-            menuCtrl.preventAll(e);
-            popupOpen = false;
-            $(this).parent('div').fadeOut('fast');
-            $('.black').fadeOut('fast');
-        });
-
         // 看更多
         $('.photo').on('click', function(e){
             menuCtrl.preventAll(e);
@@ -247,6 +270,7 @@ var indexCtrl = {
         // 完成popup
         $('.progress .finish').on('click', function(e){
             menuCtrl.preventAll(e);
+            if($(this).hasClass('no')) return;
             popupOpen = true;
             var finalObj = $('.finalCheck li');
             var finalArr = [$.cookie('choose1'), $.cookie('choose2'), $.cookie('choose3')];
@@ -348,6 +372,14 @@ var indexCtrl = {
             var index = $(this).data('index');
             var type = $(this).data('type');
 
+            if(!fb_login && !gplus_login){
+                popupOpen = true;
+                innerFG = true;
+                $('.pop.login, .moreVote').fadeIn('fast');
+                $this.openLogin();
+                return;
+            }
+
             $this.checkChoose(index, type);
             $('.pop.personal, .black').delay(100).fadeOut('fast');
         });
@@ -376,12 +408,11 @@ var indexCtrl = {
         var choose2 = $.cookie('choose2');
         var choose3 = $.cookie('choose3');
 
-        if(choose1) $('.progress .icon-checkmark:eq(0)').removeClass('unfinish');
-        if(choose2) $('.progress .icon-checkmark:eq(1)').removeClass('unfinish');
-        if(choose3) $('.progress .icon-checkmark:eq(2)').removeClass('unfinish');
+        (choose1) ? $('.progress .icon-checkmark:eq(0)').removeClass('unfinish') : $('.progress .icon-checkmark:eq(0)').addClass('unfinish');
+        (choose2) ? $('.progress .icon-checkmark:eq(1)').removeClass('unfinish') : $('.progress .icon-checkmark:eq(1)').addClass('unfinish');
+        (choose3) ? $('.progress .icon-checkmark:eq(2)').removeClass('unfinish') : $('.progress .icon-checkmark:eq(2)').addClass('unfinish');
 
         if(!choose1 || !choose2 || !choose3) return;
-
         $('.progress .finish').removeClass('no');
     },
     sendData: function(){
@@ -397,7 +428,6 @@ var indexCtrl = {
         sendEmail = $.cookie('email');
         sendId = $.cookie('id');
         sendChoose = $.cookie('choose1') + ',' + $.cookie('choose2') + ',' + $.cookie('choose3');
-        sendGoogle = '6Lce3iYUAAAAADBw4GuNaJaKPGnkVAoOGpEWcSPw';
 
         data = {
             type: sendType,
@@ -406,7 +436,7 @@ var indexCtrl = {
             uid: sendId,
             type: sendType,
             choose: sendChoose,
-            google: sendGoogle
+            google: pass
         }
 
         console.log('data:', data);
@@ -416,12 +446,21 @@ var indexCtrl = {
             url: 'api/vote',
             data: data,
             success: function(result){
-                console.log(result);
+                console.log('status:', result.status);
                 if(result.status == '200'){
-
+                    console.log('投票成功！');
+                }else if(result.status == '100'){
+                    console.log('google驗證失敗！');
                 }else if(result.status == '110'){
-                    alert('您今日已完成投票!\n\n每個FB/G+帳號，一天可投一票，天天投票，中獎機率越高\n微笑新星們期待您的再訪支持！');
+                    //alert('您今日已完成投票!\n\n每個FB/G+帳號，一天可投一票，天天投票，中獎機率越高\n微笑新星們期待您的再訪支持！');
+                    console.log('該id已投過票！');
+                }else if(result.status == '120'){
+                    console.log('登入帳號非FB/G+！');
                 }
+                
+                $.removeCookie('choose1');
+                $.removeCookie('choose2');
+                $.removeCookie('choose3');
                 $('.final_check .finalCheck').fadeOut('fast', function(){
                     $('.final_check .beenVote').fadeIn('fast');
                 });
