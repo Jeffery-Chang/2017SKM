@@ -1,20 +1,27 @@
 (function(a){a.preload=function(){var c=[],b=arguments.length;for(;b--;){c.push(a("<img />").attr("src",arguments[b]));}};})(jQuery);
 
-var home1 = $('.earth .house_layer_1');
-var home2 = $('.earth .house_layer_2');
-var home3 = $('.earth .house_layer_3');
-var earth = $('.earth .land');
+var home1 = $('.part1.earth .house_layer_1');
+var home2 = $('.part1.earth .house_layer_2');
+var home3 = $('.part1.earth .house_layer_3');
+var earth = $('.part1.earth .land');
 var title = $('.part1 h1');
 var redword = $('.part1 h2');
 var content = $('.part1 .pc_only, .part1 .m_only');
 var startBtnPC = $('.part1 .scroll-btn');
 var startBtnM = $('.part1 .btn');
-var planet1 = $('.planet.p_1');
-var planet2 = $('.planet.p_2');
-var planet3 = $('.planet.p_3');
+var indexBtn = (!menuCtrl.chkDevice(1)) ? startBtnPC : startBtnM;
+var planet1 = $('.part1 .planet.p_1');
+var planet2 = $('.part1 .planet.p_2');
+var planet3 = $('.part1 .planet.p_3');
+
 var flyman = $('.flyman');
-var rocket = $('.rocket');
-var satellite = $('.satellite');
+
+var rocket = $('.part1 .rocket');
+var satellite = $('.part1 .satellite');
+
+var planetObj = $('.part2 .planetBox ul');
+var three = $('.part2 .slick');
+var vote_box = $('.part2.vote .vote_box');
 
 var delayTime = 1.5;
 var outStage_fg = false;
@@ -25,26 +32,34 @@ var popupOpen = false;
 var resizeFG = false;
 var innerFG = false;
 
-var planetObj = $('.planetBox ul');
-var three = $('.part2 .slick');
-var vote_box = $('.vote .vote_box');
-
 var indexCtrl = {
     init: function(){
         var $this = this;
 
-        $.each(profile, function(key, obj){
-            $.preload(obj.img1);
-        });
+        $.each(profile, function(key, obj){ $.preload(obj.img1); });
 
-        if(menuCtrl.chkWebview()) $('.warn').show();
         $this.indexResize();
-        $this.refreshData();
+        $this.updateData();
         $this.initSlick();
         $this.initRA();
         $this.winWheel();
+        if(menuCtrl.chkWebview()) $('.warn').show();
+
+        /* 會改到onload後執行 */
+        if(!menuCtrl.chkDevice()) {
+            TweenMax.from(rocket, 2, {
+                top: "30%",
+                left: "50%",
+                opacity: 0,
+                transform: "scale(.5) rotate(-90deg)",
+                delay: delayTime,
+                ease: Power2.easeOut,
+                onComplete: function(){
+                    TweenMax.set(rocket, { clearProps:"all" });
+                }
+            });
+        }
         $this.inStage();
-        if(!menuCtrl.chkDevice()) $this.activeObj();
 
         startBtnPC.find('a').on('click', function(e){
             menuCtrl.preventAll(e);
@@ -69,7 +84,19 @@ var indexCtrl = {
         }).on('load', function(){
             console.log('load');
             /*$this.inStage();
-            if(!menuCtrl.chkDevice()) $this.activeObj();*/
+            if(!menuCtrl.chkDevice()) {
+                TweenMax.from(rocket, 2, {
+                    top: "30%",
+                    left: "50%",
+                    opacity: 0,
+                    transform: "scale(.5) rotate(-90deg)",
+                    delay: delayTime,
+                    ease: Power2.easeOut,
+                    onComplete: function(){
+                        TweenMax.set(rocket, { clearProps:"all" });
+                    }
+                });
+            }*/
         });
     },
     indexResize: function(){
@@ -78,30 +105,22 @@ var indexCtrl = {
 
         if($(window).width() > 600){
             flyman.addClass('move');
-            $.each($('.main .meteor span'), function(index, obj){
+            $.each(obj, function(index, obj){
                 $(obj).addClass(starList[index]);
             });
         }else{
             wheelPos = 'mobile';
             flyman.removeClass('move');
-            $.each($('.main .meteor span'), function(index, obj){
+            $.each(obj, function(index, obj){
                 $(obj).removeClass(starList[index]);
             });
         }
     },
-    activeObj: function(){
-        var $this = this;
-
-        TweenMax.from(rocket, 2, {
-            top: "30%",
-            left: "50%",
-            opacity: 0,
-            transform: "scale(.5) rotate(-90deg)",
-            delay: delayTime,
-            ease: Power2.easeOut,
-            onComplete: function(){
-                TweenMax.set(rocket, { clearProps:"all" });
-            }
+    updateData: function(){
+        $.get('api/angel_list', function(result){
+            $.each(result, function(key, obj){
+                profile[key].vote_cnt = obj.vote_cnt;
+            });
         });
     },
     outStage: function(){
@@ -111,10 +130,9 @@ var indexCtrl = {
         TweenMax.staggerTo([title, redword, content], .5,{opacity: 0, y: -100}, .2);
         TweenMax.to(planet1, .5, {x: -500, ease:Back.easeIn});
         TweenMax.staggerTo([planet2, planet3], .5, {x: 500, ease:Back.easeIn}, .1);
-        (!menuCtrl.chkDevice(1)) ? TweenMax.to(startBtnPC, .5, {opacity: 0}) : TweenMax.to(startBtnM, .5, {opacity: 0})
+        TweenMax.to(startBtnPC, .5, {opacity: 0});
         TweenMax.to(rocket, 1, {top: "-20%", left: "5%", transform: "scale(.1)", ease: Back.easeIn});
         TweenMax.to(satellite, 1, {top: "-10%", left: "50%", transform: "scale(.1)", ease: Back.easeIn});
-
         TweenMax.to($('.part1'), .25, {display: "none", opacity: "0", delay: 1, onComplete: function(){
             outStage_fg = true;
             $this.initPart2();
@@ -124,22 +142,23 @@ var indexCtrl = {
         TweenMax.staggerFrom([home1, home2, home3], .5, {scaleY: 0, y: 200, ease:Back.easeOut, delay: delayTime}, .1);
         TweenMax.from(earth, .5, {y: 200, ease: Back.easeOut, delay: delayTime});
         TweenMax.staggerFrom([title, redword, content], .5, {opacity: 0, y: -100, delay: delayTime}, .2);
-        TweenMax.from(planet1, .5, {x: -500, ease:Back.easeOut, delay: delayTime,
-                                    onComplete: function(){
-                                        TweenMax.set(planet1, { clearProps:"all" }); 
-                                    }});
-        TweenMax.staggerFrom([planet2, planet3], .5, {x: 500, ease:Back.easeOut, delay: delayTime,
-                                                      onComplete: function(){
-                                                          TweenMax.set([planet2, planet3], { clearProps:"all" }); 
-                                                      }}, .1);
-        (!menuCtrl.chkDevice(1)) ? TweenMax.from(startBtnPC, .5, {opacity: 0, delay: delayTime + .5}) : TweenMax.from(startBtnM, .5, {opacity: 0, delay: delayTime + .5})
-    },
-    refreshData: function(){
-        $.get('api/angel_list', function(result){
-            $.each(result, function(key, obj){
-                profile[key].vote_cnt = obj.vote_cnt;
-            });
+        TweenMax.from(indexBtn, .5, {opacity: 0, delay: delayTime + .5});
+        TweenMax.from(planet1, .5, {
+            x: -500,
+            ease:Back.easeOut,
+            delay: delayTime,
+            onComplete: function(){
+                TweenMax.set(planet1, { clearProps:"all" }); 
+            }
         });
+        TweenMax.staggerFrom([planet2, planet3], .5, {
+            x: 500, 
+            ease:Back.easeOut, 
+            delay: delayTime,
+            onComplete: function(){
+                TweenMax.set([planet2, planet3], { clearProps:"all" }); 
+            }
+        }, .1);
     },
     initSlick: function(){
         three.slick({
@@ -234,7 +253,7 @@ var indexCtrl = {
         // 開店別 for mobile
         $('.store_list .location').on('click', function(e){
             menuCtrl.preventAll(e);
-            $('.store_list .name').fadeToggle('fast');
+            $('.store_list .name').fadeIn('fast');
         });
 
         // 店別 for mobile
@@ -257,7 +276,7 @@ var indexCtrl = {
         });
 
         // 看更多
-        $('.photo').on('click', function(e){
+        three.find('.photo').on('click', function(e){
             menuCtrl.preventAll(e);
             popupOpen = true;
 
@@ -265,7 +284,7 @@ var indexCtrl = {
         });
 
         // 投票
-        $('.btnVote').on('click', function(e){
+        three.find('.btnVote').on('click', function(e){
             menuCtrl.preventAll(e);
             var index = $(this).data('index');
             var type = $(this).data('type');
@@ -299,7 +318,11 @@ var indexCtrl = {
         // 送出投票
         $('.finalCheck .votebtn').on('click', function(e){
             menuCtrl.preventAll(e);
-            $this.sendData();
+            menuCtrl.sendData(function(){
+                $('.final_check .finalCheck').fadeOut('fast', function(){
+                    $('.final_check .beenVote').fadeIn('fast');
+                });
+            });
         });
 
         TweenMax.to($('.part2'), .5, {
@@ -427,61 +450,6 @@ var indexCtrl = {
 
         if(!choose1 || !choose2 || !choose3) return;
         $('.progress .finish').removeClass('no');
-    },
-    sendData: function(){
-        var pass = grecaptcha.getResponse();
-        var sendType, sendName, sendEmail, sendId, sendChoose, sendGoogle, data;
-        if(pass.length === 0){
-            alert('請使用google驗證!');
-            return;
-        }
-
-        sendType = $.cookie('type');
-        sendName = $.cookie('name');
-        sendEmail = $.cookie('email');
-        sendId = $.cookie('id');
-        sendChoose = $.cookie('choose1') + ',' + $.cookie('choose2') + ',' + $.cookie('choose3');
-
-        data = {
-            type: sendType,
-            name: sendName,
-            email: sendEmail,
-            uid: sendId,
-            type: sendType,
-            choose: sendChoose,
-            google: pass
-        }
-
-        console.log('data:', data);
-
-        $.ajax({
-            method: "POST",
-            url: 'api/vote',
-            data: data,
-            success: function(result){
-                console.log('status:', result.status);
-                if(result.status == '200'){
-                    console.log('投票成功！');
-                }else if(result.status == '100'){
-                    console.log('google驗證失敗！');
-                }else if(result.status == '110'){
-                    //alert('您今日已完成投票!\n\n每個FB/G+帳號，一天可投一票，天天投票，中獎機率越高\n微笑新星們期待您的再訪支持！');
-                    console.log('該id已投過票！');
-                }else if(result.status == '120'){
-                    console.log('登入帳號非FB/G+！');
-                }
-
-                $.removeCookie('choose1');
-                $.removeCookie('choose2');
-                $.removeCookie('choose3');
-                $('.final_check .finalCheck').fadeOut('fast', function(){
-                    $('.final_check .beenVote').fadeIn('fast');
-                });
-            },
-            error: function(result){
-                alert(result);
-            }
-        });
     },
     winWheel: function(){
         var $this = this;

@@ -154,6 +154,61 @@ var menuCtrl = {
         share_u = location.href + gplusBack_url;
         window.open(gplus_url + encodeURIComponent(share_u), 'sharer', 'toolbar=0,status=0,width=656,height=436');
     },
+    sendData: function(cb){
+        if (cb === void 0) { cb = null; }
+        var pass = grecaptcha.getResponse();
+        var sendType, sendName, sendEmail, sendId, sendChoose, sendGoogle, data;
+        if(pass.length === 0){
+            alert('請使用google驗證!');
+            return;
+        }
+
+        sendType = $.cookie('type');
+        sendName = $.cookie('name');
+        sendEmail = $.cookie('email');
+        sendId = $.cookie('id');
+        sendChoose = $.cookie('choose1') + ',' + $.cookie('choose2') + ',' + $.cookie('choose3');
+
+        data = {
+            type: sendType,
+            name: sendName,
+            email: sendEmail,
+            uid: sendId,
+            type: sendType,
+            choose: sendChoose,
+            google: pass
+        }
+
+        console.log('data:', data);
+
+        $.ajax({
+            method: "POST",
+            url: 'api/vote',
+            data: data,
+            success: function(result){
+                console.log('status:', result.status);
+                if(result.status == '200'){
+                    console.log('投票成功！');
+                }else if(result.status == '100'){
+                    console.log('google驗證失敗！');
+                }else if(result.status == '110'){
+                    //alert('您今日已完成投票!\n\n每個FB/G+帳號，一天可投一票，天天投票，中獎機率越高\n微笑新星們期待您的再訪支持！');
+                    console.log('該id已投過票！');
+                }else if(result.status == '120'){
+                    console.log('登入帳號非FB/G+！');
+                }
+
+                $.removeCookie('choose1');
+                $.removeCookie('choose2');
+                $.removeCookie('choose3');
+
+                if (cb) cb();
+            },
+            error: function(result){
+                alert('系統繁忙，請稍候再試，謝謝！');
+            }
+        });
+    },
     chkDevice: function(tp){
         var chk_fg = false;
         if(isMobile.phone || isMobile.tablet || ($(window).width() <= 600 && tp === 1)){
