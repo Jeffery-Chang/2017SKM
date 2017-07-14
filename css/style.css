@@ -1469,6 +1469,36 @@ a.close span:after {
 .vote {
   overflow: hidden;
 }
+.vote .location_name {
+  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: white;
+  letter-spacing: 1px;
+  display: none;
+  text-align: center;
+  padding-top: 30px;
+}
+.vote .location_name span {
+  margin-right: 10px;
+}
+@media only screen and (max-width: 600px) {
+  .vote .location_name {
+    display: block;
+  }
+}
+@media only screen and (max-width: 374px) {
+  .vote .location_name {
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: white;
+    letter-spacing: 1px;
+    padding-top: 12px;
+  }
+}
 .vote .storeBlock {
   width: 1024px;
   height: 300px;
@@ -1584,7 +1614,7 @@ a.close span:after {
     transform: scale(20, 20);
   }
 }
-@media only screen and (max-width: 413px) {
+@media only screen and (max-width: 600px) {
   .vote .storeBlock .flag {
     display: none;
   }
@@ -1649,24 +1679,6 @@ a.close span:after {
   text-align: center;
   font-size: 0;
   z-index: 500;
-}
-.vote section h1 {
-  font-size: 17px;
-  font-size: 1.0625rem;
-  font-weight: 500;
-  line-height: 1.5;
-  color: white;
-  letter-spacing: 1px;
-  display: none;
-  margin-bottom: 30px;
-}
-.vote section h1 span {
-  margin-right: 10px;
-}
-@media only screen and (max-width: 413px) {
-  .vote section h1 {
-    display: block;
-  }
 }
 .vote section .vote_box {
   width: 184px;
@@ -1887,14 +1899,15 @@ a.close span:after {
 @media screen and (max-width: 600px) {
   .vote section {
     position: absolute;
-    top: 7%;
+    top: 0%;
     left: 50%;
+    padding-top: 90px;
   }
 }
 @media screen and (min-width: 375px) and (max-width: 413px) {
   .vote section {
     position: absolute;
-    top: 5%;
+    top: 0%;
     left: 50%;
     -moz-transform:  scale(0.9, 0.9) translateX(-50%);
     -ms-transform:  scale(0.9, 0.9) translateX(-50%);
@@ -1909,7 +1922,7 @@ a.close span:after {
 @media screen and (max-width: 374px) {
   .vote section {
     position: absolute;
-    top: 3%;
+    top: 0%;
     left: 50%;
     -moz-transform:  scale(0.75, 0.75) translateX(-50%);
     -ms-transform:  scale(0.75, 0.75) translateX(-50%);
@@ -1919,6 +1932,7 @@ a.close span:after {
     -ms-transform-origin: 0 0;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
+    padding-top: 70px;
   }
 }
 
@@ -2519,6 +2533,7 @@ aside ul li .s_16 {
 .pop .photo_block ul li {
   display: inline-block;
   margin: 0 3px;
+  vertical-align: middle;
 }
 .pop .photo_block ul li a {
   display: block;
@@ -2560,9 +2575,9 @@ aside ul li .s_16 {
 }
 .pop .photo_block p {
   position: absolute;
-  top: 5px;
-  left: -20px;
-  width: auto;
+  top: 15px;
+  left: -32px;
+  width: 120px;
   height: auto;
   background-color: #c81f25;
   margin: 0 auto;
@@ -2735,6 +2750,21 @@ aside ul li .s_16 {
   overflow-y: scroll;
   padding-right: 10px;
 }
+.pop .pop_black {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  opacity: 0.4;
+  z-index: 504;
+}
 @media screen and (max-width: 600px) {
   .pop {
     width: 100%;
@@ -2756,6 +2786,7 @@ aside ul li .s_16 {
     transform: translateX(0);
     min-height: 100%;
     overflow: auto;
+    padding-bottom: 100px;
   }
   .pop .red_bar {
     width: 100%;
@@ -2797,6 +2828,17 @@ aside ul li .s_16 {
   }
   .pop .des_block h1 span {
     color: #c81f25;
+  }
+  .pop .fb_comment {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 25px;
+    padding-right: 0px;
+    overflow-y: auto;
   }
 }
 
@@ -3031,7 +3073,8 @@ aside ul li .s_16 {
 .login .con {
   margin-top: 40px;
 }
-.login .login_fb, .login .login_google {
+.login .login_fb,
+.login .login_google {
   width: 173px;
   height: 43px;
   margin: 0 auto;
@@ -3043,7 +3086,8 @@ aside ul li .s_16 {
   cursor: pointer;
   margin: 30px auto;
 }
-.login .login_fb .shape, .login .login_google .shape {
+.login .login_fb .shape,
+.login .login_google .shape {
   stroke-dasharray: 0 500;
   stroke-dashoffset: 20;
   stroke-width: 3px;
@@ -3052,12 +3096,14 @@ aside ul li .s_16 {
   transition: stroke-width 2.7s, stroke-dashoffset 2.7s, stroke-dasharray 1.3s;
   transition-delay: 0s;
 }
-.login .login_fb .shape_border, .login .login_google .shape_border {
+.login .login_fb .shape_border,
+.login .login_google .shape_border {
   stroke-width: 3px;
   stroke-dasharray: 100 8;
   stroke-dashoffset: 20;
 }
-.login .login_fb span, .login .login_google span {
+.login .login_fb span,
+.login .login_google span {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -3066,10 +3112,12 @@ aside ul li .s_16 {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.login .login_fb:hover svg .shape, .login .login_google:hover svg .shape {
+.login .login_fb:hover svg .shape,
+.login .login_google:hover svg .shape {
   stroke-dasharray: 0 500;
 }
-.login .login_fb span, .login .login_google span {
+.login .login_fb span,
+.login .login_google span {
   width: 100%;
   height: auto;
   margin: 0 auto;
@@ -3077,13 +3125,15 @@ aside ul li .s_16 {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-.login .login_fb span b, .login .login_google span b {
+.login .login_fb span b,
+.login .login_google span b {
   font-size: 20px;
   font-size: 1.25rem;
   vertical-align: middle;
   margin-right: 20px;
 }
-.login .login_fb svg, .login .login_google svg {
+.login .login_fb svg,
+.login .login_google svg {
   -moz-transform: scale(1.2, 1.2);
   -ms-transform: scale(1.2, 1.2);
   -webkit-transform: scale(1.2, 1.2);

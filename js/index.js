@@ -21,6 +21,7 @@ var satellite = $('.part1 .satellite');
 
 var planetObj = $('.part2 .planetBox ul');
 var three = $('.part2 .slick');
+var threeLocation = $('.vote .location_name');
 var vote_box = $('.part2.vote .vote_box');
 
 var delayTime = 1.5;
@@ -76,7 +77,7 @@ var indexCtrl = {
             popupOpen = false;
             $(this).parent('div').fadeOut('fast');
 
-            (innerFG) ? $('.moreVote').fadeOut('fast') : $('.black').fadeOut('fast');
+            (innerFG) ? $('.pop_black').fadeOut('fast') : $('.black').fadeOut('fast');
             innerFG = false;
         });
         $(window).on('resize', function(){
@@ -202,7 +203,7 @@ var indexCtrl = {
                 TweenMax.to($('.roundabout-moveable-item').eq(topFocus), .5, {scale: 1, filter: "brightness(100%)"});
                 TweenMax.to($('.roundabout-in-focus'), .5, {scale: .5, filter: "brightness(30%)"});
             }
-            TweenMax.to(three, .3, {opacity: 0});
+            TweenMax.to([three, threeLocation], .3, {opacity: 0});
         }).bind('animationEnd', function() {
             var focus = planetObj.roundabout("getChildInFocus");
 
@@ -338,6 +339,8 @@ var indexCtrl = {
         var mid = $('.vote .vote_box.second');
         var right = $('.vote .vote_box.third');
         var threeArr = [left, mid, right];
+        
+        threeLocation.find('.words').text(profile[newKey].store_nm);
 
         $.each(threeArr, function(key, obj){
             obj.find('h2').text(profile[newKey+key].name);
@@ -346,7 +349,7 @@ var indexCtrl = {
             obj.find('.photo').data('index', profile[newKey+key].index).data('type', profile[newKey+key].store_tp);
             obj.find('.btnVote').data('index', profile[newKey+key].index).data('type', profile[newKey+key].store_tp);
 
-            if(key === (threeArr.length - 1)) TweenMax.to(three, .3, {opacity: 1, delay: .2});
+            if(key === (threeArr.length - 1)) TweenMax.to([three, threeLocation], .3, {opacity: 1, delay: .2});
         });
     },
     setPersonal: function(key, tp){
@@ -355,8 +358,6 @@ var indexCtrl = {
         var group = '';
         var name = profile[key].name;
         var url = 'http://' + location.hostname + location.pathname.split("?")[0] + '?name=' + name;
-
-        //$.preload(profile[key].img1, profile[key].img2, profile[key].img3, profile[key].img4);
 
         if(tp === 'A'){
             group = '自營組';
@@ -411,7 +412,7 @@ var indexCtrl = {
             if(!fb_login && !gplus_login){
                 popupOpen = true;
                 innerFG = true;
-                $('.pop.login, .moreVote').fadeIn('fast');
+                $('.pop.login, .pop_black').fadeIn('fast');
                 $this.openLogin();
                 return;
             }

@@ -67,6 +67,7 @@ header nav{
     z-index: 700;
     top: 49px;
 }
+
 @media screen and (max-width: 600px) {
     header nav:before {
         content: "";
@@ -78,6 +79,10 @@ header nav{
     }
     header nav ul{
         top: 38%;
+    }
+    header nav{
+        position: absolute;
+        height: 100vh;
     }
 }
 .planetBox{
@@ -116,25 +121,6 @@ header nav{
 }
 .store_list .name{
     z-index: 699;
-}
-.pop{
-    position: fixed;
-}
-.moreVote {
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    margin: 0 auto;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
-    opacity: 0.5;
-    position: fixed;
-    z-index: 504;
-    display: none;
 }
 .wrap .part2.vote .slick *{
     text-decoration: none; 
