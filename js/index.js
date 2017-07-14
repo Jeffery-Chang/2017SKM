@@ -33,14 +33,17 @@ var indexCtrl = {
     init: function(){
         var $this = this;
 
+        $.each(profile, function(key, obj){
+            $.preload(obj.img1);
+        });
+
         if(menuCtrl.chkWebview()) $('.warn').show();
         $this.indexResize();
         $this.refreshData();
-        $this.inStage();
         $this.initSlick();
         $this.initRA();
         $this.winWheel();
-
+        $this.inStage();
         if(!menuCtrl.chkDevice()) $this.activeObj();
 
         startBtnPC.find('a').on('click', function(e){
@@ -63,6 +66,10 @@ var indexCtrl = {
         });
         $(window).on('resize', function(){
             $this.indexResize();
+        }).on('load', function(){
+            console.log('load');
+            /*$this.inStage();
+            if(!menuCtrl.chkDevice()) $this.activeObj();*/
         });
     },
     indexResize: function(){
@@ -145,7 +152,7 @@ var indexCtrl = {
                     settings: {
                         arrows: false,
                         centerMode: true,
-                        centerPadding: '30%',
+                        centerPadding: '33%',
                         slidesToShow: 1
                     }
                 }
@@ -197,6 +204,12 @@ var indexCtrl = {
         var $this = this;
         $this.setProfile(0);
         $this.checkChoose();
+
+        $.each(profile, function(key, obj){
+            $.preload(obj.img2);
+            $.preload(obj.img3);
+            $.preload(obj.img4);
+        });
 
         $('aside li').on('click', function(e){
             menuCtrl.preventAll(e);
@@ -320,7 +333,7 @@ var indexCtrl = {
         var name = profile[key].name;
         var url = 'http://' + location.hostname + location.pathname.split("?")[0] + '?name=' + name;
 
-        $.preload(profile[key].img1, profile[key].img2, profile[key].img3, profile[key].img4);
+        //$.preload(profile[key].img1, profile[key].img2, profile[key].img3, profile[key].img4);
 
         if(tp === 'A'){
             group = '自營組';
@@ -457,7 +470,7 @@ var indexCtrl = {
                 }else if(result.status == '120'){
                     console.log('登入帳號非FB/G+！');
                 }
-                
+
                 $.removeCookie('choose1');
                 $.removeCookie('choose2');
                 $.removeCookie('choose3');

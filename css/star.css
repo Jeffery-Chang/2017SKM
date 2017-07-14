@@ -97,7 +97,7 @@ header nav{
 @media screen and (max-width: 600px) {
     .roundabout-holder {
         width: 600%;
-        height: 185vh;
+        height: 200vh;
         margin-left: -300%;
     }
 }
