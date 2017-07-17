@@ -611,7 +611,8 @@ header {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 10px;
-  position: relative;
+  position: fixed;
+  z-index: 600;
 }
 header p,
 header nav {
@@ -799,13 +800,14 @@ header nav ul li:nth-of-type(5) {
 
 .wrap {
   width: 100%;
-  height: calc(100% - 50px);
+  height: 100%;
   margin: 0 auto;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background: url(../img/light.png) no-repeat center center;
   background-size: cover;
+  padding-top: 50px;
 }
 
 .main {
@@ -886,7 +888,7 @@ section {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   position: relative;
-  z-index: 1;
+  z-index: 500;
   max-width: 1024px;
   margin: 0 auto;
   text-align: center;
@@ -1098,7 +1100,6 @@ a.close span:after {
   -ms-transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  z-index: 10;
   text-align: center;
 }
 .index section h1 {
@@ -1678,223 +1679,6 @@ a.close span:after {
   transform: translateX(-50%);
   text-align: center;
   font-size: 0;
-  z-index: 500;
-}
-.vote section .vote_box {
-  width: 184px;
-  height: 279px;
-  margin: 0 auto;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  display: inline-block;
-  position: relative;
-  margin: 0 20px;
-}
-.vote section .vote_box .con {
-  width: 184px;
-  height: 279px;
-  background-color: white;
-  margin: 0 auto;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-border-radius: 92px;
-  -webkit-border-radius: 92px;
-  border-radius: 92px;
-  overflow: hidden;
-  position: relative;
-  z-index: 2;
-}
-.vote section .vote_box .con .top {
-  width: 100%;
-  height: 100px;
-  margin: 0 auto;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  background: url(../asset/svg/wave.svg) repeat-x bottom #c81f25;
-  position: relative;
-}
-.vote section .vote_box .con .top span {
-  font-size: 15px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  line-height: 3.5;
-  color: white;
-  letter-spacing: 1px;
-}
-.vote section .vote_box .con .top a.photo {
-  width: 100px;
-  height: 100px;
-  background-color: white;
-  margin: 0 auto;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-border-radius: 100%;
-  -webkit-border-radius: 100%;
-  border-radius: 100%;
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  overflow: hidden;
-}
-.vote section .vote_box .con .top a.photo > img {
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  display: block;
-}
-.vote section .vote_box .con .top a.photo b {
-  font-size: 15px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  line-height: 1.5;
-  color: #c81f25;
-  letter-spacing: 1px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  -moz-transition: ease-out 0.5s;
-  -o-transition: ease-out 0.5s;
-  -webkit-transition: ease-out 0.5s;
-  transition: ease-out 0.5s;
-}
-.vote section .vote_box .con .top a.photo img {
-  -moz-transition: ease-out 0.5s;
-  -o-transition: ease-out 0.5s;
-  -webkit-transition: ease-out 0.5s;
-  transition: ease-out 0.5s;
-  -moz-transform: scale(1, 1);
-  -ms-transform: scale(1, 1);
-  -webkit-transform: scale(1, 1);
-  transform: scale(1, 1);
-}
-.vote section .vote_box .con .top a.photo:hover b {
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1;
-}
-.vote section .vote_box .con .top a.photo:hover img {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
-  opacity: 0.2;
-  -moz-transform: scale(1.1, 1.1);
-  -ms-transform: scale(1.1, 1.1);
-  -webkit-transform: scale(1.1, 1.1);
-  transform: scale(1.1, 1.1);
-}
-.vote section .vote_box .con .bottom {
-  margin-top: 50px;
-}
-.vote section .vote_box .con .bottom h2 {
-  font-size: 18px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.5;
-  color: black;
-  letter-spacing: 1px;
-}
-.vote section .vote_box .con .bottom p {
-  font-size: 15px;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: black;
-  letter-spacing: 1px;
-}
-.vote section .vote_box .con .bottom a.btnVote {
-  width: 120px;
-  height: 40px;
-  margin: 0 auto;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  cursor: pointer;
-  cursor: pointer;
-  margin-top: 10px;
-  font-size: 15px;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #c81f25;
-  letter-spacing: 1px;
-}
-.vote section .vote_box .con .bottom a.btnVote .shape {
-  stroke-dasharray: 0 500;
-  stroke-dashoffset: 20;
-  stroke-width: 3px;
-  fill: transparent;
-  stroke: white;
-  transition: stroke-width 2.7s, stroke-dashoffset 2.7s, stroke-dasharray 1.3s;
-  transition-delay: 0s;
-}
-.vote section .vote_box .con .bottom a.btnVote .shape_border {
-  stroke-width: 3px;
-  stroke-dasharray: 100 8;
-  stroke-dashoffset: 20;
-}
-.vote section .vote_box .con .bottom a.btnVote span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-.vote section .vote_box .con .bottom a.btnVote:hover svg .shape {
-  stroke-dasharray: 0 500;
-}
-.vote section .vote_box .con .bottom a.btnVote b {
-  font-size: 14px;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #c81f25;
-  letter-spacing: 1px;
-  padding-right: 5px;
-}
-.vote section .vote_box .con .bottom a.btnVote svg .shape {
-  stroke: #c81f25;
-}
-.vote section .vote_box > svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  z-index: 1;
-}
-.vote section .vote_box > svg .line {
-  stroke-dasharray: 0 500;
-  stroke-dashoffset: 0;
-  stroke-width: 3px;
-  fill: transparent;
-  stroke: #c81f25;
-  transition: stroke-width 2.7s, stroke-dashoffset 2.7s, stroke-dasharray 1.3s;
-  transition-delay: 0s;
-}
-.vote section .vote_box > svg .line_change {
-  stroke-dasharray: 100 8 80 8;
-  stroke-dashoffset: 0;
-  stroke-width: 3px;
 }
 @media screen and (max-width: 600px) {
   .vote section {
@@ -1934,6 +1718,223 @@ a.close span:after {
     transform-origin: 0 0;
     padding-top: 70px;
   }
+}
+
+.vote_box {
+  width: 184px;
+  height: 279px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  margin: 0 20px;
+}
+.vote_box .con {
+  width: 184px;
+  height: 279px;
+  background-color: white;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 92px;
+  -webkit-border-radius: 92px;
+  border-radius: 92px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+.vote_box .con .top {
+  width: 100%;
+  height: 100px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url(../asset/svg/wave.svg) repeat-x bottom #c81f25;
+  position: relative;
+}
+.vote_box .con .top span {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 3.5;
+  color: white;
+  letter-spacing: 1px;
+}
+.vote_box .con .top a.photo {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+.vote_box .con .top a.photo > img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+}
+.vote_box .con .top a.photo b {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #c81f25;
+  letter-spacing: 1px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -moz-transition: ease-out 0.5s;
+  -o-transition: ease-out 0.5s;
+  -webkit-transition: ease-out 0.5s;
+  transition: ease-out 0.5s;
+}
+.vote_box .con .top a.photo img {
+  -moz-transition: ease-out 0.5s;
+  -o-transition: ease-out 0.5s;
+  -webkit-transition: ease-out 0.5s;
+  transition: ease-out 0.5s;
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+.vote_box .con .top a.photo:hover b {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+.vote_box .con .top a.photo:hover img {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
+  opacity: 0.2;
+  -moz-transform: scale(1.1, 1.1);
+  -ms-transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
+.vote_box .con .bottom {
+  margin-top: 50px;
+}
+.vote_box .con .bottom h2 {
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: black;
+  letter-spacing: 1px;
+}
+.vote_box .con .bottom p {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: black;
+  letter-spacing: 1px;
+}
+.vote_box .con .bottom a.btnVote {
+  width: 120px;
+  height: 40px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #c81f25;
+  letter-spacing: 1px;
+}
+.vote_box .con .bottom a.btnVote .shape {
+  stroke-dasharray: 0 500;
+  stroke-dashoffset: 20;
+  stroke-width: 3px;
+  fill: transparent;
+  stroke: white;
+  transition: stroke-width 2.7s, stroke-dashoffset 2.7s, stroke-dasharray 1.3s;
+  transition-delay: 0s;
+}
+.vote_box .con .bottom a.btnVote .shape_border {
+  stroke-width: 3px;
+  stroke-dasharray: 100 8;
+  stroke-dashoffset: 20;
+}
+.vote_box .con .bottom a.btnVote span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.vote_box .con .bottom a.btnVote:hover svg .shape {
+  stroke-dasharray: 0 500;
+}
+.vote_box .con .bottom a.btnVote b {
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #c81f25;
+  letter-spacing: 1px;
+  padding-right: 5px;
+}
+.vote_box .con .bottom a.btnVote svg .shape {
+  stroke: #c81f25;
+}
+.vote_box > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.vote_box > svg .line {
+  stroke-dasharray: 0 500;
+  stroke-dashoffset: 0;
+  stroke-width: 3px;
+  fill: transparent;
+  stroke: #c81f25;
+  transition: stroke-width 2.7s, stroke-dashoffset 2.7s, stroke-dasharray 1.3s;
+  transition-delay: 0s;
+}
+.vote_box > svg .line_change {
+  stroke-dasharray: 100 8 80 8;
+  stroke-dashoffset: 0;
+  stroke-width: 3px;
 }
 
 .progress {
@@ -2144,6 +2145,7 @@ a.close span:after {
     position: absolute;
     left: 50%;
     bottom: 11%;
+    position: fixed;
   }
   .progress ul li {
     margin: 0 3px;
@@ -2177,6 +2179,7 @@ a.close span:after {
     position: absolute;
     left: 50%;
     bottom: 12%;
+    position: fixed;
   }
 }
 @media screen and (max-width: 374px) {
@@ -2192,6 +2195,7 @@ a.close span:after {
     -ms-transform-origin: 0 0;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
+    position: fixed;
   }
 }
 
@@ -3238,6 +3242,313 @@ aside ul li .s_16 {
 .fb_comment::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background-color: #c81f25;
+}
+
+.general .bottom_sha {
+  z-index: 500;
+}
+.general .progress {
+  bottom: 4%;
+}
+.general .progress ul li:first-child {
+  position: relative;
+}
+.general .progress ul li:first-child a span {
+  font-size: 26px;
+  font-size: 1.625rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #c81f25;
+  letter-spacing: 1px;
+}
+.general .progress ul li:first-child a .popup {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 100px;
+  height: 80px;
+  background-color: #c81f25;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding-top: 12px;
+}
+.general .progress ul li:first-child a .popup ul li {
+  margin: 2px 0;
+}
+.general .progress ul li:first-child a .popup:after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 13px 10px 0 9px;
+  border-top-color: #c81f25;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.general .progress ul li:first-child:after {
+  display: none;
+}
+@media screen and (min-width: 375px) and (max-width: 413px) {
+  .general .progress li:first-child a .popup ul {
+    -moz-transform: scale(1.02, 1.02);
+    -ms-transform: scale(1.02, 1.02);
+    -webkit-transform: scale(1.02, 1.02);
+    transform: scale(1.02, 1.02);
+    margin-left: -11px;
+    margin-top: -2px;
+  }
+  .general .progress ul,
+  .general .progress a.finish {
+    margin: 0 -15px;
+  }
+  .general .progress ul {
+    -moz-transform: scale(0.8, 0.8);
+    -ms-transform: scale(0.8, 0.8);
+    -webkit-transform: scale(0.8, 0.8);
+    transform: scale(0.8, 0.8);
+    margin-left: -25px;
+  }
+  .general .progress a.finish {
+    -moz-transform: scale(0.9, 0.9);
+    -ms-transform: scale(0.9, 0.9);
+    -webkit-transform: scale(0.9, 0.9);
+    transform: scale(0.9, 0.9);
+  }
+}
+@media screen and (max-width: 374px) {
+  .general .progress {
+    bottom: 1%;
+    width: 110%;
+  }
+  .general .progress li:first-child a .popup ul {
+    -moz-transform: scale(1.02, 1.02);
+    -ms-transform: scale(1.02, 1.02);
+    -webkit-transform: scale(1.02, 1.02);
+    transform: scale(1.02, 1.02);
+    margin-left: -3px;
+    margin-top: -1px;
+  }
+  .general .progress ul,
+  .general .progress a.finish {
+    margin: 0 -5px;
+  }
+  .general .progress ul {
+    -moz-transform: scale(0.9, 0.9);
+    -ms-transform: scale(0.9, 0.9);
+    -webkit-transform: scale(0.9, 0.9);
+    transform: scale(0.9, 0.9);
+    margin-left: -25px;
+  }
+  .general .progress a.finish {
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+
+.general section {
+  height: auto;
+  padding: 80px 0 300px;
+}
+.general section h1 {
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+.general section h1 > img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+}
+.general section h2 {
+  padding: 0 40px;
+}
+.general section .group {
+  margin: 50px auto;
+}
+.general section .group p.topic {
+  font-size: 22px;
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #c81f25;
+  letter-spacing: 1px;
+  position: relative;
+  margin-bottom: 60px;
+}
+.general section .group p.topic:after {
+  content: '';
+  display: block;
+  background: url(../asset/svg/linewave.svg) no-repeat center center;
+  width: 250px;
+  height: 10px;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  bottom: -25px;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.general section .vote_box {
+  margin: 20px;
+}
+.general section .vote_box .con .top a.photo {
+  top: 25px;
+}
+.general section .vote_box .con .bottom {
+  margin-top: 28px;
+}
+.general section .vote_box .con .bottom h3 {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #999;
+  letter-spacing: 1px;
+}
+@media only screen and (max-width: 600px) {
+  .general section {
+    padding-top: 40px;
+  }
+  .general section h1 {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  .general section .vote_box {
+    margin: 0px;
+    -moz-transform: scale(0.89, 0.89);
+    -ms-transform: scale(0.89, 0.89);
+    -webkit-transform: scale(0.89, 0.89);
+    transform: scale(0.89, 0.89);
+  }
+}
+@media screen and (min-width: 375px) and (max-width: 413px) {
+  .general section .vote_box {
+    margin: -5px -5px;
+    -moz-transform: scale(0.8, 0.8);
+    -ms-transform: scale(0.8, 0.8);
+    -webkit-transform: scale(0.8, 0.8);
+    transform: scale(0.8, 0.8);
+  }
+}
+@media screen and (max-width: 374px) {
+  .general section .vote_box {
+    margin: 10px;
+    -moz-transform: scale(0.95, 0.95);
+    -ms-transform: scale(0.95, 0.95);
+    -webkit-transform: scale(0.95, 0.95);
+    transform: scale(0.95, 0.95);
+  }
+}
+
+.fixed {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/*check box*/
+.checkbox-custom,
+.checkbox-custom-label {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.checkbox-custom {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-custom-label {
+  position: relative;
+  text-align: left;
+}
+
+.checkbox-custom + .checkbox-custom-label:before {
+  content: '';
+  border: none;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+  content: '';
+  background: white;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:after {
+  content: '';
+  border: 5px solid #c81f25;
+  border-top: none;
+  border-right: none;
+  width: 14px;
+  height: 9px;
+  background-color: transparent;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  top: 7px;
+  left: 4px;
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 /*# sourceMappingURL=style.css.map */
