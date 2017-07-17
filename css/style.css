@@ -3551,4 +3551,25 @@ aside ul li .s_16 {
   transform: rotate(-45deg);
 }
 
+.popup ul li.checkbox-active .checkbox-custom + .checkbox-custom-label:after {
+  content: '';
+  border: 5px solid #c81f25;
+  border-top: none;
+  border-right: none;
+  width: 14px;
+  height: 9px;
+  background-color: transparent;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  top: 7px;
+  left: 4px;
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
 /*# sourceMappingURL=style.css.map */

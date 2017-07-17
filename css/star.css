@@ -33,8 +33,40 @@
         -moz-transform: scale(1) rotate(-30deg) translate3d(-250px, 5px, 0);
     }
 }
+header nav{
+    z-index: 700;
+    top: 49px;
+}
+@media screen and (max-width: 600px) {
+    header nav:before {
+        content: "";
+        background: #c81f25;
+        margin-top: -48px;
+        width: 110px;
+        height: 40px;
+        display: block;
+    }
+    header nav ul{
+        top: 38%;
+    }
+    header nav{
+        position: absolute;
+        height: 100vh;
+    }
+}
+.bottom_sha{
+    z-index: 400;
+}
+.none{
+    display: none;
+}
+.g-recaptcha div{
+    margin: 40px auto;
+}
 
-.flyman.move{
+
+
+.index .flyman.move{
     animation: move-ani 2.5s infinite ease-out;
     filter: brightness(70%);
     -webkit-filter: brightness(70%);
@@ -42,7 +74,7 @@
     -ms-filter: brightness(70%);
     -o-filter: brightness(70%);
 }
-.part2 .flyman {
+.index .part2 .flyman {
     z-index: 281;
 }
 @keyframes move-ani {
@@ -62,35 +94,12 @@
         -moz-transform: scale(.85) translate3d(0, 0, 0);
     }
 }
-
-header nav{
-    z-index: 700;
-    top: 49px;
-}
-
-@media screen and (max-width: 600px) {
-    header nav:before {
-        content: "";
-        background: #c81f25;
-        margin-top: -48px;
-        width: 110px;
-        height: 40px;
-        display: block;
-    }
-    header nav ul{
-        top: 38%;
-    }
-    header nav{
-        position: absolute;
-        height: 100vh;
-    }
-}
-.planetBox{
+.index .planetBox{
     position: absolute;
     width: 100%;
     margin-top: 1%;
 }
-.roundabout-holder {
+.index .roundabout-holder {
     position: absolute;
     list-style: none;
     top: 50%;
@@ -100,29 +109,20 @@ header nav{
     margin-left: -175%;
 }
 @media screen and (max-width: 600px) {
-    .roundabout-holder {
+    .index .roundabout-holder {
         width: 600%;
         height: 200vh;
         margin-left: -300%;
     }
 }
-.bottom_sha{
-    z-index: 400;
-}
-.none{
-    display: none;
-}
-.g-recaptcha div{
-    margin: 40px auto;
-}
 .vote section .vote_box {
     box-sizing: content-box;
     padding: 10px 0;
 }
-.store_list .name{
+.vote .store_list .name{
     z-index: 699;
 }
-.wrap .part2.vote .slick *{
+.wrap .index .part2.vote .slick *{
     text-decoration: none; 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -132,4 +132,15 @@ header nav{
     user-select: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     outline: none;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0
+}
+
+.pop{
+    position: fixed;
 }

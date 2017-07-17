@@ -74,8 +74,9 @@ var menuCtrl = {
         event.stopPropagation();
         event.preventDefault();
     },
-    fbLogin: function(){
+    fbLogin: function(obj){
         var $this = this;
+        if (obj !== void 0) obj.click(function(e){ $this.preventAll(e); });
 
         // 串接FB登入按鈕
         FB.login(

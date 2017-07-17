@@ -14,14 +14,16 @@
         <link rel="icon" href="img/favicon.ico">
         <!-- css style -->
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/star.css">
         <script src="js/vendor/jquery-2.2.0.min.js"></script>
         <script src="js/vendor/jquery.cookie.min.js"></script>
-        <script src="js/vendor/vue.min.js"></script>
+        <script src="js/vendor/isMobile.min.js"></script>
+        <script src="js/vendor/TweenMax.min.js"></script>
         <script src="js/vendor/ga.js"></script>
+        <script src="js/vendor/vue.min.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <!--[if gt IE 9]>
-<script src="js/vendor/html5shiv.js"></script>
-<![endif]-->
+        <!--[if gt IE 9]><script src="js/vendor/html5shiv.js"></script><![endif]-->
     </head>
     <body style="min-width: auto;">
         <!--星球SVG-->
@@ -332,13 +334,13 @@
                             <div class="vote_box" v-for="(item, $index) in items" v-if="item.store_tp === 'A'">
                                 <div class="con">
                                     <div class="top">
-                                        <a href="#" class="photo" @click="seeMore($index)"><img :src="item.img1" alt=""><b>看更多</b></a>
+                                        <a href="#" class="photo" @click="seeMore($(this), $index)"><img :src="item.img1" alt=""><b>看更多</b></a>
                                     </div>
                                     <div class="bottom">
                                         <h2>{{ item.name }}</h2>
                                         <h3>{{ item.store_nm }}</h3>
                                         <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                        <a href="" class="btnVote" @click="chkVote($index)">
+                                        <a href="" class="btnVote" @click="getVote($(this), $index)">
                                             <span><b class="icon-love"></b>投票</span>
                                             <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
                                                 <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
@@ -365,7 +367,7 @@
                                         <h2>{{ item.name }}</h2>
                                         <h3>{{ item.store_nm }}</h3>
                                         <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                        <a href="" class="btnVote" @click="chkVote($index)">
+                                        <a href="" class="btnVote" @click="getVote($(this), $index)">
                                             <span><b class="icon-love"></b>投票</span>
                                             <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
                                                 <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
@@ -392,7 +394,7 @@
                                         <h2>{{ item.name }}</h2>
                                         <h3>{{ item.store_nm }}</h3>
                                         <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                        <a href="" class="btnVote" @click="chkVote($index)">
+                                        <a href="" class="btnVote" @click="getVote($(this), $index)">
                                             <span><b class="icon-love"></b>投票</span>
                                             <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
                                                 <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
@@ -411,19 +413,21 @@
                 <div class="progress">
                     <ul>
                         <li>
-                            <a href=""><span class="icon-filter"></span>
-                                <div class="popup">
-                                    <ul>
-                                        <li>
-                                            <input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox">
-                                            <label for="checkbox-1" class="checkbox-custom-label">得票數</label>
-                                        </li>
-                                        <li>
-                                            <input id="checkbox-2" class="checkbox-custom" name="checkbox-2" type="checkbox">
-                                            <label for="checkbox-2" class="checkbox-custom-label">依分店</label>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <a href="" @click="openSort"><span class="icon-filter"></span>
+                                <transition name="fade">
+                                    <div class="popup" v-if="sortFG">
+                                        <ul>
+                                            <li>
+                                                <input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox">
+                                                <label for="checkbox-1" class="checkbox-custom-label">得票數</label>
+                                            </li>
+                                            <li class="checkbox-active">
+                                                <input id="checkbox-2" class="checkbox-custom" name="checkbox-2" type="checkbox">
+                                                <label for="checkbox-2" class="checkbox-custom-label">依分店</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </transition>
                             </a>
                         </li>
                         <li><a href=""><span class="icon-checkmark unfinish"><b>尚未投票</b></span></a>
@@ -436,7 +440,7 @@
                             <p>警衛清潔組</p>
                         </li>
                     </ul>
-                    <a href="" class="finish no">
+                    <a href="" class="finish no" @click="confirmChoose">
                         <span>我要抽獎</span>
                         <svg width="95px" height="95px" viewBox="-2.5 -3.5 96 96" stroke-linejoin="round" stroke-linecap="round">
                             <circle class="shape shape_border" fill="#5F5F5F" cx="45" cy="45" r="45" />
@@ -445,6 +449,98 @@
                 </div>
                 <div class="bottom_sha"></div>
             </div>
+            <!--店員介紹-->
+            <transition name="fade">
+                <div class="pop personal" v-show="moreFG">
+                    <div class="pop_black none"></div> 
+                    <a href="" class="close" @click="closeAll($(this))"><span></span></a>
+                    <div class="red_bar"></div>
+                    <div class="con">
+                        <div class="photo_block"><img src="img/store/01_A_03.jpg" alt="">
+                            <ul>
+                                <li><a href="" class="focus">1</a></li>
+                                <li><a href="">2</a></li>
+                                <li><a href="">3</a></li>
+                                <li><a href="">4</a></li>
+                            </ul>
+                            <p class="tag">自營組</p>
+                        </div>
+                        <div class="des_block">
+                            <h1>陳思齊<span>台北南西店 / 營業管理</span></h1>
+                            <h2>微笑面對生活<br>微笑面對人生</h2>
+                            <p>目前票數 <span class="vote_cnt">5991</span> 票</p>
+                            <a href="" class="votebtn">
+                                <span><b class="icon-love"></b>投他一票</span>
+                                <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
+                                    <path class="shape shape_border" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="fb_comment"></div>     
+                </div>
+            </transition>
+
+            <!--投票成功-->
+            <transition name="fade">
+                <div class="pop final_check" v-show="voteFG">
+                    <a href="" class="close" @click="closeAll($(this))"><span></span></a>
+                    <div class="red_bar"></div>
+                    <!--01-->
+                    <div class="con finalCheck">
+                        <ul>
+                            <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北南西</span></h1></li>
+                            <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北信義新天地A11</span></h1></li>
+                            <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北南西</span></h1></li>
+                        </ul>
+                        <div class="g-recaptcha" data-sitekey="6Lce3iYUAAAAAMSujz1uyC9ylydjiTAawjxllxSC"></div>
+                        <a href="" class="votebtn" @click="finalCheck($(this))">
+                            <span><b class="icon-love"></b>確認投票</span>
+                            <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
+                                <path class="shape shape_border" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <!--02-->
+                    <div class="con beenVote none">
+                        <h2>您已完成投票!</h2>
+                        <h3>每個FB/G+帳號，一天可投一票，天天投票，中獎機率越高<br>微笑新星們期待您的再訪支持！</h3>
+                        <a href="index.html" class="votebtn">
+                            <span><b class="icon-home"></b>回首頁</span>
+                            <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
+                                <path class="shape shape_border" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </transition>
+
+            <!--登入畫面-->
+            <transition name="fade">
+                <div class="pop login" v-if="loginFG">
+                    <a href="" class="close" @click="closeAll($(this))"><span></span></a>
+                    <div class="red_bar">請先登入帳號</div>
+                    <div class="con">
+                        <a href="" class="login_fb" @click="menuCtrl.fbLogin($(this))">
+                            <span><b class="icon-facebook"></b>Facebook登入</span>
+                            <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
+                                <path class="shape" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
+                            </svg>
+                        </a>
+                        <a href="" class="login_google" @click="menuCtrl.googleLogin($(this))">
+                            <span><b class="icon-google"></b>Google+登入</span>
+                            <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
+                                <path class="shape" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </transition>
+
+            <!--共用黑幕-->
+            <transition name="fade">
+                <div class="black" v-if="closeFG"></div>
+            </transition>
         </div>
         <script src="js/data.js"></script>
         <script src="js/menu.js"></script>
