@@ -63,6 +63,14 @@ header nav{
 .g-recaptcha div{
     margin: 40px auto;
 }
+.loading {
+    position: fixed;
+	width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: url(../img/star.gif);
+}
+
 
 
 

@@ -24,7 +24,7 @@ var three = $('.part2 .slick');
 var threeLocation = $('.vote .location_name');
 var vote_box = $('.part2.vote .vote_box');
 
-var delayTime = 1.5;
+var delayTime = .5;
 var outStage_fg = false;
 var wheelPos = (!menuCtrl.chkDevice()) ? "top" : "mobile";
 var fb_login = ($.cookie('fb_login')) ? true : false;
@@ -39,28 +39,11 @@ var indexCtrl = {
 
         $.each(profile, function(key, obj){ $.preload(obj.img1); });
 
-        $this.indexResize();
         $this.updateData();
         $this.initSlick();
         $this.initRA();
         $this.winWheel();
         if(menuCtrl.chkWebview()) $('.warn').show();
-
-        /* 會改到onload後執行 */
-        if(!menuCtrl.chkDevice()) {
-            TweenMax.from(rocket, 2, {
-                top: "30%",
-                left: "50%",
-                opacity: 0,
-                transform: "scale(.5) rotate(-90deg)",
-                delay: delayTime,
-                ease: Power2.easeOut,
-                onComplete: function(){
-                    TweenMax.set(rocket, { clearProps:"all" });
-                }
-            });
-        }
-        $this.inStage();
 
         startBtnPC.find('a').on('click', function(e){
             menuCtrl.preventAll(e);
@@ -84,20 +67,23 @@ var indexCtrl = {
             $this.indexResize();
         }).on('load', function(){
             console.log('load');
-            /*$this.inStage();
-            if(!menuCtrl.chkDevice()) {
-                TweenMax.from(rocket, 2, {
-                    top: "30%",
-                    left: "50%",
-                    opacity: 0,
-                    transform: "scale(.5) rotate(-90deg)",
-                    delay: delayTime,
-                    ease: Power2.easeOut,
-                    onComplete: function(){
-                        TweenMax.set(rocket, { clearProps:"all" });
-                    }
-                });
-            }*/
+            $this.inStage();
+            $this.indexResize();
+            $('.loading').delay(300).fadeOut('fast', function(){
+                if(!menuCtrl.chkDevice()) {
+                    TweenMax.from(rocket, 2, {
+                        top: "30%",
+                        left: "50%",
+                        opacity: 0,
+                        transform: "scale(.5) rotate(-90deg)",
+                        delay: delayTime,
+                        ease: Power2.easeOut,
+                        onComplete: function(){
+                            TweenMax.set(rocket, { clearProps:"all" });
+                        }
+                    });
+                }
+            });
         });
     },
     indexResize: function(){
@@ -339,7 +325,7 @@ var indexCtrl = {
         var mid = $('.vote .vote_box.second');
         var right = $('.vote .vote_box.third');
         var threeArr = [left, mid, right];
-        
+
         threeLocation.find('.words').text(profile[newKey].store_nm);
 
         $.each(threeArr, function(key, obj){

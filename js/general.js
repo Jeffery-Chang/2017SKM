@@ -23,6 +23,7 @@ $(function(){
             });
         },
         mounted: function(){
+            $('.loading').delay(1500).fadeOut('fast');
             $('.progress a').on('click', function(e){
                 menuCtrl.preventAll(e);
             });
@@ -210,7 +211,7 @@ $(function(){
                 this.chkChoose(key);
             },
             chkChoose: function(key){
-                var tp = (key) ? this.items[key].store_tp : '';
+                var tp = (key !== undefined) ? this.items[key].store_tp : '';
                 if(tp === 'A'){
                     $.cookie('choose1', key);
                 }else if(tp === 'B'){
