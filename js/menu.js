@@ -41,7 +41,7 @@ var menuCtrl = {
                     trackWaitJump('', 'index.html');
                     break;
                 case 1:
-                    trackWaitJump('', '');
+                    trackWaitJump('', 'activity.html');
                     break;
                 case 2:
                     trackWaitJump('', 'general.html');

@@ -23,6 +23,9 @@ $(function(){
             });
         },
         mounted: function(){
+            $('.progress a').on('click', function(e){
+                menuCtrl.preventAll(e);
+            });
             this.chkChoose();
         },
         updated: function(){
@@ -66,7 +69,7 @@ $(function(){
                     },{ scope: 'email' }
                 );
             },
-            googleLogin: function(obj, evt){
+            googleLogin: function(evt){
                 var $this = this;
                 menuCtrl.preventAll(evt);
                 gapi.load("auth2", function(){
@@ -96,12 +99,7 @@ $(function(){
                             //alert('請登入Facebook或Google+來進行投票，謝謝！ G+');
                         }
                     });
-
-                    // 串接G+登入按鈕
-                    obj.on('click', function(e){
-                        menuCtrl.preventAll(e);
-                        auth2.signIn();
-                    });
+                    auth2.signIn();
                 });
             },
             openSort: function(evt){
@@ -196,16 +194,16 @@ $(function(){
                 // 看更多投他一票click
                 $('.personal .votebtn').on('click', function(e){
                     var index = $(this).data('index');
-                    $this.getVote(e, index);
-                    $this.innerFG = true;
+                    $this.getVote(e, index, true);
                 });
 
                 $this.moreFG = true;
                 $this.closeFG = true;
             },
-            getVote: function(evt, key){
+            getVote: function(evt, key, inn){
                 menuCtrl.preventAll(evt);
                 if(!this.fb_login && !this.gplus_login){
+                    if(inn) this.innerFG = true;
                     this.loginFG = this.closeFG = true;
                     return;
                 }
@@ -235,7 +233,7 @@ $(function(){
             confirmChoose: function(evt){
                 menuCtrl.preventAll(evt);
                 var $this = this;
-                if($(evt.target).hasClass('no')) return;
+                if(!$.cookie('choose1') || !$.cookie('choose2') || !$.cookie('choose3')) return;
                 var finalObj = $('.finalCheck li');
                 var finalArr = [$.cookie('choose1'), $.cookie('choose2'), $.cookie('choose3')];
 

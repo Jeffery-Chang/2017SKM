@@ -3572,4 +3572,296 @@ aside ul li .s_16 {
   transform: rotate(-45deg);
 }
 
+@media screen and (max-width: 800px) {
+  .avtivity .fixed {
+    display: none;
+  }
+}
+
+.avtivity section {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: white;
+  letter-spacing: 2px;
+  padding-bottom: 70px;
+}
+.avtivity section h2 {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+.avtivity section .group {
+  max-width: 800px;
+  width: 100%;
+  margin: 50px auto;
+}
+.avtivity section .group article {
+  margin-bottom: 50px;
+}
+.avtivity section .group article p.sub_topic {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: white;
+  letter-spacing: 2px;
+}
+.avtivity section .group article p.sub_topic:after {
+  width: 100px;
+  height: 10px;
+  background-color: #c81f25;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-top: -10px;
+  content: '';
+  display: block;
+}
+.avtivity section .group article ul.step {
+  margin: 40px auto 60px;
+}
+.avtivity section .group article ul.step li {
+  width: 240px;
+  height: auto;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  margin: 0 10px;
+}
+.avtivity section .group article ul.step li p {
+  width: 60%;
+  height: auto;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.avtivity section .group article ul.step li p > img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+}
+.avtivity section .group article ul.step li span {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 0 20px;
+}
+.avtivity section .group article ul.step li:after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: white;
+  margin: 0 auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: absolute;
+  top: 70px;
+  right: -37px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.avtivity section .group article ul.step li:last-child:after {
+  display: none;
+}
+.avtivity section .group article ul.list,
+.avtivity section .group article ul.big_list {
+  margin-top: 40px;
+  text-align: left;
+  margin-left: 25px;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.avtivity section .group article ul.list li,
+.avtivity section .group article ul.big_list li {
+  list-style: decimal;
+}
+.avtivity section .group article ul.list li a,
+.avtivity section .group article ul.big_list li a {
+  color: white;
+  text-decoration: underline;
+}
+.avtivity section .group article ul.big_list li {
+  list-style: upper-alpha;
+  margin-bottom: 20px;
+}
+.avtivity section .group article ul.big_list li ul {
+  margin-left: 25px;
+}
+.avtivity section .group article ul.big_list li ul li {
+  list-style: decimal;
+  margin-bottom: 0px;
+}
+@media screen and (max-width: 800px) {
+  .avtivity section {
+    padding: 70px 30px;
+  }
+  .avtivity section .group article ul.step li {
+    width: 85%;
+    height: auto;
+    margin: 0 auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 40px;
+  }
+  .avtivity section .group article ul.step li p {
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .avtivity section .group article ul.step li span {
+    padding: 0;
+  }
+  .avtivity section .group article ul.step li:after {
+    display: none;
+  }
+}
+@media screen and (max-width: 600px) {
+  .avtivity section {
+    padding: 50px 30px;
+  }
+  .avtivity section h1 {
+    width: 100%;
+  }
+  .avtivity section h2 {
+    padding: 0;
+  }
+}
+
+#container {
+  width: 210px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: 0;
+  animation: fadeIn 1s 1, rotate 10s infinite;
+  animation-fill-mode: forwards;
+  z-index: 1000;
+}
+
+.smallball {
+  animation: translate 1000ms infinite ease-in-out alternate, zindex 2000ms infinite ease-in-out;
+  animation-delay: 0, -2000ms;
+  position: absolute;
+}
+
+.ball {
+  width: 40px;
+  height: 40px;
+  background-color: #E3746B;
+  border-radius: 50%;
+  animation: scale 1000ms infinite ease-in-out alternate;
+  animation-delay: -500ms;
+  transform: scale(0.5);
+}
+
+#ball_planet {
+  width: 90px;
+  height: 90px;
+  box-shadow: 0 -9px 0 rgba(0, 0, 0, 0.15) inset;
+  background-color: #eee;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  animation: none;
+  transform: none;
+  background: url(../asset/svg/planet/04.svg) no-repeat center center;
+  background-size: contain;
+}
+
+#ball1 {
+  background: url(../asset/svg/planet/16.svg) no-repeat center center;
+  background-size: contain;
+}
+
+#wrap2 {
+  animation-delay: -1000ms;
+}
+
+#ball2 {
+  background-color: #397BF9;
+  animation-delay: -1500ms;
+  background: url(../asset/svg/planet/07.svg) no-repeat center center;
+  background-size: contain;
+}
+
+#wrap3 {
+  animation-delay: -1500ms;
+}
+
+#ball3 {
+  background-color: #F4B400;
+  animation-delay: -2000ms;
+  background: url(../asset/svg/planet/03.svg) no-repeat center center;
+  background-size: contain;
+}
+
+#wrap4 {
+  animation-delay: -2500ms;
+}
+
+#ball4 {
+  background-color: #0F9D58;
+  animation-delay: -3000ms;
+  background: url(../asset/svg/planet/06.svg) no-repeat center center;
+  background-size: contain;
+}
+
+@keyframes translate {
+  0% {
+    transform: translateX(0) translateY(20px);
+  }
+  100% {
+    transform: translateX(170px) translateY(-20px);
+  }
+}
+@keyframes scale {
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes zindex {
+  25% {
+    z-index: 1;
+  }
+  75% {
+    z-index: -1;
+  }
+}
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

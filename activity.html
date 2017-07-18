@@ -1,71 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Document</title>
-
         <!-- facebook share -->
         <meta property="og:type" content="website" />
         <meta property="og:title" content="" />
         <meta property="og:description" content="" />
         <meta property="og:image" content="" />
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- favicon -->
         <link rel="icon" href="img/favicon.ico">
-
         <!-- css style -->
-        <link rel="stylesheet" href="css/vendor/slick.min.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/star.css">
         <script src="js/vendor/jquery-2.2.0.min.js"></script>
-        <script src="js/vendor/jquery.cookie.min.js"></script>
-        <script src="js/vendor/jquery.roundabout.js"></script>
-        <script src="js/vendor/jquery.roundabout-shapes.js"></script>
-        <script src="js/vendor/slick.min.js"></script>
         <script src="js/vendor/isMobile.min.js"></script>
-        <script src="js/vendor/TweenMax.min.js"></script>
         <script src="js/vendor/ga.js"></script>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <!--[if gt IE 9]><script src="js/vendor/html5shiv.js"></script><![endif]-->
     </head>
-    <body>
-        <!-- only fot ipad-->
-        <div class="trans_bg">
-            <div class="trans_ipad">
-                <div class="trans_center"><img src="img/trans/ipad_ok.png">
-                    <p>請將裝置轉至橫式
-                        <br>體驗最佳瀏覽方式</p>
-                </div>
-            </div>
-            <!-- only for iphone-->
-            <div class="trans_iphone">
-                <div class="trans_center"><img src="img/trans/iphone_ok.png">
-                    <p>請將裝置轉至直式
-                        <br>體驗最佳瀏覽方式</p>
-                </div>
-            </div>
-        </div>
-        <!-- navigation -->
-        <header>
-            <p><img src="asset/svg/logo.svg" alt=""></p>
-            <div class="menu">
-                <a href="#"></a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="">活動首頁</a></li>
-                    <li><a href="">活動辦法</a></li>
-                    <li><a href="">立即投票</a></li>
-                    <li class="none"><a href="">得獎名單</a></li>
-                    <li class="social"><a href=""><span class="icon-facebook"></span></a></li>
-                    <li class="social"><a href=""><span class="icon-google"></span></a></li>
-                </ul>
-            </nav>
-        </header>
-
+    <body style="min-width: auto;">
         <!--星球SVG-->
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none;">
             <symbol id="planet-01" viewBox="0 0 32 32">
@@ -303,428 +258,146 @@
                 <path fill="#1d1d1b" opacity="0.1" d="M25.527 25.711c-2.833 0.707-5.675 0.605-8.291-0.155-5.271-1.531-9.612-5.743-11.037-11.451-0.194-0.781-0.328-1.562-0.403-2.339-0.331-3.415 0.461-6.751 2.118-9.578-0.001 0-0.001 0-0.002 0.001-0.441 0.258-0.863 0.542-1.273 0.838-0.167 0.121-0.33 0.246-0.491 0.373-0.131 0.103-0.265 0.2-0.392 0.306-0.212 0.177-0.413 0.364-0.614 0.551-0.098 0.091-0.202 0.176-0.297 0.269-0.288 0.28-0.565 0.572-0.831 0.872-0.092 0.106-0.177 0.218-0.267 0.325-0.17 0.204-0.341 0.407-0.501 0.617-0.104 0.138-0.199 0.282-0.298 0.423-0.134 0.19-0.269 0.379-0.394 0.574-0.1 0.154-0.19 0.313-0.283 0.47-0.114 0.191-0.228 0.381-0.333 0.577-0.089 0.164-0.171 0.332-0.254 0.5-0.097 0.195-0.193 0.392-0.282 0.591-0.077 0.172-0.148 0.348-0.218 0.523-0.082 0.202-0.161 0.404-0.234 0.609-0.063 0.178-0.122 0.358-0.179 0.539-0.066 0.208-0.129 0.418-0.186 0.629-0.050 0.183-0.097 0.367-0.14 0.552-0.050 0.215-0.095 0.431-0.136 0.649-0.035 0.186-0.070 0.371-0.099 0.557-0.034 0.223-0.061 0.447-0.086 0.671-0.021 0.186-0.042 0.371-0.055 0.559-0.018 0.231-0.024 0.465-0.031 0.698-0.006 0.182-0.014 0.364-0.013 0.549 0.001 0.245 0.015 0.491 0.027 0.738 0.009 0.174 0.013 0.348 0.027 0.523 0.023 0.272 0.009 0.395 0.046 0.668 0.017 0.124 0.060 0.432 0.080 0.556 0.004 0.027 0.006 0.053 0.010 0.079 0.066 0.4 0.142 0.767 0.24 1.168 0.006 0.023 0.009 0.046 0.015 0.069 0.077 0.308 0.171 0.626 0.264 0.925v0.001c2.095 6.702 8.303 11.168 15.101 11.217 1.315 0.009 2.668-0.138 4.004-0.472 0.27-0.067 0.538-0.147 0.8-0.228 0.055-0.016 0.109-0.037 0.163-0.054 0.207-0.065 0.412-0.137 0.614-0.21 0.064-0.023 0.125-0.049 0.188-0.073 0.191-0.072 0.385-0.135 0.571-0.214 0.060-0.025 0.117-0.054 0.175-0.079 0.188-0.082 0.37-0.164 0.554-0.252 0.052-0.025 0.102-0.053 0.154-0.079 0.188-0.094 0.403-0.208 0.587-0.309 0.042-0.022 0.081-0.047 0.121-0.070 0.192-0.107 0.372-0.213 0.559-0.328 0.031-0.019 0.062-0.040 0.093-0.059 0.194-0.122 0.368-0.23 0.556-0.359 0.023-0.015 0.045-0.032 0.067-0.047 0.195-0.135 0.367-0.261 0.555-0.404 0.013-0.009 0.026-0.021 0.040-0.030 0.196-0.151 0.435-0.333 0.623-0.491 0.006-0.006 0.012-0.010 0.018-0.015 1.392-1.176 2.286-2.223 3.601-4.346-1.276 0.747-2.84 1.499-4.349 1.876z"></path>
             </symbol>
         </svg>
-
-        <div class="wrap">
-            <!-- content -->
-            <div class="main index">
-                <div class="meteor">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+        <!-- only fot ipad-->
+        <div class="trans_bg">
+            <div class="trans_ipad">
+                <div class="trans_center"><img src="img/trans/ipad_ok.png">
+                    <p>請將裝置轉至橫式
+                        <br>體驗最佳瀏覽方式</p>
                 </div>
-
-                <!--首頁物件-->
-                <div class="part1">
+            </div>
+            <!-- only for iphone-->
+            <div class="trans_iphone">
+                <div class="trans_center"><img src="img/trans/iphone_ok.png">
+                    <p>請將裝置轉至直式
+                        <br>體驗最佳瀏覽方式</p>
+                </div>
+            </div>
+        </div>
+        <!-- navigation -->
+        <header>
+            <p><img src="asset/svg/logo.svg" alt=""></p>
+            <div href="" class="menu">
+                <a href=""></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="">活動首頁</a></li>
+                    <li><a href="">活動辦法</a></li>
+                    <li><a href="">立即投票</a></li>
+                    <li class="none"><a href="">得獎名單</a></li>
+                    <li class="social"><a href=""><span class="icon-facebook"></span></a></li>
+                    <li class="social"><a href=""><span class="icon-google"></span></a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="wrap">
+            <div class="main general avtivity">
+                <!-- 其他物件 -->
+                <div class="fixed">
+                    <div class="meteor">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                     <div class="planet p_1">
-                        <svg xmlns="http://www.w3.org/2000/svg">
+                        <svg>
                             <use xlink:href="#planet-01"></use>
                         </svg>
                     </div>
                     <div class="planet p_2">
-                        <svg xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#planet-02"></use>
+                        <svg>
+                            <use xlink:href="#planet-07"></use>
                         </svg>
                     </div>
                     <div class="planet p_3">
-                        <svg xmlns="http://www.w3.org/2000/svg">
+                        <svg>
                             <use xlink:href="#planet-03"></use>
                         </svg>
                     </div>
-
-                    <div class="flyman">
-                        <img src="asset/svg/astronaut.svg" alt="">
-                    </div>
-                    <div class="rocket">
-                        <img src="asset/svg/rocket.svg" alt="">
-                    </div>
-                    <div class="satellite">
-                        <img src="asset/svg/satellite.svg" alt="">
-                    </div>
+                    <div class="sha"></div>
                 </div>
-
-                <div class="sha"></div>
-
-                <section class="part1">
+                <!-- 主要內容 -->
+                <section>
                     <h1><img src="asset/svg/maintitle.svg" alt=""></h1>
-                    <h2>8/7-8/20票選微笑新星 抽iPad  mini4</h2>
-                    <p class="pc_only">歡迎搭乘星際飛船！48位微笑天使來自新光三越星系中的16顆星球
-                        <br>邀您投票支持喜愛的微笑天使，讓他成為最耀眼的微笑新星！</p>
-                    <p class="m_only">歡迎搭乘星際飛船
-                        <br> 邀您投票支持喜愛的微笑新星
-                        <br> 助他成為最耀眼的新光之星！</p>
-                    <span class="scroll-btn">
-                        <a href="#"><span class="mouse"><b></b></span></a>
-                    </span>
-                    <a href="" class="btn">
-                        <span>開始投票</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="185" height="35" viewBox="-2 -2 189 39" stroke-linejoin="round" stroke-linecap="round">
-                            <path class="shape shape_border" fill="#FFFFFF" d="M167.499,0H17.5C7.835,0,0,7.835,0,17.5S7.835,35,17.5,35h149.999c9.665,0,17.5-7.835,17.5-17.5S177.164,0,167.499,0z" />
-                        </svg>
-                    </a>
+                    <h2>新光三越感謝有您的支持與愛護，微笑天使選拔活動已邁入第十二屆。此次新光三越全台16家分店，經由店內審核及選拔後，選出共48名微笑天使代表。誠摯邀請您選出心目中的微笑天使代表，同時也給予我們所有的服務人員最大的鼓勵，我們也將繼續致力於提供最好的服務品質予所有貴賓。</h2>
+                    <div class="group">
+                        <p class="topic">活動期間</p>
+                        <article>106 年 8 月 7 日 (一) 11:00 ~ 106 年 8 月 20 日 (日) 23:59</article>
+                        <p class="topic">活動辦法</p>
+                        <article>
+                            活動期間內，依活動步驟完成投票給您心目中的微笑天使，為他/她加油打氣，即可獲得一次抽獎機會。每人每日一次投票機會，需分別投給「自營組」、「專櫃組」及「警衛清潔組」各一票(不限店別)，每日持續投票支持您的微笑天使，可獲得越多抽獎機會喔！
+                            <p class="sub_topic">活動步驟</p>
+                            <ul class="step">
+                                <li>
+                                    <p><img src="asset/svg/step_1.svg" alt=""></p>
+                                    <span>點選「前往投票」登入Facebook或Google+帳號進入投票頁面</span>
+                                </li>
+                                <li>
+                                    <p><img src="asset/svg/step_2.svg" alt=""></p>
+                                    <span>票選「自營組」、「專櫃組」、「警衛清潔組」候選人各一名</span>
+                                </li>
+                                <li>
+                                    <p><img src="asset/svg/step_3.svg" alt=""></p>
+                                    <span>出現「投票成功」即獲取一次抽獎機會</span>
+                                </li>
+                            </ul>
+                            <p class="sub_topic">抽獎辦法</p>
+                            <ul class="list">
+                                <li>活動結束後，以電腦隨機抽獎方式進行抽獎。</li>
+                                <li>精美贈品IPAD MINI 4 128G Wi-Fi版，市價12,900元。(隨機贈送，恕不供挑選更換)共三台。 </li>
+                                <li>抽獎作業時間：<br>
+                                    抽獎日期→106年9月4日(一)<br>
+                                    得獎者獲獎通知→106年9月8日(五)以E-MAIL寄發通知。<br>
+                                    得獎者回覆確認→106年9月11日(一)~9月29日(五)間，回覆予工作小組進行確認。<br>
+                                    獎品領取→請得獎人106年10月31日前回覆可前往領取之分店，於分店辦理領取手續。</li>
+                            </ul>
+                        </article>
+                        <p class="topic">注意事項</p>
+                        <article>
+                            <ul class="list">
+                                <li>參加「新光三越106年度微笑天使選拔活動」活動，需填寫登入個人抽獎資料。</li>
+                                <li>本活動將以Facebook與Google+帳號登載之E-mail通知中獎者，請於106年9月29日前與工作小組確認回覆，並提供領獎所需資訊。如因逾期提供、資料缺漏、資料不符等其他因素，導致活動中獎或寄送時無法通知中獎者，視同放棄中獎資格，將不另行通知及補領贈品，原獎項由新光三越自行處理。</li>
+                                <li>本活動參加對象僅限台、澎、金、馬地區。</li>
+                                <li>本活動獎項領取地點僅限新光三越各分店。</li>
+                                <li>參加本活動者所填寫或提出之資料均應為屬實，不得冒用或盜用任何第三人之資料，且不得一人經營多筆網路會員帳號，如查證屬實，將取消領獎資格。</li>
+                                <li>如有任何因電腦、網路、技術或不可歸責於新光三越之事由，使參加者所得獎、登錄、寄出之資料有遲延、遺失、錯誤、無法辨識或毀損之情況，新光三越不負任何法律責任，參加者亦不得因此異議。</li>
+                                <li>中獎名單公告後獎項說明未盡之事宜，依中獎通知說明為準；活動獎品以領取的實物為準，中獎獎項恕不折現，且不得補貼現金或兌換其他贈品。</li>
+                                <li>本活動不得重複中獎，若有重複中獎者將獲得贈品價值較高之品項，其他獎項由候補名單遞補。</li>
+                                <li>依中華民國稅法規定，贈品價值若超過新台幣1,001元(含)以上20,009元(含)以下者，翌年新光三越將依法開立扣繳憑單予中獎者，中獎人需依規定填寫並繳交相關單據。若贈品價值超過新台幣20,010元(含)以上，中獎人除繳交相關單據外，需另繳交10%之稅金；非中華民國境內居住者或外國人士，不論中獎獎項之價值金額，須就獎項價值金額扣繳20%的中獎稅額，並檢附護照影本或居留證正反面影本(大陸地區顧客可附入出境證明影本)。機會中獎稅金之贈品價值計算，依本活動網站公告為準。稅金由新光三越代收，並由其繳納國庫，若有未盡事宜，得獎者同意悉依稅法相關規定、協同新光三越辦理。中獎者若無法配合，則視為自動棄權，喪失中獎資格。</li>
+                                <li>本活動嚴禁參加者利用程式惡意影響活動結果或任何破壞公平性之行為，違者經查獲將取消中獎資格，並對於任何破壞活動之行為保留相關法律權利。</li>
+                                <li>詳細活動辦法以本活動網站公告為準，參加者於參加本活動同時，即視為同意接受本活動規範。</li>
+                                <li>新光三越保有變更活動辦法及更換獎項為等值商品之權利。活動因故無法進行時，新光三越有權決定取消、終止、修改或暫停本活動。</li>
+                            </ul>
+                        </article>
+                        <p class="topic">蒐集個人資料告知及同意事項</p>
+                        <article>
+                            <ul class="big_list">
+                                <li>告知事項：<br>依據個人資料保護法等相關規定，明列以下告知事項
+                                    <ul>
+                                        <li>蒐集個人資料公司：新光三越百貨股份有限公司(下稱新光三越)。</li>
+                                        <li>蒐集之目的： <br>
+                                            (1)契約、類似契約或其他法律關係事物：網路抽獎活動。<br>
+                                            (2)稅務行政。</li>
+                                        <li>個人資料之類別：<br>
+                                            包括個人資料中之識別類(辨識個人者中之姓名、居住住址、聯絡電話、行動電話、電子信箱及其他任何可辨識資料本人者等)（具體項目則如本活動參與頁面及活動辦法內所列事項）。</li>
+                                        <li>個人資料利用之期間： <br>
+                                            i.  參加者所提供之個人資料於活動起始日起至本活動結束後1個月內利用，倘參加者中獎時，相關資料保存期限為稅法規定之保存年限。<br>
+                                            ii. 中獎人部份：倘參加者中獎時，中獎人所提供中奬收據上所填載之個人基本資料，僅作為領取獎項及申報個人所得使用；依據稅法規定保存限年屆時銷毀，不移作他用。</li>
+                                        <li>個人資料利用之地區：本活動所蒐集之個人資料將不會被移轉至台灣、金門、澎湖、馬祖以外地區。</li>
+                                        <li>個人資料利用之對象及方式：由新光三越或相關受託機關及委外之合作廠商於執行本活動時利用之。</li>
+                                        <li>依個人資料保護法第三條規定得行使之權利及方式：活動參與者於身份獲確認後，得向透過 <a href="mailto:service1@skm.com.tw" target="_blank">service1@skm.com.tw</a> 提出申請，請求查詢、閱覽、製給複製本；或補充／更正、請求停止蒐集、處理、利用或刪除個人資料內容之一部分或全部。（註：參加人申請查詢、閱覽、製給複製本時，將酌收必要成本費用。）</li>
+                                    </ul>
+                                </li>
+                                <li>參與者填寫本活動參與所須個人資料後，以任何方式提供予新光三越時，均視為已同意提供予新光三越辦理本活動之特定目的必要範圍內處理及利用；此外，參與者可決定是否填寫相關之個人資料欄位，若參加者不填寫相關欄位時，新光三越則於決定是否符合參與本活動之資格時，擁有自行判斷之權利。</li>
+                                <li>保護本活動參與者資料之安全措施：新光三越將依據相關法令之規定及業已建構之完善措施，保障本活動參與者個人資料之安全。</li>
+                            </ul>
+                        </article>  
+                    </div>
                 </section>
-
-                <div class="earth part1">
-                    <p class="house_layer_1"><img src="img/building_1.png" alt=""></p>
-                    <p class="house_layer_2"><img src="img/building_2.png" alt=""></p>
-                    <p class="house_layer_3"><img src="img/building_3.png" alt=""></p>
-                    <p class="land"><img src="img/earth.png" alt=""></p>
-                </div>
-
-                <div class="main vote part2">
-                    <!-- 其他物件 -->
-                    <div class="flyman">
-                        <img src="asset/svg/astronaut.svg" alt="">
-                    </div>
-                    <!-- 主要內容 -->
-                    <p class="location_name"><span class="icon-location"></span><span class="words">台北信義新天地A11</span></p>
-                    <section class="slick">
-                        <!--自營組-->
-                        <div>
-                            <div class="vote_box first">
-                                <div class="con">
-                                    <div class="top">
-                                        <span>自營組</span>
-                                        <a href="#" class="photo"><img src="img/store/01_A_01.jpg" alt=""><b>看更多</b></a>
-                                    </div>
-                                    <div class="bottom">
-                                        <h2>陳彥仲</h2>
-                                        <p>目前票數 <span class="vote_cnt">0</span> 票</p>
-                                        <a href="" class="btnVote">
-                                            <span><b class="icon-love"></b>投票</span>
-                                            <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
-                                                <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
-                                    <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <!--專櫃組-->
-                        <div>
-                            <div class="vote_box second">
-                                <div class="con">
-                                    <div class="top">
-                                        <span>專櫃組</span>
-                                        <a href="#" class="photo"><img src="img/store/01_B_01.jpg" alt=""><b>看更多</b></a>
-                                    </div>
-                                    <div class="bottom">
-                                        <h2>陳彥仲</h2>
-                                        <p>目前票數 <span class="vote_cnt">0</span> 票</p>
-                                        <a href="" class="btnVote">
-                                            <span><b class="icon-love"></b>投票</span>
-                                            <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
-                                                <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
-                                    <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <!--警衛清潔組-->
-                        <div>
-                            <div class="vote_box third">
-                                <div class="con">
-                                    <div class="top">
-                                        <span>警衛清潔組</span>
-                                        <a href="#" class="photo"><img src="img/store/01_C_01.jpg" alt=""><b>看更多</b></a>
-                                    </div>
-                                    <div class="bottom">
-                                        <h2>陳彥仲</h2>
-                                        <p>目前票數 <span class="vote_cnt">0</span> 票</p>
-                                        <a href="" class="btnVote">
-                                            <span><b class="icon-love"></b>投票</span>
-                                            <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
-                                                <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                                <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
-                                    <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
-                                </svg>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!--星球-->
-                    <div class="planetBox">
-                        <ul>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>台北</b>南西店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-01"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>台北</b>站前店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-02"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>台北</b>信義新天地A4</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-03"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>台北</b>信義新天地A8</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-04"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>台北</b>信義新天地A9</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-05"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>台北</b>信義新天地A11</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-06"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>台北</b>天母店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-07"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>桃園</b>大有店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-08"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>桃園</b>站前店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-09"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>新竹</b>中華店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-10"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>台中</b>中港店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-11"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>嘉義</b>垂楊店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-12"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>台南</b>中山店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-13"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>台南</b>新天地</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-14"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>高雄</b>三多店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-15"></use></svg></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="storeBlock">
-                                    <div class="flag"><p><b>高雄</b>左營店</p></div>
-                                    <div class="current_planet"><svg xmlns="http://www.w3.org/2000/svg"><use xlink:href="#planet-16"></use></svg></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!--進度表-->
-                <div class="progress part2">
-                    <ul>
-                        <li><a href=""><span class="icon-checkmark unfinish"><b>尚未投票</b></span></a><p>自營組</p></li>
-                        <li><a href=""><span class="icon-checkmark unfinish"><b>尚未投票</b></span></a><p>專櫃組</p></li>
-                        <li><a href=""><span class="icon-checkmark unfinish"><b>尚未投票</b></span></a><p>警衛清潔組</p></li>
-                    </ul>
-                    <a href="" class="finish no">
-                        <span>我要抽獎</span>
-                        <svg width="95px" height="95px" viewBox="-2.5 -3.5 96 96" stroke-linejoin="round" stroke-linecap="round">
-                            <circle class="shape shape_border" fill="#5F5F5F" cx="45" cy="45" r="45"/>
-                        </svg>
-                    </a>
-                </div>
-
-                <!--分店列表清單 for PC-->
-                <aside class="part2">
-                    <ul>
-                        <li><a href="" class="s_1 focus"><span>台北南西店</span></a></li>
-                        <li><a href="" class="s_2"><span>台北站前店</span></a></li>
-                        <li><a href="" class="s_3"><span>台北信義新天地A4</span></a></li>
-                        <li><a href="" class="s_4"><span>台北信義新天地A8</span></a></li>
-                        <li><a href="" class="s_5"><span>台北信義新天地A9</span></a></li>
-                        <li><a href="" class="s_6"><span>台北信義新天地A11</span></a></li>
-                        <li><a href="" class="s_7"><span>台北天母店</span></a></li>
-                        <li><a href="" class="s_8"><span>桃園大有店</span></a></li>
-                        <li><a href="" class="s_9"><span>桃園站前店</span></a></li>
-                        <li><a href="" class="s_10"><span>新竹中華店</span></a></li>
-                        <li><a href="" class="s_11"><span>台中中港店</span></a></li>
-                        <li><a href="" class="s_12"><span>嘉義垂楊店</span></a></li>
-                        <li><a href="" class="s_13"><span>台南中山店</span></a></li>
-                        <li><a href="" class="s_14"><span>台南新天地</span></a></li>
-                        <li><a href="" class="s_15"><span>高雄三多店</span></a></li>
-                        <li><a href="" class="s_16"><span>高雄左營店</span></a></li>
-                    </ul>
-                </aside>
-
-                <!--分店列表清單 for mobile-->
-                <div class="store_list part2">
-                    <a href="" class="location"><span class="icon-location"></span></a>
-                    <a href="" class="next">前往下一顆星球<span></span></a>
-                    <!--open-->
-                    <div class="name none">
-                        <a href="" class="close"><span></span></a>
-                        <p class="area">北區</p>
-                        <ul class="north">
-                            <li><a href="">台北南西店</a></li>
-                            <li><a href="">台北站前店</a></li>
-                            <li><a href="">台北信義新天地A4</a></li>
-                            <li><a href="">台北信義新天地A8</a></li>
-                            <li><a href="">台北信義新天地A9</a></li>
-                            <li><a href="">台北信義新天地A11</a></li>
-                            <li><a href="">台北天母店</a></li>
-                            <li><a href="">桃園大有店</a></li>
-                            <li><a href="">桃園站前店</a></li>
-                            <li><a href="">新竹中華店</a></li>
-                        </ul>
-                        <p class="area">中區</p>
-                        <ul class="center">
-                            <li><a href="">台中中港店</a></li>
-                        </ul>
-                        <p class="area">南區</p>
-                        <ul class="south">
-                            <li><a href="">嘉義垂楊店</a></li>
-                            <li><a href="">台南中山店</a></li>
-                            <li><a href="">台南新天地</a></li>
-                            <li><a href="">高雄三多店</a></li>
-                            <li><a href="">高雄左營店</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!--裝置警告-->
-                <div class="warn none">
-                    <a href="" class="close"><span></span></a>
-                    <p>建議使用Safari或Chrome瀏覽網頁，<br>以利活動參與。</p>
-                </div>
-
-
             </div>
         </div>
-        <!--店員介紹-->
-        <div class="pop personal none">
-            <div class="pop_black none"></div> 
-            <a href="" class="close"><span></span></a>
-            <div class="red_bar"></div>
-            <div class="con">
-                <div class="photo_block"><img src="img/store/01_A_03.jpg" alt="">
-                    <ul>
-                        <li><a href="" class="focus">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                    </ul>
-                    <p class="tag">自營組</p>
-                </div>
-                <div class="des_block">
-                    <h1>陳思齊<span>台北南西店 / 營業管理</span></h1>
-                    <h2>微笑面對生活<br>微笑面對人生</h2>
-                    <p>目前票數 <span class="vote_cnt">5991</span> 票</p>
-                    <a href="" class="votebtn">
-                        <span><b class="icon-love"></b>投他一票</span>
-                        <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
-                            <path class="shape shape_border" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="fb_comment"></div>     
-        </div>
-
-        <!--投票成功-->
-        <div class="pop final_check none">
-            <a href="" class="close"><span></span></a>
-            <div class="red_bar"></div>
-            <!--01-->
-            <div class="con finalCheck">
-                <ul>
-                    <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北南西</span></h1></li>
-                    <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北信義新天地A11</span></h1></li>
-                    <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北南西</span></h1></li>
-                </ul>
-                <div class="g-recaptcha" data-sitekey="6Lce3iYUAAAAAMSujz1uyC9ylydjiTAawjxllxSC"></div>
-                <a href="" class="votebtn">
-                    <span><b class="icon-love"></b>確認投票</span>
-                    <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
-                        <path class="shape shape_border" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
-                    </svg>
-                </a>
-            </div>
-            <!--02-->
-            <div class="con beenVote none">
-                <h2>您已完成投票!</h2>
-                <h3>每個FB/G+帳號，一天可投一票，天天投票，中獎機率越高<br>微笑新星們期待您的再訪支持！</h3>
-                <a href="index.html" class="votebtn">
-                    <span><b class="icon-home"></b>回首頁</span>
-                    <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
-                        <path class="shape shape_border" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-        <!--登入畫面-->
-        <div class="pop login none">
-            <a href="" class="close"><span></span></a>
-            <div class="red_bar">請先登入帳號</div>
-            <div class="con">
-                <a href="" class="login_fb">
-                    <span><b class="icon-facebook"></b>Facebook登入</span>
-                    <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
-                        <path class="shape" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
-                    </svg>
-                </a>
-                <a href="" class="login_google">
-                    <span><b class="icon-google"></b>Google+登入</span>
-                    <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
-                        <path class="shape" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-        <!--共用黑幕-->
-        <div class="black none"></div>
-        <div class="bottom_sha part2"></div>
-
-        <script src="js/data.js"></script>
         <script src="js/menu.js"></script>
-        <script src="js/index.js"></script>
     </body>
 </html>
