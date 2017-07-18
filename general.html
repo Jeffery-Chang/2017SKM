@@ -331,26 +331,28 @@
                     <div class="group">
                         <p class="topic">自營組</p>
                         <div class="vote_block">
-                            <div class="vote_box" v-for="(item, $index) in items" v-if="item.store_tp === 'A'">
-                                <div class="con">
-                                    <div class="top">
-                                        <a href="#" class="photo" @click="seeMore($(this), $index)"><img :src="item.img1" alt=""><b>看更多</b></a>
+                            <div class="voteRepeat" v-for="(item, $index) in items" v-if="item.store_tp === 'A'">
+                                <div class="vote_box">
+                                    <div class="con">
+                                        <div class="top">
+                                            <a href="#" class="photo" @click="seeMore($event, $index)"><img :src="item.img1" alt=""><b>看更多</b></a>
+                                        </div>
+                                        <div class="bottom">
+                                            <h2>{{ item.name }}</h2>
+                                            <h3>{{ item.store_nm }}</h3>
+                                            <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
+                                            <a href="" class="btnVote" @click="getVote($event, $index)">
+                                                <span><b class="icon-love"></b>投票</span>
+                                                <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
+                                                    <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
+                                                </svg>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="bottom">
-                                        <h2>{{ item.name }}</h2>
-                                        <h3>{{ item.store_nm }}</h3>
-                                        <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                        <a href="" class="btnVote" @click="getVote($(this), $index)">
-                                            <span><b class="icon-love"></b>投票</span>
-                                            <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
-                                                <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
-                                            </svg>
-                                        </a>
-                                    </div>
+                                    <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
+                                        <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
+                                    </svg>
                                 </div>
-                                <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
-                                    <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
-                                </svg>
                             </div>
                         </div>
                     </div>
@@ -358,26 +360,28 @@
                     <div class="group">
                         <p class="topic">專櫃組</p>
                         <div class="vote_block">
-                            <div class="vote_box" v-for="(item, $index) in items" v-if="item.store_tp === 'B'">
-                                <div class="con">
-                                    <div class="top">
-                                        <a href="#" class="photo" @click="seeMore($index)"><img :src="item.img1" alt=""><b>看更多</b></a>
+                            <div class="voteRepeat" v-for="(item, $index) in items" v-if="item.store_tp === 'B'">
+                                <div class="vote_box">
+                                    <div class="con">
+                                        <div class="top">
+                                            <a href="#" class="photo" @click="seeMore($event, $index)"><img :src="item.img1" alt=""><b>看更多</b></a>
+                                        </div>
+                                        <div class="bottom">
+                                            <h2>{{ item.name }}</h2>
+                                            <h3>{{ item.store_nm }}</h3>
+                                            <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
+                                            <a href="" class="btnVote" @click="getVote($event, $index)">
+                                                <span><b class="icon-love"></b>投票</span>
+                                                <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
+                                                    <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
+                                                </svg>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="bottom">
-                                        <h2>{{ item.name }}</h2>
-                                        <h3>{{ item.store_nm }}</h3>
-                                        <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                        <a href="" class="btnVote" @click="getVote($(this), $index)">
-                                            <span><b class="icon-love"></b>投票</span>
-                                            <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
-                                                <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
-                                            </svg>
-                                        </a>
-                                    </div>
+                                    <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
+                                        <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
+                                    </svg>
                                 </div>
-                                <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
-                                    <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
-                                </svg>
                             </div>
                         </div>
                     </div>
@@ -385,26 +389,28 @@
                     <div class="group">
                         <p class="topic">警衛清潔組</p>
                         <div class="vote_block">
-                            <div class="vote_box" v-for="(item, $index) in items" v-if="item.store_tp === 'C'">
-                                <div class="con">
-                                    <div class="top">
-                                        <a href="#" class="photo" @click="seeMore($index)"><img :src="item.img1" alt=""><b>看更多</b></a>
+                            <div class="voteRepeat" v-for="(item, $index) in items" v-if="item.store_tp === 'C'">
+                                <div class="vote_box">
+                                    <div class="con">
+                                        <div class="top">
+                                            <a href="#" class="photo" @click="seeMore($event, $index)"><img :src="item.img1" alt=""><b>看更多</b></a>
+                                        </div>
+                                        <div class="bottom">
+                                            <h2>{{ item.name }}</h2>
+                                            <h3>{{ item.store_nm }}</h3>
+                                            <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
+                                            <a href="" class="btnVote" @click="getVote($event, $index)">
+                                                <span><b class="icon-love"></b>投票</span>
+                                                <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
+                                                    <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
+                                                </svg>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="bottom">
-                                        <h2>{{ item.name }}</h2>
-                                        <h3>{{ item.store_nm }}</h3>
-                                        <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                        <a href="" class="btnVote" @click="getVote($(this), $index)">
-                                            <span><b class="icon-love"></b>投票</span>
-                                            <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
-                                                <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
-                                            </svg>
-                                        </a>
-                                    </div>
+                                    <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
+                                        <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
+                                    </svg>
                                 </div>
-                                <svg width="206px" height="303px" viewBox="-3.2 -3 212 309" stroke-linejoin="round" stroke-linecap="round">
-                                    <path class="line line_change" fill="#B72224" d="M205.5,102.75C205.5,46.003,159.498,0,102.75,0C46.003,0,0,46.003,0,102.75v97.501  c0,56.748,46.003,102.75,102.75,102.75c56.748,0,102.75-46.002,102.75-102.75h0.502V102.75H205.5z" />
-                                </svg>
                             </div>
                         </div>
                     </div>
@@ -413,15 +419,15 @@
                 <div class="progress">
                     <ul>
                         <li>
-                            <a href="" @click="openSort"><span class="icon-filter"></span>
+                            <a href="" @click="openSort($event)"><span class="icon-filter"></span>
                                 <transition name="fade">
                                     <div class="popup" v-if="sortFG">
                                         <ul>
-                                            <li>
+                                            <li :class="{ 'checkbox-active' : !sortTP }" @click="sortData($event)">
                                                 <input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox">
                                                 <label for="checkbox-1" class="checkbox-custom-label">得票數</label>
                                             </li>
-                                            <li class="checkbox-active">
+                                            <li :class="{ 'checkbox-active' : sortTP }" @click="sortData($event)">
                                                 <input id="checkbox-2" class="checkbox-custom" name="checkbox-2" type="checkbox">
                                                 <label for="checkbox-2" class="checkbox-custom-label">依分店</label>
                                             </li>
@@ -440,7 +446,7 @@
                             <p>警衛清潔組</p>
                         </li>
                     </ul>
-                    <a href="" class="finish no" @click="confirmChoose">
+                    <a href="" class="finish no" @click="confirmChoose($event)">
                         <span>我要抽獎</span>
                         <svg width="95px" height="95px" viewBox="-2.5 -3.5 96 96" stroke-linejoin="round" stroke-linecap="round">
                             <circle class="shape shape_border" fill="#5F5F5F" cx="45" cy="45" r="45" />
@@ -452,8 +458,8 @@
             <!--店員介紹-->
             <transition name="fade">
                 <div class="pop personal" v-show="moreFG">
-                    <div class="pop_black none"></div> 
-                    <a href="" class="close" @click="closeAll($(this))"><span></span></a>
+                    <div class="pop_black" v-show="innerFG"></div>
+                    <a href="" class="close" @click="closeAll($event)"><span></span></a>
                     <div class="red_bar"></div>
                     <div class="con">
                         <div class="photo_block"><img src="img/store/01_A_03.jpg" alt="">
@@ -484,7 +490,7 @@
             <!--投票成功-->
             <transition name="fade">
                 <div class="pop final_check" v-show="voteFG">
-                    <a href="" class="close" @click="closeAll($(this))"><span></span></a>
+                    <a href="" class="close" @click="closeAll($event)"><span></span></a>
                     <div class="red_bar"></div>
                     <!--01-->
                     <div class="con finalCheck">
@@ -494,7 +500,7 @@
                             <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北南西</span></h1></li>
                         </ul>
                         <div class="g-recaptcha" data-sitekey="6Lce3iYUAAAAAMSujz1uyC9ylydjiTAawjxllxSC"></div>
-                        <a href="" class="votebtn" @click="finalCheck($(this))">
+                        <a href="" class="votebtn" @click="finalCheck($event)">
                             <span><b class="icon-love"></b>確認投票</span>
                             <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
                                 <path class="shape shape_border" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
@@ -518,16 +524,16 @@
             <!--登入畫面-->
             <transition name="fade">
                 <div class="pop login" v-if="loginFG">
-                    <a href="" class="close" @click="closeAll($(this))"><span></span></a>
+                    <a href="" class="close" @click="closeAll($event)"><span></span></a>
                     <div class="red_bar">請先登入帳號</div>
                     <div class="con">
-                        <a href="" class="login_fb" @click="menuCtrl.fbLogin($(this))">
+                        <a href="" class="login_fb" @click="fbLogin($event)">
                             <span><b class="icon-facebook"></b>Facebook登入</span>
                             <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
                                 <path class="shape" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
                             </svg>
                         </a>
-                        <a href="" class="login_google" @click="menuCtrl.googleLogin($(this))">
+                        <a href="" class="login_google" @click="googleLogin($(this), $event)">
                             <span><b class="icon-google"></b>Google+登入</span>
                             <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
                                 <path class="shape" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>

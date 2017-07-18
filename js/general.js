@@ -3,36 +3,148 @@ $(function(){
         el: '.wrap',
         data: {
             items: profile,
-            fb_login: false,
-            gplus_login: false,
+            sortTP: true,
+            scaleFG: false,
+            fb_login: ($.cookie('fb_login')) ? true : false,
+            gplus_login: ($.cookie('gplus_login')) ? true : false,
             closeFG: false,
+            innerFG: false,
             sortFG: false,
             loginFG: false,
             moreFG: false,
             voteFG: false
         },
         beforeMount: function(){
-
+            var $this = this;
+            $.get('api/angel_list', function(result){
+                $.each(result, function(key, obj){
+                    $this.items[key].vote_cnt = obj.vote_cnt;
+                });
+            });
         },
         mounted: function(){
-            //$('a').click(function(e){ e.preventDefault(); });
             this.chkChoose();
         },
+        updated: function(){
+            var $this = this;
+            if($this.scaleFG){
+                $this.scaleFG = false;
+                TweenMax.to($('.general .voteRepeat'), .3, {
+                    scale: 0,
+                    onComplete: function(){
+                        TweenMax.to($('.general .voteRepeat'), .3, { scale: 1 });
+                    }
+                });
+            }
+        },
         methods:{
-            openSort: function(){
-                this.sortFG = !this.sortFG;
+            fbLogin: function(evt){
+                var $this = this;
+                menuCtrl.preventAll(evt);
+                // 串接FB登入按鈕
+                FB.login(
+                    function(response) {
+                        if(response.status === 'connected'){
+                            FB.api(
+                                '/me',
+                                'GET', {
+                                    "fields": "id,name,email"
+                                },
+                                function (response) {
+                                    $.cookie('type', 'Facebook');
+                                    $.cookie('name', response.name);
+                                    $.cookie('email', response.email);
+                                    $.cookie('id', response.id);
+                                    $.cookie('fb_login', true);
+                                    $this.fb_login = true;
+                                    $this.closeAll(evt);
+                                }
+                            );
+                        }else{
+                            alert('請登入FB/G+來進行投票，謝謝！');
+                        }
+                    },{ scope: 'email' }
+                );
             },
-            prevent: function(obj){
-                obj.click(function(e){ 
-                    e.preventDefault();
-                    e.stopPropagation();
+            googleLogin: function(obj, evt){
+                var $this = this;
+                menuCtrl.preventAll(evt);
+                gapi.load("auth2", function(){
+                    var auth2 = gapi.auth2.init({
+                        clientId: "704654834388-ta2hrensur0tun55pajn8md8ht02rs2s.apps.googleusercontent.com"
+                    });
+
+                    auth2.isSignedIn.listen(function(status){
+                        //console.log('google login ' + status);
+                    });
+
+                    auth2.currentUser.listen(function(user){
+                        var gProfile = user.getBasicProfile();
+                        if(gProfile){
+                            console.log('gName:', gProfile.getName());
+                            console.log('gEmail:', gProfile.getEmail());
+                            console.log('gID:', gProfile.getId());
+
+                            $.cookie('type', 'Google');
+                            $.cookie('name', gProfile.getName());
+                            $.cookie('email', gProfile.getEmail());
+                            $.cookie('id', gProfile.getId());
+                            $.cookie('gplus_login', true);
+                            $this.gplus_login = true;
+                            $this.closeAll(evt);
+                        }else{
+                            //alert('請登入Facebook或Google+來進行投票，謝謝！ G+');
+                        }
+                    });
+
+                    // 串接G+登入按鈕
+                    obj.on('click', function(e){
+                        menuCtrl.preventAll(e);
+                        auth2.signIn();
+                    });
                 });
             },
-            seeMore: function(obj, key){
-                this.prevent(obj);
+            openSort: function(evt){
+                menuCtrl.preventAll(evt);
+                this.sortFG = !this.sortFG;
+            },
+            sortData: function(evt){
+                menuCtrl.preventAll(evt);
+                var $this = this;
+                var tp = evt.target.htmlFor;
+                var sortData = $this.items;
+                var newData = [];
+                var oldFG = $this.sortTP;
+
+                Object.assign(sortData).forEach(function(ele, key){
+                    newData.push(ele);
+                });
+
+                if(tp === 'checkbox-2'){
+                    this.sortTP = true;
+                    if(oldFG === $this.sortTP) return;
+
+                    newData.sort(function (a, b) {
+                        return a.store_no > b.store_no ? 1 : -1;
+                    });
+                }else{
+                    this.sortTP = false;
+                    if(oldFG === $this.sortTP) return;
+
+                    newData.sort(function (a, b) {
+                        return a.vote_cnt < b.vote_cnt ? 1 : -1;
+                    });
+                }
+
+                $this.scaleFG = true;
+                $this.items = newData;
+            },
+            seeMore: function(evt, key){
+                menuCtrl.preventAll(evt);
+                var $this = this;
                 var setObj = $('.personal');
                 var group = '';
-                var data = this.items;
+                var data = $this.items;
                 var name = data[key].name;
                 var tp = data[key].store_tp;
                 var url = 'http://' + location.hostname + location.pathname.split("?")[0] + '?name=' + name;
@@ -45,7 +157,7 @@ $(function(){
                     group = '警衛清潔組';
                 };
 
-                (data[key].img4 === '') ? $('.personal .photo_block li:eq(3)').addClass('none').hide() : $('.personal .photo_block li:eq(3)').removeClass('none').show();
+                (data[key].img4 === '') ? $('.personal .photo_block li:eq(3)').hide() : $('.personal .photo_block li:eq(3)').show();
 
                 $('.personal .photo_block img').attr('src', 'img/store/'+data[key].store_no+'_'+data[key].store_tp+'_02.jpg');
                 $('.personal .photo_block li').find('a').removeClass('focus').eq(0).addClass('focus');
@@ -71,21 +183,28 @@ $(function(){
                     $('.personal .photo_block li').find('a').removeClass('focus');
                     $(this).find('a').addClass('focus');
 
-                    if(index > $('.personal .photo_block li:not(.none)').size()) index = 1;
+                    if(index > $('.personal .photo_block li:visible').size()) index = 1;
                     TweenMax.to($('.personal .photo_block img'), .3, {
                         opacity: 0,
                         onComplete: function(){
-                            $('.personal .photo_block img').attr('src', 'img/store/'+profile[key].store_no+'_'+profile[key].store_tp+'_0'+index+'.jpg');
+                            $('.personal .photo_block img').attr('src', 'img/store/'+data[key].store_no+'_'+data[key].store_tp+'_0'+index+'.jpg');
                             TweenMax.to($('.personal .photo_block img'), .3, {opacity: 1});
                         }
                     });
                 });
 
-                this.moreFG = true;
-                this.closeFG = true;
+                // 看更多投他一票click
+                $('.personal .votebtn').on('click', function(e){
+                    var index = $(this).data('index');
+                    $this.getVote(e, index);
+                    $this.innerFG = true;
+                });
+
+                $this.moreFG = true;
+                $this.closeFG = true;
             },
-            getVote: function(obj, key){
-                this.prevent(obj);
+            getVote: function(evt, key){
+                menuCtrl.preventAll(evt);
                 if(!this.fb_login && !this.gplus_login){
                     this.loginFG = this.closeFG = true;
                     return;
@@ -113,9 +232,10 @@ $(function(){
                 if(!choose1 || !choose2 || !choose3) return;
                 $('.progress .finish').removeClass('no');
             },
-            confirmChoose: function(){
+            confirmChoose: function(evt){
+                menuCtrl.preventAll(evt);
                 var $this = this;
-                if($(this).hasClass('no')) return;
+                if($(evt.target).hasClass('no')) return;
                 var finalObj = $('.finalCheck li');
                 var finalArr = [$.cookie('choose1'), $.cookie('choose2'), $.cookie('choose3')];
 
@@ -126,17 +246,21 @@ $(function(){
                     if(key === (finalArr.length - 1)) $this.voteFG = $this.closeFG = true;
                 });
             },
-            finalCheck: function(obj){
-                this.prevent(obj);
+            finalCheck: function(evt){
+                menuCtrl.preventAll(evt);
                 menuCtrl.sendData(function(){
                     $('.final_check .finalCheck').fadeOut('fast', function(){
                         $('.final_check .beenVote').fadeIn('fast');
                     });
                 });
             },
-            closeAll: function(obj){
-                this.prevent(obj);
-                this.closeFG = this.sortFG = this.loginFG = this.moreFG = this.voteFG = false;
+            closeAll: function(evt){
+                menuCtrl.preventAll(evt);
+                if(this.innerFG){
+                    this.innerFG = this.loginFG = false;
+                }else{
+                    this.closeFG = this.sortFG = this.loginFG = this.moreFG = this.voteFG = false;
+                }
             }
         }
     });

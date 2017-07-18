@@ -144,3 +144,6 @@ header nav{
 .pop{
     position: fixed;
 }
+.general .voteRepeat{
+	display: inline-block;
+}
