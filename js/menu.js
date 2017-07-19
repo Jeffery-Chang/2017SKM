@@ -17,6 +17,11 @@
 var menuCtrl = {
     init: function(){
         var $this = this;
+        
+        if($this.chkIE8() === 'IE8'){
+            location.href = 'ie8/';
+            return;
+        }
 
         $this.menuSet();
         $this.resize();
@@ -229,6 +234,28 @@ var menuCtrl = {
         var fbWebView = /fbid|fbios|fblc|fb_iab|fb4a|fbav/.test(userAgent);
         var lineWebView = /line/i.test(userAgent);
         return fbWebView || lineWebView;
+    },
+    chkIE8: function(){
+        var userAgent = navigator.userAgent;
+        var reIE = new RegExp("MSIE (\\d+\\.\\d+);"); 
+        reIE.test(userAgent); 
+        var fIEVersion = parseFloat(RegExp["$1"]); 
+        
+        if(userAgent.indexOf('MSIE 6.0')!=-1){
+            return "IE6";
+        }else if(fIEVersion == 7){
+            return "IE7";
+        }else if(fIEVersion == 8){
+            return "IE8";
+        }else if(fIEVersion == 9){
+            return "IE9";
+        }else if(fIEVersion == 10){
+            return "IE10";
+        }else if(userAgent.toLowerCase().match(/rv:([\d.]+)\) like gecko/)){ 
+            return "IE11";
+        }else{
+            return "0"
+        }
     }
 }
 
