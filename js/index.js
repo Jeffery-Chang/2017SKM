@@ -57,7 +57,7 @@ var indexCtrl = {
         $('.pop .close, .store_list .close, .warn .close').on('click', function(e){
             menuCtrl.preventAll(e);
             popupOpen = false;
-            
+
             $(this).parent('div').fadeOut('fast', function(){
                 $('.store_list').css('z-index', 501);
             });
@@ -68,25 +68,26 @@ var indexCtrl = {
         $(window).on('resize', function(){
             $this.indexResize();
         }).on('load', function(){
-            $('header, .wrap').attr('style', '');
+            $('header, .wrap').css('opacity', 1);
             $this.inStage();
             $this.indexResize();
-            $('.loading').delay(300).fadeOut('fast', function(){
-                if(!menuCtrl.chkDevice()) {
-                    TweenMax.from(rocket, 2, {
-                        top: "30%",
-                        left: "50%",
-                        opacity: 0,
-                        delay: .2,
-                        transform: "scale(.5) rotate(-90deg)",
-                        delay: delayTime,
-                        ease: Power2.easeOut,
-                        onComplete: function(){
-                            TweenMax.set(rocket, { clearProps:"all" });
-                        }
-                    });
-                }
-            });
+
+            if(!menuCtrl.chkDevice()) {
+                TweenMax.from(rocket, 2, {
+                    top: "30%",
+                    left: "50%",
+                    opacity: 0,
+                    delay: .35,
+                    transform: "scale(.5) rotate(-90deg)",
+                    delay: delayTime,
+                    ease: Power2.easeOut,
+                    onComplete: function(){
+                        TweenMax.set(rocket, { clearProps:"all" });
+                    }
+                });
+            }
+
+            $('.loading').delay(300).fadeOut('fast');
         });
     },
     indexResize: function(){
@@ -197,7 +198,7 @@ var indexCtrl = {
 
         TweenMax.to($('.roundabout-moveable-item'), .5, {scale: .5, filter: "brightness(30%)"});
         TweenMax.to($('.roundabout-in-focus'), .3, {scale: 1, filter: "brightness(100%)", onComplete: function(){
-            TweenMax.to($('.part2'), .2, { opacity: 0 });
+            //TweenMax.to($('.part2'), .2, { opacity: 0 });
         }});
     },
     initPart2: function(){
@@ -310,7 +311,7 @@ var indexCtrl = {
         TweenMax.to($('.part2'), .5, {
             opacity: 1,
             onComplete: function(){
-                TweenMax.set($('.part2'), { clearProps:"all" });
+                //TweenMax.set($('.part2'), { clearProps:"all" });
             }
         });
     },

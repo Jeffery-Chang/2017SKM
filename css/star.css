@@ -56,6 +56,9 @@ header nav{
     .pop{
         height: inherit;
     }
+    .pop.login {
+        height: auto;
+    }
 }
 .bottom_sha{
     z-index: 400;
@@ -81,7 +84,9 @@ header nav{
 
 
 
-
+.part2 {
+    opacity: 0;
+}
 .index .flyman.move{
     animation: move-ani 2.5s infinite ease-out;
     filter: brightness(70%);
