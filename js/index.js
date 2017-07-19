@@ -24,7 +24,7 @@ var three = $('.part2 .slick');
 var threeLocation = $('.vote .location_name');
 var vote_box = $('.part2.vote .vote_box');
 
-var delayTime = .5;
+var delayTime = .75;
 var outStage_fg = false;
 var wheelPos = (!menuCtrl.chkDevice()) ? "top" : "mobile";
 var fb_login = ($.cookie('fb_login')) ? true : false;
@@ -43,7 +43,6 @@ var indexCtrl = {
         $this.initSlick();
         $this.initRA();
         $this.winWheel();
-        if(menuCtrl.chkWebview()) $('.warn').show();
 
         startBtnPC.find('a').on('click', function(e){
             menuCtrl.preventAll(e);
@@ -58,7 +57,10 @@ var indexCtrl = {
         $('.pop .close, .store_list .close, .warn .close').on('click', function(e){
             menuCtrl.preventAll(e);
             popupOpen = false;
-            $(this).parent('div').fadeOut('fast');
+            
+            $(this).parent('div').fadeOut('fast', function(){
+                $('.store_list').css('z-index', 501);
+            });
 
             (innerFG) ? $('.pop_black').fadeOut('fast') : $('.black').fadeOut('fast');
             innerFG = false;
@@ -66,7 +68,7 @@ var indexCtrl = {
         $(window).on('resize', function(){
             $this.indexResize();
         }).on('load', function(){
-            console.log('load');
+            $('header, .wrap').attr('style', '');
             $this.inStage();
             $this.indexResize();
             $('.loading').delay(300).fadeOut('fast', function(){
@@ -75,6 +77,7 @@ var indexCtrl = {
                         top: "30%",
                         left: "50%",
                         opacity: 0,
+                        delay: .2,
                         transform: "scale(.5) rotate(-90deg)",
                         delay: delayTime,
                         ease: Power2.easeOut,
@@ -87,20 +90,11 @@ var indexCtrl = {
         });
     },
     indexResize: function(){
-        var starList = ['one', 'two', 'three', 'four'];
-        var obj = $('.main .meteor span');
-
         if($(window).width() > 600){
             flyman.addClass('move');
-            $.each(obj, function(index, obj){
-                $(obj).addClass(starList[index]);
-            });
         }else{
             wheelPos = 'mobile';
             flyman.removeClass('move');
-            $.each(obj, function(index, obj){
-                $(obj).removeClass(starList[index]);
-            });
         }
     },
     updateData: function(){
@@ -240,6 +234,7 @@ var indexCtrl = {
         // 開店別 for mobile
         $('.store_list .location').on('click', function(e){
             menuCtrl.preventAll(e);
+            $('.store_list').css('z-index', 710);
             $('.store_list .name').fadeIn('fast');
         });
 
@@ -343,7 +338,7 @@ var indexCtrl = {
         var setObj = $('.personal');
         var group = '';
         var name = profile[key].name;
-        var url = 'http://' + location.hostname + location.pathname.split("?")[0] + '?name=' + name;
+        var url = location.protocol + '//' + location.hostname + location.pathname.split("?")[0] + '?name=' + name;
 
         if(tp === 'A'){
             group = '自營組';

@@ -23,10 +23,44 @@ $(function(){
             });
         },
         mounted: function(){
-            $('.loading').delay(1500).fadeOut('fast');
+            var $this = this;
+            
             $('.progress a').on('click', function(e){
                 menuCtrl.preventAll(e);
             });
+            $('.warn .close').on('click', function(e){
+                menuCtrl.preventAll(e);
+                $(this).parent('div').fadeOut('fast');
+            });
+
+            $(window).on('load', function(){
+                $('header, .wrap').attr('style', '');
+                $('.loading').delay(300).fadeOut('fast');
+                gapi.load("auth2", function(){
+                    var auth2 = gapi.auth2.init({
+                        clientId: "704654834388-ta2hrensur0tun55pajn8md8ht02rs2s.apps.googleusercontent.com"
+                    });
+
+                    $('.pop.login .login_google').on('click', function(e){
+                        menuCtrl.preventAll(e);
+                        auth2.signIn().then(function(user){
+                            var gProfile = user.getBasicProfile();
+                            if(gProfile){
+                                $.cookie('type', 'Google');
+                                $.cookie('name', gProfile.getName());
+                                $.cookie('email', gProfile.getEmail());
+                                $.cookie('id', gProfile.getId());
+                                $.cookie('gplus_login', true);
+                                $this.gplus_login = true;
+                                $this.closeAll();
+                            }else{
+                                //alert('請登入Facebook或Google+來進行投票，謝謝！ G+');
+                            }
+                        });
+                    });
+                });
+            });
+
             this.chkChoose();
         },
         updated: function(){
@@ -70,39 +104,6 @@ $(function(){
                     },{ scope: 'email' }
                 );
             },
-            googleLogin: function(evt){
-                var $this = this;
-                menuCtrl.preventAll(evt);
-                gapi.load("auth2", function(){
-                    var auth2 = gapi.auth2.init({
-                        clientId: "704654834388-ta2hrensur0tun55pajn8md8ht02rs2s.apps.googleusercontent.com"
-                    });
-
-                    auth2.isSignedIn.listen(function(status){
-                        //console.log('google login ' + status);
-                    });
-
-                    auth2.currentUser.listen(function(user){
-                        var gProfile = user.getBasicProfile();
-                        if(gProfile){
-                            console.log('gName:', gProfile.getName());
-                            console.log('gEmail:', gProfile.getEmail());
-                            console.log('gID:', gProfile.getId());
-
-                            $.cookie('type', 'Google');
-                            $.cookie('name', gProfile.getName());
-                            $.cookie('email', gProfile.getEmail());
-                            $.cookie('id', gProfile.getId());
-                            $.cookie('gplus_login', true);
-                            $this.gplus_login = true;
-                            $this.closeAll(evt);
-                        }else{
-                            //alert('請登入Facebook或Google+來進行投票，謝謝！ G+');
-                        }
-                    });
-                    auth2.signIn();
-                });
-            },
             openSort: function(evt){
                 menuCtrl.preventAll(evt);
                 this.sortFG = !this.sortFG;
@@ -115,7 +116,7 @@ $(function(){
                 var newData = [];
                 var oldFG = $this.sortTP;
 
-                Object.assign(sortData).forEach(function(ele, key){
+                sortData.forEach(function(ele, key){
                     newData.push(ele);
                 });
 
@@ -138,15 +139,15 @@ $(function(){
                 $this.scaleFG = true;
                 $this.items = newData;
             },
-            seeMore: function(evt, key){
+            seeMore: function(evt){
                 menuCtrl.preventAll(evt);
                 var $this = this;
                 var setObj = $('.personal');
                 var group = '';
-                var data = $this.items;
-                var name = data[key].name;
-                var tp = data[key].store_tp;
-                var url = 'http://' + location.hostname + location.pathname.split("?")[0] + '?name=' + name;
+                var key = $(evt.target.offsetParent).attr('index');
+                var name = profile[key].name;
+                var tp = profile[key].store_tp;
+                var url = location.protocol + '//' + location.hostname + location.pathname.split("?")[0].replace('general', 'index') + '?name=' + name;
 
                 if(tp === 'A'){
                     group = '自營組';
@@ -156,19 +157,19 @@ $(function(){
                     group = '警衛清潔組';
                 };
 
-                (data[key].img4 === '') ? $('.personal .photo_block li:eq(3)').hide() : $('.personal .photo_block li:eq(3)').show();
+                (profile[key].img4 === '') ? $('.personal .photo_block li:eq(3)').hide() : $('.personal .photo_block li:eq(3)').show();
 
-                $('.personal .photo_block img').attr('src', 'img/store/'+data[key].store_no+'_'+data[key].store_tp+'_02.jpg');
+                $('.personal .photo_block img').attr('src', 'img/store/'+profile[key].store_no+'_'+profile[key].store_tp+'_02.jpg');
                 $('.personal .photo_block li').find('a').removeClass('focus').eq(0).addClass('focus');
 
                 $('.personal .photo_block li').off('click');
                 $('.personal .votebtn').off('click');
 
-                setObj.find('h1').text(data[key].name).append('<span>'+data[key].store_nm+' / '+data[key].career_nm+'</span>');
-                setObj.find('h2').text(data[key].service_words);
+                setObj.find('h1').text(profile[key].name).append('<span>'+profile[key].store_nm+' / '+profile[key].career_nm+'</span>');
+                setObj.find('h2').text(profile[key].service_words);
                 setObj.find('.tag').text(group);
-                setObj.find('.vote_cnt').text(data[key].vote_cnt);
-                setObj.find('.votebtn').data('index', data[key].index).data('type', data[key].store_tp);
+                setObj.find('.vote_cnt').text(profile[key].vote_cnt);
+                setObj.find('.votebtn').data('index', profile[key].index).data('type', profile[key].store_tp);
                 setObj.find('.fb_comment').html('<fb:comments href="'+url+'" num_posts="5" width="100%"></fb:comments>')
                 FB.XFBML.parse(setObj.find('.fb_comment')[0]);
 
@@ -186,7 +187,7 @@ $(function(){
                     TweenMax.to($('.personal .photo_block img'), .3, {
                         opacity: 0,
                         onComplete: function(){
-                            $('.personal .photo_block img').attr('src', 'img/store/'+data[key].store_no+'_'+data[key].store_tp+'_0'+index+'.jpg');
+                            $('.personal .photo_block img').attr('src', 'img/store/'+profile[key].store_no+'_'+profile[key].store_tp+'_0'+index+'.jpg');
                             TweenMax.to($('.personal .photo_block img'), .3, {opacity: 1});
                         }
                     });
@@ -194,24 +195,25 @@ $(function(){
 
                 // 看更多投他一票click
                 $('.personal .votebtn').on('click', function(e){
-                    var index = $(this).data('index');
-                    $this.getVote(e, index, true);
+                    menuCtrl.preventAll(e);
+                    $this.getVote(evt, true);
                 });
 
                 $this.moreFG = true;
                 $this.closeFG = true;
             },
-            getVote: function(evt, key, inn){
+            getVote: function(evt, inn){
                 menuCtrl.preventAll(evt);
                 if(!this.fb_login && !this.gplus_login){
                     if(inn) this.innerFG = true;
                     this.loginFG = this.closeFG = true;
                     return;
                 }
+                var key = $(evt.target.offsetParent).attr('index');
                 this.chkChoose(key);
             },
             chkChoose: function(key){
-                var tp = (key !== undefined) ? this.items[key].store_tp : '';
+                var tp = (key !== undefined) ? profile[key].store_tp : '';
                 if(tp === 'A'){
                     $.cookie('choose1', key);
                 }else if(tp === 'B'){
@@ -228,6 +230,7 @@ $(function(){
                 (choose2) ? $('.progress .icon-checkmark:eq(1)').removeClass('unfinish') : $('.progress .icon-checkmark:eq(1)').addClass('unfinish');
                 (choose3) ? $('.progress .icon-checkmark:eq(2)').removeClass('unfinish') : $('.progress .icon-checkmark:eq(2)').addClass('unfinish');
 
+                this.closeFG = this.sortFG = this.loginFG = this.moreFG = this.voteFG = false;
                 if(!choose1 || !choose2 || !choose3) return;
                 $('.progress .finish').removeClass('no');
             },
@@ -254,7 +257,7 @@ $(function(){
                 });
             },
             closeAll: function(evt){
-                menuCtrl.preventAll(evt);
+                if(evt) menuCtrl.preventAll(evt);
                 if(this.innerFG){
                     this.innerFG = this.loginFG = false;
                 }else{

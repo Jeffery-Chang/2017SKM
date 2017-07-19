@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Document</title>
+        
         <!-- facebook share -->
         <meta property="og:type" content="website" />
         <meta property="og:title" content="" />
         <meta property="og:description" content="" />
         <meta property="og:image" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="fb:app_id" content="142220039665931" />
+        
         <!-- favicon -->
         <link rel="icon" href="img/favicon.ico">
+        
         <!-- css style -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/star.css">
@@ -26,6 +30,7 @@
         <!--[if gt IE 9]><script src="js/vendor/html5shiv.js"></script><![endif]-->
     </head>
     <body style="min-width: auto;">
+        <!-- loading -->
         <div class="loading">
             <div id="container">
                 <div class="ball" id="ball_planet"></div>
@@ -297,7 +302,7 @@
             </div>
         </div>
         <!-- navigation -->
-        <header>
+        <header style="display: none;">
             <p><img src="asset/svg/logo.svg" alt=""></p>
             <div href="" class="menu">
                 <a href=""></a>
@@ -313,7 +318,7 @@
                 </ul>
             </nav>
         </header>
-        <div class="wrap">
+        <div class="wrap" style="display: none;">
             <div class="main general">
                 <!-- 其他物件 -->
                 <div class="fixed">
@@ -352,13 +357,13 @@
                                 <div class="vote_box">
                                     <div class="con">
                                         <div class="top">
-                                            <a href="#" class="photo" @click="seeMore($event, $index)"><img :src="item.img1" alt=""><b>看更多</b></a>
+                                            <a href="#" class="photo" @click="seeMore($event)" :index="item.index"><img :src="item.img1" alt=""><b>看更多</b></a>
                                         </div>
                                         <div class="bottom">
                                             <h2>{{ item.name }}</h2>
                                             <h3>{{ item.store_nm }}</h3>
                                             <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                            <a href="" class="btnVote" @click="getVote($event, $index)">
+                                            <a href="" class="btnVote" @click="getVote($event)" :index="item.index">
                                                 <span><b class="icon-love"></b>投票</span>
                                                 <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
                                                     <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
@@ -381,13 +386,13 @@
                                 <div class="vote_box">
                                     <div class="con">
                                         <div class="top">
-                                            <a href="#" class="photo" @click="seeMore($event, $index)"><img :src="item.img1" alt=""><b>看更多</b></a>
+                                            <a href="#" class="photo" @click="seeMore($event)" :index="item.index"><img :src="item.img1" alt=""><b>看更多</b></a>
                                         </div>
                                         <div class="bottom">
                                             <h2>{{ item.name }}</h2>
                                             <h3>{{ item.store_nm }}</h3>
                                             <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                            <a href="" class="btnVote" @click="getVote($event, $index)">
+                                            <a href="" class="btnVote" @click="getVote($event)" :index="item.index">
                                                 <span><b class="icon-love"></b>投票</span>
                                                 <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
                                                     <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
@@ -410,13 +415,13 @@
                                 <div class="vote_box">
                                     <div class="con">
                                         <div class="top">
-                                            <a href="#" class="photo" @click="seeMore($event, $index)"><img :src="item.img1" alt=""><b>看更多</b></a>
+                                            <a href="#" class="photo" @click="seeMore($event)" :index="item.index"><img :src="item.img1" alt=""><b>看更多</b></a>
                                         </div>
                                         <div class="bottom">
                                             <h2>{{ item.name }}</h2>
                                             <h3>{{ item.store_nm }}</h3>
                                             <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                            <a href="" class="btnVote" @click="getVote($event, $index)">
+                                            <a href="" class="btnVote" @click="getVote($event)" :index="item.index">
                                                 <span><b class="icon-love"></b>投票</span>
                                                 <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
                                                     <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
@@ -472,6 +477,13 @@
                 </div>
                 <div class="bottom_sha"></div>
             </div>
+
+            <!--裝置警告-->
+            <div class="warn none">
+                <a href="" class="close"><span></span></a>
+                <p>建議使用Safari或Chrome瀏覽網頁，<br>以利活動參與。</p>
+            </div>
+
             <!--店員介紹-->
             <transition name="fade">
                 <div class="pop personal" v-show="moreFG">
@@ -540,7 +552,7 @@
 
             <!--登入畫面-->
             <transition name="fade">
-                <div class="pop login" v-if="loginFG">
+                <div class="pop login" v-show="loginFG">
                     <a href="" class="close" @click="closeAll($event)"><span></span></a>
                     <div class="red_bar">請先登入帳號</div>
                     <div class="con">
@@ -550,7 +562,7 @@
                                 <path class="shape" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
                             </svg>
                         </a>
-                        <a href="" class="login_google" @click="googleLogin($event)">
+                        <a href="" class="login_google">
                             <span><b class="icon-google"></b>Google+登入</span>
                             <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
                                 <path class="shape" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
