@@ -237,8 +237,6 @@ var menuCtrl = {
     },
     chkIE8: function(){
         var userAgent = navigator.userAgent;
-        var reIE = new RegExp("MSIE (\\d+\\.\\d+);"); 
-        reIE.test(userAgent); 
         var fIEVersion = parseFloat(RegExp["$1"]); 
         
         if(userAgent.indexOf('MSIE 6.0')!=-1){
