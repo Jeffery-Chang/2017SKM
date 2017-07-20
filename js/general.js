@@ -1,3 +1,4 @@
+(function(a){a.getUrlParam=function(b){var c=new RegExp("(^|&)"+b+"=([^&]*)(&|$)"),d=window.location.search.substr(1).match(c);return null==d?null:unescape(d[2])}})(jQuery);
 $(function(){
     var generalCtrl = new Vue({
         el: '.wrap',
@@ -24,9 +25,15 @@ $(function(){
         },
         mounted: function(){
             var $this = this;
-            
-            $('.progress a').on('click', function(e){
+            var tag = $.getUrlParam('tag');
+
+            $('.progress li').on('click', function(e){
                 menuCtrl.preventAll(e);
+                var index = $(this).index() - 1;
+                console.log('index:', index);
+                $('html,body').stop().animate({
+                    scrollTop: $('.group:eq('+index+')').offset().top - 75
+                }, 500);
             });
             $('.warn .close').on('click', function(e){
                 menuCtrl.preventAll(e);
@@ -35,7 +42,13 @@ $(function(){
 
             $(window).on('load', function(){
                 $('header, .wrap').attr('style', '');
-                $('.loading').delay(300).fadeOut('fast');
+                $('.loading').delay(1000).fadeOut('fast', function(){
+                    if(tag !== null){
+                        $('html,body').delay(500).stop().animate({
+                            scrollTop: $('.group:eq('+tag+')').offset().top - 75
+                        }, 500);
+                    }
+                });
                 gapi.load("auth2", function(){
                     var auth2 = gapi.auth2.init({
                         clientId: "704654834388-ta2hrensur0tun55pajn8md8ht02rs2s.apps.googleusercontent.com"

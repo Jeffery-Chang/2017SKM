@@ -235,9 +235,10 @@ var indexCtrl = {
             });
         });
 
-        $('.progress ul a').on('click', function(e){
+        $('.progress ul li').on('click', function(e){
             menuCtrl.preventAll(e);
-            trackWaitJump('', 'general.html');
+            var index = $(this).index();
+            trackWaitJump('', 'general.html?tag=' + index);
         });
 
         // 開店別 for mobile
@@ -259,6 +260,7 @@ var indexCtrl = {
                 index = $(this).index() + $('.north li, .center li').size();
             }
 
+            $('.store_list').css('z-index', 501);
             $('.store_list .name').fadeOut('fast', function(){
                 TweenMax.to($('.roundabout-moveable-item'), .5, {scale: .5, filter: "brightness(30%)", delay: .1});
                 TweenMax.to($('.roundabout-moveable-item').eq(index), .5, {scale: 1, filter: "brightness(100%)", delay: .1});
@@ -347,7 +349,8 @@ var indexCtrl = {
         var setObj = $('.personal');
         var group = '';
         var name = profile[key].name;
-        var url = location.protocol + '//' + location.hostname + location.pathname.split("?")[0] + '?name=' + name;
+        var pathName = (location.pathname.split("?")[0].indexOf('html') !== -1) ? location.pathname.split("?")[0] : '/test/index.html';
+        var url = location.protocol + '//' + location.hostname + pathName + '?name=' + name;
 
         if(tp === 'A'){
             group = '自營組';
