@@ -99,7 +99,7 @@ var indexCtrl = {
         }
     },
     updateData: function(){
-        $.get('api/angel_list', function(result){
+        $.get('../api/angel_list', function(result){
             $.each(result, function(key, obj){
                 profile[key].vote_cnt = obj.vote_cnt;
             });
@@ -186,7 +186,12 @@ var indexCtrl = {
                 TweenMax.to($('.roundabout-moveable-item').eq(topFocus), .5, {scale: 1, filter: "brightness(100%)"});
                 TweenMax.to($('.roundabout-in-focus'), .5, {scale: .5, filter: "brightness(30%)"});
             }
-            TweenMax.to([three, threeLocation], .3, {opacity: 0});
+            TweenMax.to([three, threeLocation], .3, {
+                opacity: 0,
+                onComplete: function(){
+                    three.slick('slickGoTo', 1, true);
+                }
+            });
         }).bind('animationEnd', function() {
             var focus = planetObj.roundabout("getChildInFocus");
 

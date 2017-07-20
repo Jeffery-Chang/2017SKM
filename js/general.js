@@ -16,7 +16,7 @@ $(function(){
         },
         beforeMount: function(){
             var $this = this;
-            $.get('api/angel_list', function(result){
+            $.get('../api/angel_list', function(result){
                 $.each(result, function(key, obj){
                     $this.items[key].vote_cnt = obj.vote_cnt;
                 });

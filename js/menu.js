@@ -192,11 +192,9 @@ var menuCtrl = {
             google: pass
         }
 
-        console.log('data:', data);
-
         $.ajax({
             method: "POST",
-            url: 'api/vote',
+            url: '../api/vote',
             data: data,
             success: function(result){
                 console.log('status:', result.status);

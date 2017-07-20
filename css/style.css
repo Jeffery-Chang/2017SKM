@@ -582,23 +582,15 @@ body {
   font-weight: 500;
   background: url(../img/star.gif);
   min-width: 1024px;
-  min-height: 750px;
-}
-@media only screen and (min-width: 1366px) and (max-width: 1980px) {
-  body {
-    min-height: 850px;
-  }
 }
 @media screen and (max-width: 600px) {
   body {
     min-width: 0;
-    min-height: 0;
   }
 }
 @media screen and (min-device-width: 320px) and (max-device-width: 959px) {
   body {
     min-width: 0;
-    min-height: 0;
   }
 }
 
@@ -969,7 +961,7 @@ section {
   bottom: 0;
   position: fixed;
   background-image: linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0) 100%);
-  z-index: 11;
+  z-index: 500;
 }
 
 a.close {
@@ -1050,12 +1042,56 @@ a.close span:after {
     bottom: -22%;
   }
 }
+@media screen and (max-width: 1920px) and (max-height: 800px) {
+  .index .earth {
+    position: absolute;
+    left: 50%;
+    bottom: -35%;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 665px) {
+  .index .earth {
+    position: absolute;
+    left: 50%;
+    bottom: -35%;
+    -moz-transform:  scale(0.8, 0.8) translateX(-50%);
+    -ms-transform:  scale(0.8, 0.8) translateX(-50%);
+    -webkit-transform:  scale(0.8, 0.8) translateX(-50%);
+    transform:  scale(0.8, 0.8) translateX(-50%);
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 600px) {
+  .index .earth {
+    position: absolute;
+    left: 50%;
+    bottom: -40%;
+    -moz-transform:  scale(0.6, 0.6) translateX(-50%);
+    -ms-transform:  scale(0.6, 0.6) translateX(-50%);
+    -webkit-transform:  scale(0.6, 0.6) translateX(-50%);
+    transform:  scale(0.6, 0.6) translateX(-50%);
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 470px) {
+  .index .earth {
+    position: absolute;
+    left: 50%;
+    bottom: -55%;
+  }
+}
 @media screen and (min-device-width: 414px) and (max-device-width: 959px) {
   .index .earth {
     position: absolute;
     left: 50%;
-    bottom: -2%;
-    width: 130%;
+    bottom: -10%;
+    width: 160%;
     margin: 0 auto;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -1066,8 +1102,8 @@ a.close span:after {
   .index .earth {
     position: absolute;
     left: 50%;
-    bottom: -7%;
-    width: 130%;
+    bottom: -20%;
+    width: 200%;
     margin: 0 auto;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -1078,8 +1114,8 @@ a.close span:after {
   .index .earth {
     position: absolute;
     left: 50%;
-    bottom: -15%;
-    width: 130%;
+    bottom: -22%;
+    width: 180%;
     margin: 0 auto;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -1111,7 +1147,7 @@ a.close span:after {
   .index .house_layer_2,
   .index .house_layer_3 {
     position: absolute;
-    top: -125px;
+    top: -155px;
     right: 0px;
   }
 }
@@ -1120,7 +1156,7 @@ a.close span:after {
   .index .house_layer_2,
   .index .house_layer_3 {
     position: absolute;
-    top: -110px;
+    top: -155px;
     right: 0px;
   }
 }
@@ -1129,7 +1165,7 @@ a.close span:after {
   .index .house_layer_2,
   .index .house_layer_3 {
     position: absolute;
-    top: -95px;
+    top: -125px;
     right: 0px;
   }
 }
@@ -1234,6 +1270,54 @@ a.close span:after {
   }
   .index section a.btn {
     display: block;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 665px) {
+  .index section {
+    position: absolute;
+    top: 6%;
+    left: 50%;
+  }
+  .index section h1 {
+    width: 45%;
+    margin: 0 auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 600px) {
+  .index section h1 {
+    width: 30%;
+    margin: 0 auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 470px) {
+  .index section h1 {
+    width: 20%;
+    margin: 0 auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .index section .scroll-btn {
+    -moz-transform: scale(0.7, 0.7);
+    -ms-transform: scale(0.7, 0.7);
+    -webkit-transform: scale(0.7, 0.7);
+    transform: scale(0.7, 0.7);
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  .index section h1 {
+    width: 70%;
+    margin: 0 auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
   }
 }
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
@@ -1352,11 +1436,8 @@ a.close span:after {
   -ms-transform: scale(8, 8);
   -webkit-transform: scale(8, 8);
   transform: scale(8, 8);
-  filter: brightness(70%);
-  -webkit-filter: brightness(70%);
-  -moz-filter: brightness(70%);
-  -ms-filter: brightness(70%);
-  -o-filter: brightness(70%);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
 }
 @media only screen and (max-width: 1280px) {
   .p_2 svg {
@@ -1384,11 +1465,8 @@ a.close span:after {
   -ms-transform: scale(2, 2);
   -webkit-transform: scale(2, 2);
   transform: scale(2, 2);
-  filter: brightness(40%);
-  -webkit-filter: brightness(40%);
-  -moz-filter: brightness(40%);
-  -ms-filter: brightness(40%);
-  -o-filter: brightness(40%);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  opacity: 0.4;
 }
 @media only screen and (max-width: 1280px) {
   .p_3 svg {
@@ -1453,6 +1531,22 @@ a.close span:after {
     right: 10%;
   }
 }
+@media screen and (max-width: 1920px) and (max-height: 800px) {
+  .flyman {
+    -moz-transform: scale(0.7, 0.7);
+    -ms-transform: scale(0.7, 0.7);
+    -webkit-transform: scale(0.7, 0.7);
+    transform: scale(0.7, 0.7);
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 600px) {
+  .flyman {
+    -moz-transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -webkit-transform: scale(0.6, 0.6);
+    transform: scale(0.6, 0.6);
+  }
+}
 
 .rocket {
   position: absolute;
@@ -1498,6 +1592,22 @@ a.close span:after {
     display: none;
   }
 }
+@media screen and (max-width: 1920px) and (max-height: 800px) {
+  .rocket {
+    -moz-transform: scale(0.75, 0.75);
+    -ms-transform: scale(0.75, 0.75);
+    -webkit-transform: scale(0.75, 0.75);
+    transform: scale(0.75, 0.75);
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 600px) {
+  .rocket {
+    -moz-transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -webkit-transform: scale(0.6, 0.6);
+    transform: scale(0.6, 0.6);
+  }
+}
 
 .satellite {
   position: absolute;
@@ -1534,6 +1644,14 @@ a.close span:after {
 @media only screen and (max-width: 1024px) {
   .satellite {
     display: none;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 600px) {
+  .satellite {
+    -moz-transform: scale(0.4, 0.4);
+    -ms-transform: scale(0.4, 0.4);
+    -webkit-transform: scale(0.4, 0.4);
+    transform: scale(0.4, 0.4);
   }
 }
 
@@ -1602,10 +1720,11 @@ a.close span:after {
   transform: rotate(-23deg);
   background: url(../asset/svg/flag.svg) no-repeat top center;
   background-size: contain;
-  padding: 10px 0 0 25px;
+  padding: 10px 0 0 10px;
   z-index: 2;
 }
 .vote .storeBlock .flag p {
+  text-align: center;
   font-size: 15px;
   font-size: 0.9375rem;
   font-weight: 500;
@@ -1708,6 +1827,13 @@ a.close span:after {
     -ms-transform: scale(22, 22);
     -webkit-transform: scale(22, 22);
     transform: scale(22, 22);
+  }
+}
+@media only screen and (max-height: 650px) {
+  .vote .storeBlock {
+    position: absolute;
+    left: 50%;
+    bottom: -20%;
   }
 }
 .vote .flyman {
@@ -2425,6 +2551,21 @@ aside ul li .s_16 {
 @media screen and (max-width: 600px) {
   aside {
     display: none;
+  }
+}
+@media only screen and (max-height: 650px) {
+  aside {
+    position: absolute;
+    top: 100px;
+    left: 2%;
+    -moz-transform:  scale(0.8, 0.8);
+    -ms-transform:  scale(0.8, 0.8);
+    -webkit-transform:  scale(0.8, 0.8);
+    transform:  scale(0.8, 0.8);
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
   }
 }
 
