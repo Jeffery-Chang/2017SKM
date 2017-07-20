@@ -151,7 +151,9 @@ var indexCtrl = {
                 {
                     breakpoint: 600,
                     settings: {
+                        initialSlide: 1,
                         arrows: false,
+                        infinite: false,
                         centerMode: true,
                         centerPadding: '33%',
                         slidesToShow: 1
@@ -228,8 +230,9 @@ var indexCtrl = {
             });
         });
 
-        $('.progress a, .store_list .next').on('click', function(e){
+        $('.progress ul a').on('click', function(e){
             menuCtrl.preventAll(e);
+            trackWaitJump('', 'general.html');
         });
 
         // 開店別 for mobile

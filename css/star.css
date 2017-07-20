@@ -125,14 +125,20 @@ header nav{
     list-style: none;
     top: 50%;
     left: 50%;
-    width: 350%;
-    height: 200vh;
-    margin-left: -175%;
+    width: 300%;
+    height: 250vh;
+    margin-left: -150%;
+    margin-top: -25vh;
+}
+@media screen and (max-width: 1200px) {
+    .index .roundabout-holder {
+        width: 320%;
+        margin-left: -160%;
+    }
 }
 @media screen and (max-width: 600px) {
     .index .roundabout-holder {
         width: 600%;
-        height: 200vh;
         margin-left: -300%;
     }
 }
