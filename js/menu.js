@@ -221,7 +221,7 @@ var menuCtrl = {
                     $.removeCookie('choose2');
                     $.removeCookie('choose3');
                 }else if(result.status == '110'){
-                    $('.finalCheck .beenVote h2').text('您今日已投過票囉！');
+                    $('.final_check .beenVote h2').text('您今日已投過票囉！');
                 }
 
                 if (cb) cb();

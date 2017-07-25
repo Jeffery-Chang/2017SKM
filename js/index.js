@@ -474,7 +474,7 @@ var indexCtrl = {
         var setKey = parseInt(Math.floor(setNum / 3));
 
         $.each(chooseList, function(num, obj){
-            profile[obj].chooseFG = true;
+            if(obj) profile[obj].chooseFG = true;
             
             if(num == (chooseList.length -1)) $this.setProfile(setKey);
         });

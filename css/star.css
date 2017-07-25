@@ -164,6 +164,15 @@ header nav{
     display: inline-block;
 }
 
+.avtivity .br{
+    display: none;
+}
+@media screen and (max-width: 600px) {
+    .avtivity .br{
+        display: block;
+    }
+}
+
 .fade-enter-active, .fade-leave-active {
     transition: opacity .2s
 }
