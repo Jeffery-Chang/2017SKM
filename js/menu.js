@@ -17,7 +17,7 @@
 var menuCtrl = {
     init: function(){
         var $this = this;
-        
+
         if($this.chkIE8() === 'IE8'){
             location.href = 'ie8/';
             return;
@@ -41,28 +41,34 @@ var menuCtrl = {
             $('header nav').fadeToggle('fast');
         });
 
+        $('header p').css('cursor', 'pointer').on('click', function(e){
+            $this.preventAll(e);
+            gaclick('menu_logo');
+            window.open('http://www.skm.com.tw/', '_blank');
+        });
+
         $('header nav li').on('click', function(e){
             $this.preventAll(e);
             var menuIndex = $(this).index();
             switch (menuIndex){
                 case 0:
-                    trackWaitJump('', 'index.html');
+                    trackWaitJump('menu_index', 'index.html');
                     break;
                 case 1:
-                    trackWaitJump('', 'activity.html');
+                    trackWaitJump('menu_rule', 'activity.html');
                     break;
                 case 2:
-                    trackWaitJump('', 'general.html');
+                    trackWaitJump('menu_votelist', 'general.html');
                     break;
                 case 3:
                     trackWaitJump('', '');
                     break;
                 case 4:
-                    gaclick('fb_share');
+                    gaclick('menu_fbshare');
                     $this.shareFB();
                     break;
                 case 5:
-                    gaclick('gplus_share');
+                    gaclick('menu_gshare');
                     $this.shareGplus();
                     break;
                              }
@@ -100,6 +106,8 @@ var menuCtrl = {
         var $this = this;
         if (obj !== void 0) obj.click(function(e){ $this.preventAll(e); });
 
+        gaclick('login_fb');
+        
         // 串接FB登入按鈕
         FB.login(
             function(response) {
@@ -120,7 +128,7 @@ var menuCtrl = {
                         }
                     );
                 }else{
-                    alert('請登入FB/G+來進行投票，謝謝！');
+                    //alert('請登入FB/G+來進行投票，謝謝！');
                 }
             },{ scope: 'email' }
         );
@@ -135,6 +143,9 @@ var menuCtrl = {
             // 串接G+登入按鈕
             obj.on('click', function(e){
                 $this.preventAll(e);
+                
+                gaclick('login_google');
+                
                 auth2.signIn().then(function(user){
                     var gProfile = user.getBasicProfile();
                     if(gProfile){
@@ -170,15 +181,23 @@ var menuCtrl = {
     sendData: function(cb){
         if (cb === void 0) { cb = null; }
         var pass = grecaptcha.getResponse();
+        var read = $('.read #checkbox-1').prop('checked');
         var sendType, sendName, sendEmail, sendId, sendChoose, sendGoogle, data;
         if(pass.length === 0){
             alert('請使用google驗證!');
             return;
         }
+        
+        if(!read){
+            alert('請閱讀並同意活動辦法及個人資料公開授權!');
+            return;
+        }
+        
+        gaclick('vote_ok');
 
         sendType = $.cookie('type');
         sendName = $.cookie('name');
-        sendEmail = $.cookie('email');
+        sendEmail = ($.cookie('email')) ? $.cookie('email') : '' ;
         sendId = $.cookie('id');
         sendChoose = $.cookie('choose1') + ',' + $.cookie('choose2') + ',' + $.cookie('choose3');
 
@@ -197,21 +216,13 @@ var menuCtrl = {
             url: '../api/vote',
             data: data,
             success: function(result){
-                console.log('status:', result.status);
                 if(result.status == '200'){
-                    console.log('投票成功！');
-                }else if(result.status == '100'){
-                    console.log('google驗證失敗！');
+                    $.removeCookie('choose1');
+                    $.removeCookie('choose2');
+                    $.removeCookie('choose3');
                 }else if(result.status == '110'){
-                    //alert('您今日已完成投票!\n\n每個FB/G+帳號，一天可投一票，天天投票，中獎機率越高\n微笑新星們期待您的再訪支持！');
-                    console.log('該id已投過票！');
-                }else if(result.status == '120'){
-                    console.log('登入帳號非FB/G+！');
+                    $('.finalCheck .beenVote h2').text('您今日已投過票囉！');
                 }
-
-                $.removeCookie('choose1');
-                $.removeCookie('choose2');
-                $.removeCookie('choose3');
 
                 if (cb) cb();
             },
@@ -229,14 +240,30 @@ var menuCtrl = {
     },
     chkWebview: function(){
         var userAgent = window.navigator.userAgent.toLowerCase();
+        var standalone = window.navigator.standalone;
+        var safari = /safari/.test(userAgent);
         var fbWebView = /fbid|fbios|fblc|fb_iab|fb4a|fbav/.test(userAgent);
         var lineWebView = /line/i.test(userAgent);
-        return fbWebView || lineWebView;
+        var ios = /iphone|ipod|ipad/.test(userAgent);
+        var uiwebview = false;
+
+        if (ios) {
+            if (!standalone && safari) {
+                // iosType = 'ios browser';
+            } else if (standalone && !safari) {
+                // iosType = 'ios standalone';
+            } else if (!standalone && !safari) {
+                // iosType = 'ios uiwebview';
+                uiwebview = true;
+            }
+        }
+
+        return uiwebview || fbWebView || lineWebView;
     },
     chkIE8: function(){
         var userAgent = navigator.userAgent;
         var fIEVersion = parseFloat(RegExp["$1"]); 
-        
+
         if(userAgent.indexOf('MSIE 6.0')!=-1){
             return "IE6";
         }else if(fIEVersion == 7){

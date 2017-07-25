@@ -4,19 +4,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>SKM | 微笑新星爭霸戰</title>
+        <title>新光三越 | 微笑新星爭霸戰</title>
 
         <!-- facebook share -->
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="SKM | 微笑新星爭霸戰" />
+        <meta property="og:title" content="新光三越 | 微笑新星爭霸戰" />
         <meta property="og:url" content="https://smileangel.skm.com.tw/test/" />
         <meta property="og:description" content="歡迎搭乘星際飛船！新光三越天使們正以微笑火熱開戰！8/7~20馬上投票應援喜愛的微笑天使，助他成為最耀眼的新光之星！再抽iPad mini4！" />
         <meta property="og:image" content="https://smileangel.skm.com.tw/test/img/600x315.png" />
         <meta property="fb:app_id" content="142220039665931" />
-        
+
         <!-- favicon -->
         <link rel="icon" href="img/favicon.ico">
-        
+
         <!-- css style -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/star.css">
@@ -364,10 +364,10 @@
                                             <h2>{{ item.name }}</h2>
                                             <h3>{{ item.store_nm }}</h3>
                                             <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                            <a href="" class="btnVote" @click="getVote($event)" :index="item.index">
-                                                <span><b class="icon-love"></b>投票</span>
+                                            <a href="" class="btnVote" :class="{ 'choose' : item.chooseFG }" @click="getVote($event)" :index="item.index">
+                                                <span><b class="icon-love" v-show="!item.chooseFG"></b>{{ (item.chooseFG) ? '已選取' : '投票' }}</span>
                                                 <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
-                                                    <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
+                                                    <path :class="{ 'shape shape_border' : !item.chooseFG }" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
                                                 </svg>
                                             </a>
                                         </div>
@@ -393,10 +393,10 @@
                                             <h2>{{ item.name }}</h2>
                                             <h3>{{ item.store_nm }}</h3>
                                             <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                            <a href="" class="btnVote" @click="getVote($event)" :index="item.index">
-                                                <span><b class="icon-love"></b>投票</span>
+                                            <a href="" class="btnVote" :class="{ 'choose' : item.chooseFG }" @click="getVote($event)" :index="item.index">
+                                                <span><b class="icon-love" v-show="!item.chooseFG"></b>{{ (item.chooseFG) ? '已選取' : '投票' }}</span>
                                                 <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
-                                                    <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
+                                                    <path :class="{ 'shape shape_border' : !item.chooseFG }" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
                                                 </svg>
                                             </a>
                                         </div>
@@ -422,10 +422,10 @@
                                             <h2>{{ item.name }}</h2>
                                             <h3>{{ item.store_nm }}</h3>
                                             <p>目前票數 <span>{{ item.vote_cnt }}</span> 票</p>
-                                            <a href="" class="btnVote" @click="getVote($event)" :index="item.index">
-                                                <span><b class="icon-love"></b>投票</span>
+                                            <a href="" class="btnVote" :class="{ 'choose' : item.chooseFG }" @click="getVote($event)" :index="item.index">
+                                                <span><b class="icon-love" v-show="!item.chooseFG"></b>{{ (item.chooseFG) ? '已選取' : '投票' }}</span>
                                                 <svg x="0px" y="0px" width="120px" height="40px" viewBox="-3 -3 126 46">
-                                                    <path class="shape shape_border" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
+                                                    <path :class="{ 'shape shape_border' : !item.chooseFG }" fill="#B72224" d="M100,0H20C8.954,0,0,8.954,0,20s8.954,20,20,20h80c11.045,0,20-8.954,20-20S111.045,0,100,0z" stroke-linejoin="round" stroke-linecap="round" />
                                                 </svg>
                                             </a>
                                         </div>
@@ -520,7 +520,7 @@
             <!--投票成功-->
             <transition name="fade">
                 <div class="pop final_check" v-show="voteFG">
-                    <a href="" class="close" @click="closeAll($event)"><span></span></a>
+                    <a href="" class="close" @click="closeAll($event, 'vote_go_x')"><span></span></a>
                     <div class="red_bar"></div>
                     <!--01-->
                     <div class="con finalCheck">
@@ -530,6 +530,10 @@
                             <li><p><img src="img/store/01_A_01.jpg" alt=""></p><h1>陳思齊<span>台北南西</span></h1></li>
                         </ul>
                         <div class="g-recaptcha" data-sitekey="6Lce3iYUAAAAAMSujz1uyC9ylydjiTAawjxllxSC"></div>
+                        <p class="read">
+                            <input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox">
+                            <label for="checkbox-1" class="checkbox-custom-label">我已閱讀並同意<a href="activity.html">活動辦法</a>及<a href="activity.html#auth">個人資料公開授權</a></label>
+                        </p>
                         <a href="" class="votebtn" @click="finalCheck($event)">
                             <span><b class="icon-love"></b>確認投票</span>
                             <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
@@ -541,7 +545,7 @@
                     <div class="con beenVote none">
                         <h2>您已完成投票!</h2>
                         <h3>每個FB/G+帳號，一天可投一票，天天投票，中獎機率越高<br>微笑新星們期待您的再訪支持！</h3>
-                        <a href="index.html" class="votebtn">
+                        <a href="" class="votebtn">
                             <span><b class="icon-home"></b>回首頁</span>
                             <svg width="173px" height="43px" viewBox="-2 -2 177 47" stroke-linejoin="round" stroke-linecap="round">
                                 <path class="shape shape_border" fill="#FFFFFF" d="M151.875,0h-130C9.794,0,0,9.794,0,21.875S9.794,43.75,21.875,43.75h130 c12.081,0,21.875-9.794,21.875-21.875S163.956,0,151.875,0z"/>
@@ -554,7 +558,7 @@
             <!--登入畫面-->
             <transition name="fade">
                 <div class="pop login" v-show="loginFG">
-                    <a href="" class="close" @click="closeAll($event)"><span></span></a>
+                    <a href="" class="close" @click="closeAll($event, 'login_x')"><span></span></a>
                     <div class="red_bar">請先登入帳號</div>
                     <div class="con">
                         <a href="" class="login_fb" @click="fbLogin($event)">

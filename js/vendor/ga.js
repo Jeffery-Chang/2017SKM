@@ -5,20 +5,14 @@
         m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-ga('create', '', 'auto');
-
-var useragent = navigator.userAgent;
-var isM = "";
-if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 || useragent.indexOf('Windows Phone') != -1) {
-    //isM = '_m'
-}
+ga('create', 'UA-66137351-1’', 'auto');
 
 function gapage(page) {
-    ga('send', 'pageview', page + isM);
+    ga('send', 'pageview', page);
 }
 
 function gaclick(evt) {
-    ga('send', 'event', 'click', evt + isM);
+    ga('send', 'event', 'click', evt);
 }
 
 function trackWaitJump(someurl, url) {

@@ -4,11 +4,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>SKM | 微笑新星爭霸戰</title>
+        <title>新光三越 | 微笑新星爭霸戰</title>
 
         <!-- facebook share -->
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="SKM | 微笑新星爭霸戰" />
+        <meta property="og:title" content="新光三越 | 微笑新星爭霸戰" />
         <meta property="og:url" content="https://smileangel.skm.com.tw/test/" />
         <meta property="og:description" content="歡迎搭乘星際飛船！新光三越天使們正以微笑火熱開戰！8/7~20馬上投票應援喜愛的微笑天使，助他成為最耀眼的新光之星！再抽iPad mini4！" />
         <meta property="og:image" content="https://smileangel.skm.com.tw/test/img/600x315.png" />
@@ -298,7 +298,7 @@
             </div>
         </div>
         <!-- navigation -->
-        <header style="display: none;">
+        <header style="opacity: 0;">
             <p><img src="asset/svg/logo.svg" alt=""></p>
             <div href="" class="menu">
                 <a href=""></a>
@@ -314,7 +314,7 @@
                 </ul>
             </nav>
         </header>
-        <div class="wrap" style="display: none;">
+        <div class="wrap" style="opacity: 0;">
             <div class="main general avtivity">
                 <!-- 其他物件 -->
                 <div class="fixed">
@@ -394,7 +394,7 @@
                                 <li>新光三越保有變更活動辦法及更換獎項為等值商品之權利。活動因故無法進行時，新光三越有權決定取消、終止、修改或暫停本活動。</li>
                             </ul>
                         </article>
-                        <p class="topic">蒐集個人資料告知及同意事項</p>
+                        <p class="topic auth">蒐集個人資料告知及同意事項</p>
                         <article>
                             <ul class="big_list">
                                 <li>告知事項：<br>依據個人資料保護法等相關規定，明列以下告知事項
@@ -430,13 +430,22 @@
         <script>
             $(function(){
                 $(window).on('load', function(){
-                    $('header, .wrap').attr('style', '');
-                    $('.loading').delay(500).fadeOut('fast');
+                    $('header, .wrap').css('opacity', 1);
+                    $('.loading').delay(500).fadeOut('fast', function(){
+                        var hash = location.hash;
+                        if(hash === '#auth'){
+                            $('html,body').delay(500).stop().animate({
+                                scrollTop: $('.auth').offset().top - 75
+                            }, 500);
+                        }
+                    });
                 });
                 $('.warn .close').on('click', function(e){
                     menuCtrl.preventAll(e);
                     $(this).parent('div').fadeOut('fast');
                 });
+
+                gapage('rule');
             });
         </script>
     </body>

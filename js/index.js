@@ -48,15 +48,21 @@ var indexCtrl = {
             menuCtrl.preventAll(e);
             $this.outStage();
         });
+
         startBtnM.click(function(e) {
             menuCtrl.preventAll(e);
             $this.outStage();
             $('.part1 .btn .shape').toggleClass('shape_border');
         });
+
         // all popup關閉
         $('.pop .close, .store_list .close, .warn .close').on('click', function(e){
             menuCtrl.preventAll(e);
             popupOpen = false;
+            var closeClass = $(this).parent('div').attr('class');
+            
+            if(closeClass.indexOf('login') > -1) gaclick('login_x');
+            if(closeClass.indexOf('final_check') > -1) gaclick('vote_go_x');
 
             $(this).parent('div').fadeOut('fast', function(){
                 $('.store_list').css('z-index', 501);
@@ -65,6 +71,7 @@ var indexCtrl = {
             (innerFG) ? $('.pop_black').fadeOut('fast') : $('.black').fadeOut('fast');
             innerFG = false;
         });
+
         $(window).on('resize', function(){
             $this.indexResize();
         }).on('load', function(){
@@ -89,6 +96,8 @@ var indexCtrl = {
 
             $('.loading').delay(300).fadeOut('fast');
         });
+
+        gapage('index');
     },
     indexResize: function(){
         if($(window).width() > 600){
@@ -106,6 +115,7 @@ var indexCtrl = {
         });
     },
     outStage: function(){
+        gaclick('index_vote');
         var $this = this;
         TweenMax.staggerTo([home1, home2, home3], .5, {scaleY: 0, y: 200, ease:Back.easeIn}, .1);
         TweenMax.to(earth, .5, {y: 200, ease: Back.easeIn, delay: .3});
@@ -198,9 +208,9 @@ var indexCtrl = {
             $('aside li').find('a').removeClass('focus');
             $('aside li').find('a').eq(focus).addClass('focus');
 
+            var gaIndex = focus + 1;
             $this.setProfile(focus);
-        }).bind('childrenUpdated', function(){
-
+            gaclick('shop_' + gaIndex);
         });
 
         TweenMax.to($('.roundabout-moveable-item'), .5, {scale: .5, filter: "brightness(30%)"});
@@ -210,8 +220,8 @@ var indexCtrl = {
     },
     initPart2: function(){
         var $this = this;
-        $this.setProfile(0);
         $this.checkChoose();
+        $this.setProfile(0);
 
         $.each(profile, function(key, obj){
             $.preload(obj.img2);
@@ -288,6 +298,10 @@ var indexCtrl = {
                 $this.openLogin();
                 return;
             }
+            
+            $.each(profile, function(index, obj){
+                obj.chooseFG = false;
+            });
 
             $this.checkChoose(index, type);
         });
@@ -306,16 +320,24 @@ var indexCtrl = {
 
                 if(key === (finalArr.length - 1)) $('.pop.final_check, .black').fadeIn('fast');
             });
+
+            gaclick('vote_go');
         });
 
         // 送出投票
         $('.finalCheck .votebtn').on('click', function(e){
             menuCtrl.preventAll(e);
             menuCtrl.sendData(function(){
-                $('.final_check .finalCheck').fadeOut('fast', function(){
+                $('.final_check .finalCheck, .final_check .close').fadeOut('fast', function(){
                     $('.final_check .beenVote').fadeIn('fast');
                 });
             });
+        });
+
+        // 送出投票>回首頁
+        $('.final_check .beenVote .votebtn').on('click', function(e){
+            menuCtrl.preventAll(e);
+            trackWaitJump('ok_goback', 'index.html');
         });
 
         TweenMax.to($('.part2'), .5, {
@@ -340,6 +362,16 @@ var indexCtrl = {
             obj.find('.vote_cnt').text(profile[newKey+key].vote_cnt);
             obj.find('.photo').data('index', profile[newKey+key].index).data('type', profile[newKey+key].store_tp);
             obj.find('.btnVote').data('index', profile[newKey+key].index).data('type', profile[newKey+key].store_tp);
+            
+            if(profile[newKey+key].chooseFG == true){
+                obj.find('.btnVote').addClass('choose');
+                obj.find('.btnVote').find('span').text('已選取');
+                obj.find('.btnVote').find('path').removeClass('shape').removeClass('shape_border');
+            }else{
+                obj.find('.btnVote').removeClass('choose');
+                obj.find('.btnVote').find('span').html('<b class="icon-love"></b>投票');
+                obj.find('.btnVote').find('path').addClass('shape').addClass('shape_border');
+            }
 
             if(key === (threeArr.length - 1)) TweenMax.to([three, threeLocation], .3, {opacity: 1, delay: .2});
         });
@@ -437,6 +469,15 @@ var indexCtrl = {
         var choose1 = $.cookie('choose1');
         var choose2 = $.cookie('choose2');
         var choose3 = $.cookie('choose3');
+        var chooseList = [choose1, choose2, choose3];
+        var setNum = (num) ? parseInt(num) : 0;
+        var setKey = parseInt(Math.floor(setNum / 3));
+
+        $.each(chooseList, function(num, obj){
+            profile[obj].chooseFG = true;
+            
+            if(num == (chooseList.length -1)) $this.setProfile(setKey);
+        });
 
         (choose1) ? $('.progress .icon-checkmark:eq(0)').removeClass('unfinish') : $('.progress .icon-checkmark:eq(0)').addClass('unfinish');
         (choose2) ? $('.progress .icon-checkmark:eq(1)').removeClass('unfinish') : $('.progress .icon-checkmark:eq(1)').addClass('unfinish');

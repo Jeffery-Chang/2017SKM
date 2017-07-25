@@ -2108,6 +2108,18 @@ a.close span:after {
 .vote_box .con .bottom a.btnVote svg .shape {
   stroke: #c81f25;
 }
+.vote_box .con .bottom a.choose {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666;
+  letter-spacing: 1px;
+  cursor: default;
+}
+.vote_box .con .bottom a.choose svg path {
+  fill: #eee;
+}
 .vote_box > svg {
   position: absolute;
   top: 50%;
@@ -2553,19 +2565,20 @@ aside ul li .s_16 {
     display: none;
   }
 }
-@media only screen and (max-height: 650px) {
+@media only screen and (max-height: 750px) {
   aside {
     position: absolute;
-    top: 100px;
+    top: 50%;
     left: 2%;
-    -moz-transform:  scale(0.8, 0.8);
-    -ms-transform:  scale(0.8, 0.8);
-    -webkit-transform:  scale(0.8, 0.8);
-    transform:  scale(0.8, 0.8);
+    -moz-transform:  scale(0.8, 0.8) translateY(-50%);
+    -ms-transform:  scale(0.8, 0.8) translateY(-50%);
+    -webkit-transform:  scale(0.8, 0.8) translateY(-50%);
+    transform:  scale(0.8, 0.8) translateY(-50%);
     -moz-transform-origin: 0 0;
     -ms-transform-origin: 0 0;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
+    margin-top: 25px;
   }
 }
 
@@ -3185,7 +3198,14 @@ aside ul li .s_16 {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  margin: 30px auto;
+  margin: 30px auto 15px;
+}
+.final_check p.read {
+  margin-bottom: 20px;
+}
+.final_check p.read a {
+  text-decoration: underline;
+  color: black;
 }
 @media screen and (max-width: 600px) {
   .final_check .red_bar {
@@ -3523,6 +3543,10 @@ aside ul li .s_16 {
   border-radius: 10px;
   padding-top: 12px;
 }
+.general .progress ul li:first-child a .popup ul {
+  text-align: left;
+  margin-left: 13px;
+}
 .general .progress ul li:first-child a .popup ul li {
   margin: 2px 0;
 }
@@ -3814,6 +3838,11 @@ aside ul li .s_16 {
   transform: rotate(-45deg);
 }
 
+.final_check .con p.read .checkbox-custom + .checkbox-custom-label:before {
+  background-color: #fff;
+  border: 2px #c81f25 solid;
+}
+
 @media screen and (max-width: 800px) {
   .avtivity .fixed {
     display: none;
@@ -3830,7 +3859,7 @@ aside ul li .s_16 {
   padding-bottom: 70px;
 }
 .avtivity section h2 {
-  max-width: 800px;
+  max-width: 720px;
   width: 100%;
   margin: 0 auto;
 }

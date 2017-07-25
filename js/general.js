@@ -30,11 +30,16 @@ $(function(){
             $('.progress li').on('click', function(e){
                 menuCtrl.preventAll(e);
                 var index = $(this).index() - 1;
-                console.log('index:', index);
                 $('html,body').stop().animate({
                     scrollTop: $('.group:eq('+index+')').offset().top - 75
                 }, 500);
             });
+
+            $('.final_check .beenVote .votebtn').on('click', function(e){
+                menuCtrl.preventAll(e);
+                trackWaitJump('ok_goback', 'index.html');
+            });
+
             $('.warn .close').on('click', function(e){
                 menuCtrl.preventAll(e);
                 $(this).parent('div').fadeOut('fast');
@@ -56,6 +61,9 @@ $(function(){
 
                     $('.pop.login .login_google').on('click', function(e){
                         menuCtrl.preventAll(e);
+
+                        gaclick('login_google');
+
                         auth2.signIn().then(function(user){
                             var gProfile = user.getBasicProfile();
                             if(gProfile){
@@ -75,6 +83,8 @@ $(function(){
             });
 
             this.chkChoose();
+
+            gapage('votelist');
         },
         updated: function(){
             var $this = this;
@@ -92,6 +102,9 @@ $(function(){
             fbLogin: function(evt){
                 var $this = this;
                 menuCtrl.preventAll(evt);
+
+                gaclick('login_fb');
+
                 // 串接FB登入按鈕
                 FB.login(
                     function(response) {
@@ -112,7 +125,7 @@ $(function(){
                                 }
                             );
                         }else{
-                            alert('請登入FB/G+來進行投票，謝謝！');
+                            // alert('請登入FB/G+來進行投票，謝謝！');
                         }
                     },{ scope: 'email' }
                 );
@@ -222,10 +235,16 @@ $(function(){
                     this.loginFG = this.closeFG = true;
                     return;
                 }
+                
+                $.each(this.items, function(index, obj){
+                    obj.chooseFG = false;
+                });
+                
                 var key = $(evt.target.offsetParent).attr('index');
                 this.chkChoose(key);
             },
             chkChoose: function(key){
+                var $this = this;
                 var tp = (key !== undefined) ? profile[key].store_tp : '';
                 if(tp === 'A'){
                     $.cookie('choose1', key);
@@ -234,10 +253,15 @@ $(function(){
                 }else if(tp === 'C'){
                     $.cookie('choose3', key);
                 }
-
+                
                 var choose1 = $.cookie('choose1');
                 var choose2 = $.cookie('choose2');
                 var choose3 = $.cookie('choose3');
+                var chooseList = [choose1, choose2, choose3];
+
+                $.each(chooseList, function(num, obj){
+                    $this.items[obj].chooseFG = true;
+                });
 
                 (choose1) ? $('.progress .icon-checkmark:eq(0)').removeClass('unfinish') : $('.progress .icon-checkmark:eq(0)').addClass('unfinish');
                 (choose2) ? $('.progress .icon-checkmark:eq(1)').removeClass('unfinish') : $('.progress .icon-checkmark:eq(1)').addClass('unfinish');
@@ -260,20 +284,23 @@ $(function(){
 
                     if(key === (finalArr.length - 1)) $this.voteFG = $this.closeFG = true;
                 });
+
+                gaclick('vote_go');
             },
             finalCheck: function(evt){
                 menuCtrl.preventAll(evt);
                 menuCtrl.sendData(function(){
-                    $('.final_check .finalCheck').fadeOut('fast', function(){
+                    $('.final_check .finalCheck, .final_check .close').fadeOut('fast', function(){
                         $('.final_check .beenVote').fadeIn('fast');
                     });
                 });
             },
-            closeAll: function(evt){
+            closeAll: function(evt, gaEvt){
                 if(evt) menuCtrl.preventAll(evt);
                 if(this.innerFG){
                     this.innerFG = this.loginFG = false;
                 }else{
+                    if(gaEvt) gaclick(gaEvt);
                     this.closeFG = this.sortFG = this.loginFG = this.moreFG = this.voteFG = false;
                 }
             }
