@@ -260,7 +260,9 @@ $(function(){
                 var chooseList = [choose1, choose2, choose3];
 
                 $.each(chooseList, function(num, obj){
-                    $this.items[obj].chooseFG = true;
+                    $.each($this.items, function(sort, item){
+                        if(item.index == obj) item.chooseFG = true;
+                    });
                 });
 
                 (choose1) ? $('.progress .icon-checkmark:eq(0)').removeClass('unfinish') : $('.progress .icon-checkmark:eq(0)').addClass('unfinish');

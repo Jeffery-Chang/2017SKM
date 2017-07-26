@@ -66,6 +66,11 @@ header nav{
 .none{
     display: none;
 }
+.gRobots{
+    position: relative;
+    top: -13px;
+    margin-bottom: -30px;
+}
 .g-recaptcha div{
     margin: 40px auto;
 }
