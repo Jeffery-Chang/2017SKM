@@ -120,6 +120,9 @@ header nav{
         -moz-transform: scale(.85) translate3d(0, 0, 0);
     }
 }
+.index section.part1 {
+	z-index: 599;
+}
 .index .planetBox{
     position: absolute;
     width: 100%;

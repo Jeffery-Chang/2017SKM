@@ -24,7 +24,7 @@ var threeLocation = $('.vote .location_name');
 var vote_box = $('.part2.vote .vote_box');
 
 var delayTime = .75;
-var wheelPos = (!menuCtrl.chkDevice()) ? "top" : "mobile";
+var wheelPos = "top";
 var fb_login = ($.cookie('fb_login')) ? true : false;
 var gplus_login = ($.cookie('gplus_login')) ? true : false;
 var popupOpen = false;
@@ -198,15 +198,13 @@ var indexCtrl = {
             duration: 400,
             startingChild: 0,
             responsive: true,
-            btnPrev: '.store_list p a:eq(0)',
-            btnNext: '.store_list p a:eq(1)',
             minOpacity: 1,
             maxOpacity: 1,
             shape: 'rollerCoaster',
             clickToFocus: false
         }).bind('animationStart', function() {
             var focus = planetObj.roundabout("getChildInFocus");
-            if(wheelPos == "down" || wheelPos == "mobile") {
+            if(wheelPos == "down") {
                 var downFocus = focus + 1;
                 if(downFocus >= 16) downFocus = 0;
                 TweenMax.to($('.roundabout-moveable-item').eq(downFocus), .5, {scale: 1, filter: "brightness(100%)"});
@@ -251,6 +249,7 @@ var indexCtrl = {
             $.preload(obj.img4);
         });
 
+        $('aside.part2').removeClass('none');
         $('aside li').on('click', function(e){
             menuCtrl.preventAll(e);
             var index = $(this).index();
@@ -271,6 +270,18 @@ var indexCtrl = {
             menuCtrl.preventAll(e);
             var index = $(this).index();
             trackWaitJump('', 'general.html?tag=' + index);
+        });
+
+        // 上下顆星球
+        $('.store_list p a:eq(0)').on('click', function(e){
+            menuCtrl.preventAll(e);
+            wheelPos = "top";
+            planetObj.roundabout('animateToPreviousChild');
+        });
+        $('.store_list p a:eq(1)').on('click', function(e){
+            menuCtrl.preventAll(e);
+            wheelPos = "down";
+            planetObj.roundabout('animateToNextChild');
         });
 
         // 開店別 for mobile
@@ -361,7 +372,7 @@ var indexCtrl = {
             menuCtrl.preventAll(e);
             trackWaitJump('ok_goback', 'index.html');
         });
-        
+
         TweenMax.to($('.roundabout-moveable-item'), .5, {scale: .5, filter: "brightness(30%)", delay: .1});
         TweenMax.to($('.roundabout-moveable-item').eq(store_number), .5, {scale: 1, filter: "brightness(100%)", delay: .1});
         planetObj.roundabout("animateToChild", store_number);
