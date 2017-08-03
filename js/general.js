@@ -240,7 +240,7 @@ $(function(){
                     obj.chooseFG = false;
                 });
                 
-                var key = $(evt.target.offsetParent).attr('index');
+                var key = $(evt.target).parents('.btnVote').attr('index');
                 this.chkChoose(key);
             },
             chkChoose: function(key){

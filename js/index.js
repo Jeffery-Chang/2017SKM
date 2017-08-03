@@ -7,9 +7,8 @@ var earth = $('.part1.earth .land');
 var title = $('.part1 h1');
 var redword = $('.part1 h2');
 var content = $('.part1 .pc_only, .part1 .m_only');
-var startBtnPC = $('.part1 .scroll-btn');
-var startBtnM = $('.part1 .btn');
-var indexBtn = (!menuCtrl.chkDevice(1)) ? startBtnPC : startBtnM;
+var startBtn = $('.part1 .btn');
+var indexBtn = $('.part1 .btn, .part1 .dropdown');
 var planet1 = $('.part1 .planet.p_1');
 var planet2 = $('.part1 .planet.p_2');
 var planet3 = $('.part1 .planet.p_3');
@@ -25,13 +24,15 @@ var threeLocation = $('.vote .location_name');
 var vote_box = $('.part2.vote .vote_box');
 
 var delayTime = .75;
-var outStage_fg = false;
 var wheelPos = (!menuCtrl.chkDevice()) ? "top" : "mobile";
 var fb_login = ($.cookie('fb_login')) ? true : false;
 var gplus_login = ($.cookie('gplus_login')) ? true : false;
 var popupOpen = false;
 var resizeFG = false;
 var innerFG = false;
+
+var store_fg = false;
+var store_number = 0;
 
 var indexCtrl = {
     init: function(){
@@ -42,25 +43,45 @@ var indexCtrl = {
         $this.updateData();
         $this.initSlick();
         $this.initRA();
-        $this.winWheel();
 
-        startBtnPC.find('a').on('click', function(e){
+        // 選分店
+        $(".dropdown dt a").on('click', function(e) {
             menuCtrl.preventAll(e);
-            $this.outStage();
+            $(".dropdown dd ul").slideToggle('fast');
         });
 
-        startBtnM.click(function(e) {
+        $(".dropdown dd ul li").on('click', function(e) {
             menuCtrl.preventAll(e);
+            var storeNM = $(this).find('a').text();
+            var storeIndex = $(this).index();
+            store_number = storeIndex;
+            store_fg = true;
+            $(".dropdown dt a").text(storeNM);
+            $(".dropdown dd ul").hide();
+        });
+
+        /*startBtnPC.find('a').on('click', function(e){
+            menuCtrl.preventAll(e);
+            $this.outStage();
+        });*/
+
+        startBtn.click(function(e) {
+            menuCtrl.preventAll(e);
+            if(!store_fg){
+                alert('請先選擇分店！');
+                return;
+            }
             $this.outStage();
             $('.part1 .btn .shape').toggleClass('shape_border');
         });
+
 
         // all popup關閉
         $('.pop .close, .store_list .close, .warn .close').on('click', function(e){
             menuCtrl.preventAll(e);
             popupOpen = false;
             var closeClass = $(this).parent('div').attr('class');
-            
+
             if(closeClass.indexOf('login') > -1) gaclick('login_x');
             if(closeClass.indexOf('final_check') > -1) gaclick('vote_go_x');
 
@@ -122,11 +143,10 @@ var indexCtrl = {
         TweenMax.staggerTo([title, redword, content], .5,{opacity: 0, y: -100}, .2);
         TweenMax.to(planet1, .5, {x: -500, ease:Back.easeIn});
         TweenMax.staggerTo([planet2, planet3], .5, {x: 500, ease:Back.easeIn}, .1);
-        TweenMax.to(startBtnPC, .5, {opacity: 0});
+        TweenMax.to(indexBtn, .5, {opacity: 0});
         TweenMax.to(rocket, 1, {top: "-20%", left: "5%", transform: "scale(.1)", ease: Back.easeIn});
         TweenMax.to(satellite, 1, {top: "-10%", left: "50%", transform: "scale(.1)", ease: Back.easeIn});
         TweenMax.to($('.part1'), .25, {display: "none", opacity: "0", delay: 1, onComplete: function(){
-            outStage_fg = true;
             $this.initPart2();
         }});
     },
@@ -178,7 +198,8 @@ var indexCtrl = {
             duration: 400,
             startingChild: 0,
             responsive: true,
-            btnNext: '.store_list .next',
+            btnPrev: '.store_list p a:eq(0)',
+            btnNext: '.store_list p a:eq(1)',
             minOpacity: 1,
             maxOpacity: 1,
             shape: 'rollerCoaster',
@@ -220,6 +241,7 @@ var indexCtrl = {
     },
     initPart2: function(){
         var $this = this;
+        $this.winWheel();
         $this.checkChoose();
         $this.setProfile(0);
 
@@ -262,13 +284,13 @@ var indexCtrl = {
         $('.store_list .name li').on('click', function(e){
             menuCtrl.preventAll(e);
             var index = $(this).index();
-            var thisClass = $(this).parent('ul').attr('class');
+            /*var thisClass = $(this).parent('ul').attr('class');
 
             if(thisClass === 'center'){
                 index = $(this).index() + $('.north li').size();
             }else if(thisClass === 'south'){
                 index = $(this).index() + $('.north li, .center li').size();
-            }
+            }*/
 
             $('.store_list').css('z-index', 501);
             $('.store_list .name').fadeOut('fast', function(){
@@ -298,7 +320,7 @@ var indexCtrl = {
                 $this.openLogin();
                 return;
             }
-            
+
             $.each(profile, function(index, obj){
                 obj.chooseFG = false;
             });
@@ -339,9 +361,13 @@ var indexCtrl = {
             menuCtrl.preventAll(e);
             trackWaitJump('ok_goback', 'index.html');
         });
-
+        
+        TweenMax.to($('.roundabout-moveable-item'), .5, {scale: .5, filter: "brightness(30%)", delay: .1});
+        TweenMax.to($('.roundabout-moveable-item').eq(store_number), .5, {scale: 1, filter: "brightness(100%)", delay: .1});
+        planetObj.roundabout("animateToChild", store_number);
         TweenMax.to($('.part2'), .5, {
             opacity: 1,
+            delay: .5,
             onComplete: function(){
                 //TweenMax.set($('.part2'), { clearProps:"all" });
             }
@@ -362,7 +388,7 @@ var indexCtrl = {
             obj.find('.vote_cnt').text(profile[newKey+key].vote_cnt);
             obj.find('.photo').data('index', profile[newKey+key].index).data('type', profile[newKey+key].store_tp);
             obj.find('.btnVote').data('index', profile[newKey+key].index).data('type', profile[newKey+key].store_tp);
-            
+
             if(profile[newKey+key].chooseFG == true){
                 obj.find('.btnVote').addClass('choose');
                 obj.find('.btnVote').find('span').text('已選取');
@@ -475,7 +501,7 @@ var indexCtrl = {
 
         $.each(chooseList, function(num, obj){
             if(obj) profile[obj].chooseFG = true;
-            
+
             if(num == (chooseList.length -1)) $this.setProfile(setKey);
         });
 
@@ -504,11 +530,10 @@ var indexCtrl = {
                 e = e || window.event;
                 if(e.wheelDelta <= 0 || e.detail > 0){
                     wheelPos = "down";
-                    (!outStage_fg) ? $this.outStage() : planetObj.roundabout('animateToNextChild');
+                    planetObj.roundabout('animateToNextChild');
                 }else{
                     wheelPos = "top";
-                    //$this.inStage();
-                    if(outStage_fg) planetObj.roundabout('animateToPreviousChild');
+                    planetObj.roundabout('animateToPreviousChild');
                 }
             }, 250);
         }
