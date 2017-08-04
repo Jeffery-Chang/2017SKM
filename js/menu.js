@@ -23,7 +23,7 @@ var menuCtrl = {
             return;
         }
 
-        $this.menuSet();
+        if(this.timeLimit()) $this.menuSet();
         $this.resize();
         $this.starSet();
         if(menuCtrl.chkWebview()) $('.warn').show();
@@ -32,6 +32,20 @@ var menuCtrl = {
             $this.resize();
             $this.starSet();
         });
+    },
+    timeLimit: function(){
+        var startTime = new Date('11:00 8/7/2017');
+        var nowTime = new Date();
+        var startFG = false;
+        
+        if(nowTime >= startTime){
+            startFG = true;
+        }
+        
+        // 測試完要拿掉
+        startFG = true;
+        
+        return startFG;
     },
     menuSet: function(){
         var $this = this;
@@ -107,7 +121,7 @@ var menuCtrl = {
         if (obj !== void 0) obj.click(function(e){ $this.preventAll(e); });
 
         gaclick('login_fb');
-        
+
         // 串接FB登入按鈕
         FB.login(
             function(response) {
@@ -143,9 +157,9 @@ var menuCtrl = {
             // 串接G+登入按鈕
             obj.on('click', function(e){
                 $this.preventAll(e);
-                
+
                 gaclick('login_google');
-                
+
                 auth2.signIn().then(function(user){
                     var gProfile = user.getBasicProfile();
                     if(gProfile){
@@ -187,12 +201,12 @@ var menuCtrl = {
             alert('請使用google驗證!');
             return;
         }
-        
+
         if(!read){
             alert('請閱讀並同意活動辦法及個人資料公開授權!');
             return;
         }
-        
+
         gaclick('vote_ok');
 
         sendType = $.cookie('type');
