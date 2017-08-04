@@ -42,9 +42,6 @@ var menuCtrl = {
             startFG = true;
         }
         
-        // 測試完要拿掉
-        startFG = true;
-        
         return startFG;
     },
     menuSet: function(){
