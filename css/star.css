@@ -157,6 +157,10 @@ header nav{
 .vote .store_list .name{
     z-index: 699;
 }
+.vote .final_check p.read {
+    position: relative;
+    z-index: 760;
+}
 .wrap .index .part2.vote .slick *{
     text-decoration: none; 
     -webkit-touch-callout: none;
