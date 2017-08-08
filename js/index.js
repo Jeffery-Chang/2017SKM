@@ -424,8 +424,8 @@ var indexCtrl = {
         var setObj = $('.personal');
         var group = '';
         var name = profile[key].name;
-        var pathName = (location.pathname.split("?")[0].indexOf('html') !== -1) ? location.pathname.split("?")[0] : '/test/index.html';
-        var url = location.protocol + '//' + location.hostname + pathName + '?name=' + name;
+        var pathName = (location.pathname.split("?")[0].indexOf('html') !== -1) ? location.pathname.split("?")[0] : '/index.html';
+        var url = 'https://' + location.hostname + pathName + '?name=' + name;
 
         if(tp === 'A'){
             group = '自營組';

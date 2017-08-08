@@ -17,6 +17,10 @@
 var menuCtrl = {
     init: function(){
         var $this = this;
+        
+        if(location.href.indexOf('https') == -1){
+            $this.chkProtocol();
+        }
 
         if($this.chkIE8() === 'IE8'){
             location.href = 'ie8/';
@@ -41,6 +45,8 @@ var menuCtrl = {
         if(nowTime >= startTime){
             startFG = true;
         }
+        
+        startFG = true;
         
         return startFG;
     },
@@ -290,6 +296,11 @@ var menuCtrl = {
         }else{
             return "0"
         }
+    },
+    chkProtocol: function(){
+        var myUrl = location.href;
+        myUrl = (myUrl) ? myUrl.replace('http', 'https') : location.href;
+        location.href = myUrl;
     }
 }
 

@@ -173,7 +173,7 @@ $(function(){
                 var key = $(evt.target.offsetParent).attr('index');
                 var name = profile[key].name;
                 var tp = profile[key].store_tp;
-                var url = location.protocol + '//' + location.hostname + location.pathname.split("?")[0].replace('general', 'index') + '?name=' + name;
+                var url = 'https://' + location.hostname + location.pathname.split("?")[0].replace('general', 'index') + '?name=' + name;
 
                 if(tp === 'A'){
                     group = '自營組';
