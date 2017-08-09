@@ -247,7 +247,7 @@ var indexCtrl = {
         var $this = this;
         $this.winWheel();
         $this.checkChoose();
-        $this.setProfile(0);
+        $this.setProfile(store_number);
 
         $.each(profile, function(key, obj){
             $.preload(obj.img2);
@@ -416,7 +416,7 @@ var indexCtrl = {
                 obj.find('.btnVote').find('path').addClass('shape').addClass('shape_border');
             }
 
-            if(key === (threeArr.length - 1)) TweenMax.to([three, threeLocation], .3, {opacity: 1, delay: .2});
+            if(key === (threeArr.length - 1)) TweenMax.to([three, threeLocation], .3, {opacity: 1, delay: .35});
         });
     },
     setPersonal: function(key, tp){
