@@ -230,21 +230,33 @@ $(function(){
             },
             getVote: function(evt, inn){
                 menuCtrl.preventAll(evt);
+
+                if(!menuCtrl.timesUp()){
+                    alert('此投票活動已結束，感謝您的熱情參與！\n\n活動將於106年9月4日(一)抽獎\n得獎通知將於106年9月8日(五)以E-MAIL寄發通知\n\n請您密切注意，謝謝。');
+                    return;
+                }
+
                 if(!this.fb_login && !this.gplus_login){
                     if(inn) this.innerFG = true;
                     this.loginFG = this.closeFG = true;
                     return;
                 }
-                
+
                 $.each(this.items, function(index, obj){
                     obj.chooseFG = false;
                 });
-                
+
                 var key = $(evt.target).parents('.btnVote').attr('index');
                 this.chkChoose(key);
             },
             chkChoose: function(key){
                 var $this = this;
+
+                if(!menuCtrl.timesUp()){
+                    alert('此投票活動已結束，感謝您的熱情參與！\n\n活動將於106年9月4日(一)抽獎\n得獎通知將於106年9月8日(五)以E-MAIL寄發通知\n\n請您密切注意，謝謝。');
+                    return;
+                }
+
                 var tp = (key !== undefined) ? profile[key].store_tp : '';
                 if(tp === 'A'){
                     $.cookie('choose1', key);
@@ -253,7 +265,7 @@ $(function(){
                 }else if(tp === 'C'){
                     $.cookie('choose3', key);
                 }
-                
+
                 var choose1 = $.cookie('choose1');
                 var choose2 = $.cookie('choose2');
                 var choose3 = $.cookie('choose3');
@@ -277,6 +289,12 @@ $(function(){
                 menuCtrl.preventAll(evt);
                 var $this = this;
                 if(!$.cookie('choose1') || !$.cookie('choose2') || !$.cookie('choose3')) return;
+                
+                if(!menuCtrl.timesUp()){
+                    alert('此投票活動已結束，感謝您的熱情參與！\n\n活動將於106年9月4日(一)抽獎\n得獎通知將於106年9月8日(五)以E-MAIL寄發通知\n\n請您密切注意，謝謝。');
+                    return;
+                }
+                
                 var finalObj = $('.finalCheck li');
                 var finalArr = [$.cookie('choose1'), $.cookie('choose2'), $.cookie('choose3')];
 

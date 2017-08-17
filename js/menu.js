@@ -17,7 +17,7 @@
 var menuCtrl = {
     init: function(){
         var $this = this;
-        
+
         if(location.href.indexOf('https') == -1){
             $this.chkProtocol();
         }
@@ -38,17 +38,27 @@ var menuCtrl = {
         });
     },
     timeLimit: function(){
-        var startTime = new Date('11:00 8/7/2017');
+        var startTime = new Date('August 07 2017, 11:00:00');
         var nowTime = new Date();
         var startFG = false;
-        
+
         if(nowTime >= startTime){
             startFG = true;
         }
-        
+
         startFG = true;
-        
+
         return startFG;
+    },
+    timesUp: function(){
+        var endTime = new Date('August 20 2017, 23:59:59');
+        var nowTime = new Date();
+        var endFG = true;
+        if(nowTime > endTime){
+            endFG = false;
+        }
+
+        return endFG;
     },
     menuSet: function(){
         var $this = this;
@@ -196,7 +206,12 @@ var menuCtrl = {
         window.open(gplus_url + encodeURIComponent(share_u), 'sharer', 'toolbar=0,status=0,width=656,height=436');
     },
     sendData: function(cb){
-        if (cb === void 0) { cb = null; }
+        if (cb === void 0) { cb = null; };
+        if(!menuCtrl.timesUp()){
+            alert('此投票活動已結束，感謝您的熱情參與！\n\n活動將於106年9月4日(一)抽獎\n得獎通知將於106年9月8日(五)以E-MAIL寄發通知\n\n請您密切注意，謝謝。');
+            return;
+        }
+
         var pass = grecaptcha.getResponse();
         var read = $('.read #checkbox-1').prop('checked');
         var sendType, sendName, sendEmail, sendId, sendChoose, sendGoogle, data;
@@ -300,7 +315,7 @@ var menuCtrl = {
     chkProtocol: function(){
         var myUrl = location.href;
         myUrl = (myUrl) ? myUrl.replace('http', 'https') : location.href;
-        location.href = myUrl;
+        if(location.hostname != '127.0.0.1') location.href = myUrl;
     }
 }
 

@@ -67,12 +67,17 @@ var indexCtrl = {
 
         startBtn.click(function(e) {
             menuCtrl.preventAll(e);
-            
+
             if(!menuCtrl.timeLimit()){
                 alert('現在投票還沒有開始喔！\n\n請於\n106年 8月  7日（一）11:00～\n106年 8月20日（日）23:59\n\n蒞臨本站一天一票，支持您心目中的候選人！');
                 return;
             }
-            
+
+            if(!menuCtrl.timesUp()){
+                alert('此投票活動已結束，感謝您的熱情參與！\n\n活動將於106年9月4日(一)抽獎\n得獎通知將於106年9月8日(五)以E-MAIL寄發通知\n\n請您密切注意，謝謝。');
+                return;
+            }
+
             if(!store_fg){
                 alert('請先選擇分店！');
                 return;
@@ -331,6 +336,11 @@ var indexCtrl = {
             var index = $(this).data('index');
             var type = $(this).data('type');
 
+            if(!menuCtrl.timesUp()){
+                alert('此投票活動已結束，感謝您的熱情參與！\n\n活動將於106年9月4日(一)抽獎\n得獎通知將於106年9月8日(五)以E-MAIL寄發通知\n\n請您密切注意，謝謝。');
+                return;
+            }
+
             if(!fb_login && !gplus_login){
                 popupOpen = true;
                 $('.pop.login, .black').fadeIn('fast');
@@ -350,6 +360,12 @@ var indexCtrl = {
             menuCtrl.preventAll(e);
             if($(this).hasClass('no')) return;
             popupOpen = true;
+
+            if(!menuCtrl.timesUp()){
+                alert('此投票活動已結束，感謝您的熱情參與！\n\n活動將於106年9月4日(一)抽獎\n得獎通知將於106年9月8日(五)以E-MAIL寄發通知\n\n請您密切注意，謝謝。');
+                return;
+            }
+
             var finalObj = $('.finalCheck li');
             var finalArr = [$.cookie('choose1'), $.cookie('choose2'), $.cookie('choose3')];
 
@@ -477,6 +493,11 @@ var indexCtrl = {
             var index = $(this).data('index');
             var type = $(this).data('type');
 
+            if(!menuCtrl.timesUp()){
+                alert('此投票活動已結束，感謝您的熱情參與！\n\n活動將於106年9月4日(一)抽獎\n得獎通知將於106年9月8日(五)以E-MAIL寄發通知\n\n請您密切注意，謝謝。');
+                return;
+            }
+
             if(!fb_login && !gplus_login){
                 popupOpen = true;
                 innerFG = true;
@@ -501,6 +522,12 @@ var indexCtrl = {
     },
     checkChoose: function(num, tp){
         var $this = this;
+
+        if(!menuCtrl.timesUp()){
+            alert('此投票活動已結束，感謝您的熱情參與！\n\n活動將於106年9月4日(一)抽獎\n得獎通知將於106年9月8日(五)以E-MAIL寄發通知\n\n請您密切注意，謝謝。');
+            return;
+        }      
+
         if(tp === 'A'){
             $.cookie('choose1', num);
         }else if(tp === 'B'){
