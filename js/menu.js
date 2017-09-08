@@ -27,6 +27,7 @@ var menuCtrl = {
             return;
         }
 
+        $('header nav li').eq(3).removeClass('none');
         if(this.timeLimit()) $this.menuSet();
         $this.resize();
         $this.starSet();
@@ -88,7 +89,7 @@ var menuCtrl = {
                     trackWaitJump('menu_votelist', 'general.html');
                     break;
                 case 3:
-                    trackWaitJump('', '');
+                    trackWaitJump('', 'award.html');
                     break;
                 case 4:
                     gaclick('menu_fbshare');

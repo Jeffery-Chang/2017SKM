@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>新光三越 | 微笑新星爭霸戰</title>
+
+        <!-- facebook share -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="新光三越 | 微笑新星爭霸戰" />
+        <meta property="og:url" content="https://smileangel.skm.com.tw/" />
+        <meta property="og:description" content="歡迎搭乘星際飛船！新光三越天使們正以微笑火熱開戰！8/7~20馬上投票應援喜愛的微笑天使，助他成為最耀眼的微笑新星！再抽iPad mini4！" />
+        <meta property="og:image" content="https://smileangel.skm.com.tw/img/600x315.png" />
+        <meta property="fb:app_id" content="142220039665931" />
+
+        <!-- favicon -->
+        <link rel="icon" href="img/favicon.ico">
+
+        <!-- css style -->
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/star.css">
+        <script src="js/vendor/jquery-2.2.0.min.js"></script>
+        <script src="js/vendor/isMobile.min.js"></script>
+        <script src="js/vendor/ga.js"></script>
+        <!--[if gt IE 9]><script src="js/vendor/html5shiv.js"></script><![endif]-->
+    </head>
+    <body style="min-width: auto;">
+        <!-- loading -->
+        <div class="loading">
+            <div id="container">
+                <div class="ball" id="ball_planet"></div>
+                <div class="smallball" id="wrap1">
+                    <div class="ball" id="ball1"></div>
+                </div>
+                <div class="smallball" id="wrap2">
+                    <div class="ball" id="ball2"></div>
+                </div>
+                <div class="smallball" id="wrap3">
+                    <div class="ball" id="ball3"></div>
+                </div>
+                <div class="smallball" id="wrap4">
+                    <div class="ball" id="ball4"></div>
+                </div>
+            </div>
+        </div>
+        <!-- only fot ipad-->
+        <div class="trans_bg">
+            <div class="trans_ipad">
+                <div class="trans_center"><img src="img/trans/ipad_ok.png">
+                    <p>請將裝置轉至橫式
+                        <br>體驗最佳瀏覽方式</p>
+                </div>
+            </div>
+            <!-- only for iphone-->
+            <div class="trans_iphone">
+                <div class="trans_center"><img src="img/trans/iphone_ok.png">
+                    <p>請將裝置轉至直式
+                        <br>體驗最佳瀏覽方式</p>
+                </div>
+            </div>
+        </div>
+        <!-- navigation -->
+        <header>
+            <p><img src="asset/svg/logo.svg" alt=""></p>
+            <div href="" class="menu">
+                <a href=""></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="">活動首頁</a></li>
+                    <li><a href="">活動辦法</a></li>
+                    <li><a href="">立即投票</a></li>
+                    <li><a href="">得獎名單</a></li>
+                    <li class="social"><a href=""><span class="icon-facebook"></span></a></li>
+                    <li class="social"><a href=""><span class="icon-google"></span></a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="wrap">
+            <div class="main general avtivity">
+                <!-- 其他物件 -->
+                <div class="fixed">
+                    <div class="meteor">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="planet p_1">
+                        <img src="asset/svg/planet/01.svg" alt="">
+                    </div>
+                    <div class="planet p_2">
+                        <img src="asset/svg/planet/07.svg" alt="">
+                    </div>
+                    <div class="planet p_3">
+                        <img src="asset/svg/planet/03.svg" alt="">
+                    </div>
+                    <div class="sha"></div>
+                </div>
+                <!-- 主要內容 -->
+                <section>
+                    <h1><img src="asset/svg/maintitle.svg" alt=""></h1>
+                    <h2>恭喜以下三位幸運的得獎者獲得iPad mini4 128G Wi-Fi版<br>(隨機贈送，恕不供挑選更換)</h2>
+                    <div class="award">
+                        <p><span>鄭*鏢</span>cc ****n@yahoo.com.tw</p>
+                        <p><span>A****l Lin</span>a****l-tw@hotmail.com</p>
+                        <p><span>m******k lu</span>m******klu@gmail.com</p>
+                        <ul>
+                            <li>。得獎者獲獎通知→106年9月8日(五)以E-MAIL寄發通知。</li>
+                            <li>。得獎者回覆確認→106年9月11日(一)~9月29日(五)間，回覆予工作小組進行確認。</li>
+                            <li>。獎品領取→請得獎人106年10月31日前回覆可前往領取之分店，於分店辦理領取手續。</li>
+                            <li>。其他詳細說明請詳閱<a href="activity.html">活動辦法</a>。</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <script src="js/menu.js?v=20170905"></script>
+        <script>
+            $(function(){
+                $(window).on('load', function(){
+                    $('header, .wrap').css('opacity', 1);
+                    $('.loading').delay(500).fadeOut('fast');
+                });
+                
+                $('.warn .close').on('click', function(e){
+                    menuCtrl.preventAll(e);
+                    $(this).parent('div').fadeOut('fast');
+                });
+            });
+        </script>
+    </body>
+</html>
